@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkai_augmented_tech_writer=globalThis.webpackChunkai_augmented_tech_writer||[]).push([[1903],{1912(e){e.exports=JSON.parse('{"blogBasePath":"/ai-augmented-tech-writer/blog","blogTitle":"Blog","authorsListPath":"/ai-augmented-tech-writer/blog/authors"}')}}]);
