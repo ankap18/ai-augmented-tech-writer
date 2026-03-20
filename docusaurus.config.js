@@ -83,8 +83,10 @@ const config = {
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
+      
       ({
         docs: {
+          exclude: ['**/synonyms-api/synonyms.md'],
           sidebarPath: './sidebars.js',
           docItemComponent: '@theme/ApiItem',
           // Please change this to your repo.

@@ -1,3 +1,5 @@
+
+
 # About my repo
 
 This is my personal repository, `ai-augmented-tech-writer`, created to explore how technical writing is evolving in the age of AI.

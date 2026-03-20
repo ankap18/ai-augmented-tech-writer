@@ -81,9 +81,14 @@ tutorialSidebar: [
               label: 'Overview ',
             },
             'portfolio/api-docs/authentication',
+
             {
               type: 'category',
               label: 'Endpoints',
+              link: {
+                type: 'doc',
+                id: 'portfolio/api-docs/generated/synonyms-api/synonyms',  // no .mdx extension
+              },
               items: [
                 {
                   type: 'doc',
@@ -111,6 +116,9 @@ tutorialSidebar: [
                 },
               ],
             },
+
+
+
           ],
         },
         'portfolio/how-to-publish-target-zendesk',
