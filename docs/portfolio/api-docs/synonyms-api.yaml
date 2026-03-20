@@ -1,0 +1,426 @@
+openapi: 3.1.0
+
+info:
+  title: Synonyms API
+  version: 1.0.0
+  description: |
+    Manage synonym relationships for search and query expansion.
+
+    Use this API to define how search terms relate to each other. You can create
+    equivalent, one-way, or group-based synonym sets and retrieve them at query time
+    to improve search relevance, autocomplete, and query understanding.
+
+    Typical use cases include:
+    - Expanding user queries (for example, "laptop" → "notebook")
+    - Normalizing vocabulary across domains
+    - Managing controlled vocabularies or product taxonomies
+
+    Base URL: https://api.synonyms.io/v1
+
+servers:
+  - url: https://api.synonyms.io/v1
+    description: Production server
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Synonyms
+    description: Manage synonym entries.
+
+paths:
+
+  /synonyms:
+
+    post:
+      tags:
+        - Synonyms
+      summary: Create a synonym entry
+      description: Creates a new synonym entry.
+      operationId: createSynonym
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SynonymCreate'
+            example:
+              term: laptop
+              synonyms:
+                - notebook
+                - portable computer
+              synonym_type: ONE_WAY
+              tags:
+                - electronics
+                - ecommerce
+      responses:
+        '201':
+          description: Returns the created synonym entry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Synonym'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    get:
+      tags:
+        - Synonyms
+      summary: List synonym entries
+      description: Returns a paginated list of synonym entries. Filter results using query parameters.
+      operationId: listSynonyms
+      parameters:
+        - name: tag
+          in: query
+          description: Returns only entries that include this tag. Matching is case-insensitive.
+          schema:
+            type: string
+            example: ecommerce
+
+        - name: synonym_type
+          in: query
+          description: Returns only entries with the specified relationship type.
+          schema:
+            $ref: '#/components/schemas/SynonymType'
+
+        - name: term
+          in: query
+          description: Returns entries whose `term` contains this value. Supports partial matching.
+          schema:
+            type: string
+            example: laptop
+
+        - name: page
+          in: query
+          description: Returns the specified page of results.
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+
+        - name: page_size
+          in: query
+          description: Sets the number of entries to return per page. Maximum is 100.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+
+      responses:
+        '200':
+          description: Returns a paginated list of synonym entries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SynonymList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /synonyms/{id}:
+
+    get:
+      tags:
+        - Synonyms
+      summary: Get a synonym entry
+      description: Returns a synonym entry by ID.
+      operationId: getSynonym
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Specifies the synonym entry ID.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns the requested synonym entry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Synonym'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    patch:
+      tags:
+        - Synonyms
+      summary: Update a synonym entry
+      description: Updates one or more fields of a synonym entry. Only provided fields are updated.
+      operationId: updateSynonym
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Specifies the synonym entry ID.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SynonymUpdate'
+      responses:
+        '200':
+          description: Returns the updated synonym entry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Synonym'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    delete:
+      tags:
+        - Synonyms
+      summary: Delete a synonym entry
+      description: Deletes a synonym entry by ID.
+      operationId: deleteSynonym
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Specifies the synonym entry ID.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Deletes the synonym entry successfully.
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        Send a Bearer token in the Authorization header.
+
+        Example:
+        Authorization: Bearer YOUR_API_TOKEN
+
+  schemas:
+
+    SynonymType:
+      type: string
+      enum:
+        - EQUIVALENT
+        - ONE_WAY
+        - GROUP
+      description: |
+        Defines how the `term` relates to its synonyms.
+
+        - EQUIVALENT: Treat all terms as interchangeable.
+        - ONE_WAY: Expand only from `term` to `synonyms`.
+        - GROUP: Treat all synonyms as interchangeable within the group.
+
+    SynonymCreate:
+      type: object
+      required:
+        - term
+        - synonyms
+        - synonym_type
+      properties:
+        term:
+          type: string
+          description: Defines the primary term. Must be unique.
+        synonyms:
+          type: array
+          minItems: 1
+          items:
+            type: string
+          description: Lists related terms.
+        synonym_type:
+          $ref: '#/components/schemas/SynonymType'
+        tags:
+          type: array
+          items:
+            type: string
+          description: Categorizes the entry. Used for filtering.
+          default: []
+
+    SynonymUpdate:
+      type: object
+      description: Specifies fields to update. Omitted fields remain unchanged.
+      properties:
+        synonyms:
+          type: array
+          minItems: 1
+          items:
+            type: string
+          description: Replaces the existing synonyms.
+        synonym_type:
+          $ref: '#/components/schemas/SynonymType'
+        tags:
+          type: array
+          items:
+            type: string
+          description: Replaces the existing tags.
+
+    Synonym:
+      type: object
+      required:
+        - id
+        - term
+        - synonyms
+        - synonym_type
+        - tags
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: string
+          description: Identifies the synonym entry.
+        term:
+          type: string
+          description: Defines the primary term.
+        synonyms:
+          type: array
+          items:
+            type: string
+          description: Lists related terms.
+        synonym_type:
+          $ref: '#/components/schemas/SynonymType'
+        tags:
+          type: array
+          items:
+            type: string
+          description: Lists category labels.
+        created_at:
+          type: string
+          format: date-time
+          description: Indicates when the entry was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: Indicates when the entry was last updated.
+
+    SynonymList:
+      type: object
+      required:
+        - data
+        - pagination
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Synonym'
+        pagination:
+          type: object
+          required:
+            - page
+            - page_size
+            - total
+          properties:
+            page:
+              type: integer
+            page_size:
+              type: integer
+            total:
+              type: integer
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+          additionalProperties: true
+
+  responses:
+
+    BadRequest:
+      description: Returns an error if the request is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    Unauthorized:
+      description: Returns an error if authentication fails.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    Forbidden:
+      description: Returns an error if the client lacks permission.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    NotFound:
+      description: Returns an error if the resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    Conflict:
+      description: Returns an error if the resource already exists.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    UnprocessableEntity:
+      description: Returns an error if validation fails.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    RateLimited:
+      description: Returns an error if the rate limit is exceeded.
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    InternalServerError:
+      description: Returns an error if the server encounters an issue.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

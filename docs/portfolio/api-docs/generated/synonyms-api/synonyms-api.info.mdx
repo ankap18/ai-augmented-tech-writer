@@ -1,0 +1,98 @@
+---
+id: synonyms-api
+title: "Synonyms API"
+description: "Manage synonym relationships for search and query expansion."
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0.0"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Synonyms API"}
+>
+</Heading>
+
+
+
+Manage synonym relationships for search and query expansion.
+
+Use this API to define how search terms relate to each other. You can create
+equivalent, one-way, or group-based synonym sets and retrieve them at query time
+to improve search relevance, autocomplete, and query understanding.
+
+Typical use cases include:
+- Expanding user queries (for example, "laptop" → "notebook")
+- Normalizing vocabulary across domains
+- Managing controlled vocabularies or product taxonomies
+
+Base URL: https://api.synonyms.io/v1
+
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Bearer Auth"}
+      value={"bearerAuth"}
+    >
+      
+      
+      Send a Bearer token in the Authorization header.
+      
+      Example:
+      Authorization: Bearer YOUR_API_TOKEN
+      
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                bearer
+              </td>
+            </tr><tr>
+              <th>
+                Bearer format:
+              </th><td>
+                JWT
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div>
+      
