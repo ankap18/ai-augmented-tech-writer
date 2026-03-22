@@ -131,7 +131,7 @@ const config = {
       },
       
       navbar: {
-        title: 'AI-augmented Tech Writer',
+        title: 'AI-Augmented Tech Writer',
         logo: {
           alt: 'My Site Logo',
           src: 'img/magic-book.png',
@@ -177,7 +177,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} AI-augmented Tech Writer, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} AI-Augmented Tech Writer, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,

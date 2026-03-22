@@ -1,15 +1,18 @@
-# AI-augmented Tech Writer
+# AI-Augmented Tech Writer
 
-This is my personal repository, `ai-augmented-tech-writer`, created to explore how technical writing is evolving in the age of AI.
+This repository, `ai-augmented-tech-writer`, is a personal project where I explore how technical writing is evolving in the age of AI.
 
 It serves several purposes:
 
--  Research how AI can empower technical writers in 2026
--  Build hands-on knowledge of vector search and AI-driven documentation
--  Learn how to publish documentation using Docusaurus (work in progress)
--  Showcase my portfolio and support my preparation for future roles
--  Share my journey and insights with the technical writing community
+- Research how AI can empower technical writers in 2026
+- Conduct high-level research into vector search and AI-driven documentation
+- Learn how to publish documentation using Docusaurus (work in progress)
+- Showcase my portfolio and support my preparation for future roles
+- Share my journey and insights with the technical writing community (work in progress)
 
-## Website
+👉 [Explore the documentation site](https://ankap18.github.io/ai-augmented-tech-writer/docs/category/welcome-to-my-repository)
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+ 
+> **Note**
+> This site is built with [Docusaurus](https://docusaurus.io/), a modern static site generator for documentation.
+
