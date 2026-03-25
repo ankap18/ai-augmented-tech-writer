@@ -1,30 +1,44 @@
-
 # About me
 
-I’m Anna Korolivska, a technical writer with 15+ years of experience writing for software in various domains. I am passionate about leveraging AI to enhance the efficiency and quality of technical writing. 
+I’m Anna Korolivska, a technical writer with 15+ years of experience writing software documentation across various domains. I am passionate about leveraging AI to enhance the efficiency and quality of technical writing. 
 
-These principles define my approach to technical communication:
+The following principles define my approach to technical communication.
 
--  **Process**  
-  Systems are the backbone of collaboration. I'm a fan of designing and implementing processes that bring clarity, consistency, and scalability to documentation workflows.
+## I love a good process 
 
--  **Guidelines**  
-  Strong documentation standards ensure consistency, whether working solo or within a team.
+I am a fan of designing and implementing processes that bring clarity and consistency, not just for the sake of process itself. Processes turn chaos into order and help us stay organized and consistent.
 
--  **Curiosity**  
-  Continuous exploration of new tools, technologies, and approaches. Driven by a need to understand how systems work under the hood, question assumptions, and experiment with better ways to create, structure, and deliver content.
+## Style guide is my best friend
 
--  **Collective intelligence**  
-  I believe strong collaboration helps us connect the dots across complex systems. By combining different perspectives, we complement each other, close knowledge gaps, and build more complete and accurate documentation.
+Strong documentation standards ensure consistency, especially when multiple writers contribute to the same project. Your docs need to sound as if they were written by a single person. Style guides and templates save you time and mental energy. 
 
--  **Peer reviews**  
-  Human review is essential. AI can accelerate workflows, but quality requires thoughtful curation.
+## Curiosity
 
--  **Information architecture, taxonomy, and ontology**  
-  Structured thinking applied to content: defining how concepts relate (ontology), how they are named and categorized (taxonomy), and how they are organized and navigated (information architecture) to create clarity, consistency, and discoverability.
+I love to learn and experiment. I feel happy and fulfilled when I learn something new, when I understand how something works under the hood, or when I find a better way to do something.
 
--  **Minimalism**  
-  Clear, concise content is more effective. Less is more. 
+P.S.: Even if I'm not in a "curious" mood, I push myself to be. Nowadays, with technology changing so fast, you can't afford to stop.
+  
+## The power of collective intelligence
+
+If you are documenting a complex system with many moving parts, you have to talk to your peers, leverage your contacts, and connect the dots. By combining different perspectives, we complement each other, close knowledge gaps, and build more complete and accurate documentation.
+
+##  Peer reviews
+
+I am so grateful to my peers for their feedback and suggestions. They are my first readers and testers. AI can accelerate and enhance the review process, but quality requires thoughtful curation. Especially when you use AI :) 
+
+## Structured thinking
+
+I love the "behind the scenes" of content: taxonomy, ontology, and information architecture. My goal is always to make information intuitive and discoverable.
+
+Applying structured thinking means:
+  - Defining how concepts relate (ontology)
+  - How they are named and categorized (taxonomy)
+  - How they are organized and navigated (information architecture)
+
+## Keep it simple
+
+My goal is to cut the fluff so the user gets exactly the information they need. For example, keeping explanations out of how-to guides and using progressive disclosure. Less is more.
+
   
 
 

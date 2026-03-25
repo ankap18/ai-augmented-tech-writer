@@ -81,6 +81,7 @@ tutorialSidebar: [
               label: 'Overview ',
             },
             'portfolio/api-docs/authentication',
+            'portfolio/api-docs/quickstart',
 
             {
               type: 'category',

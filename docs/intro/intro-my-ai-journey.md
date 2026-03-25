@@ -28,4 +28,5 @@ Since 2025, I've been diving into how AI can make that process even better. I've
 -  Build agents in GitHub Copilot
 -  Explore AI-powered documentation tools and platforms
 -  Continue sharing insights and best practices for AI-augmented technical writing
+-  Explore dangers of AI in tech writing
 
