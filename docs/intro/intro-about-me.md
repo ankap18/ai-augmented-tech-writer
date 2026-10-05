@@ -1,4 +1,10 @@
-# About me
+---
+title: WhoAmI
+description: Senior Technical Writer | API & Developer Docs | 15+ years experience
+sidebar_custom_props:
+  card_icon: img/icons/ai-head.svg
+  card_icon_invert_dark: true
+---
 
 I’m Anna Korolivska, a technical writer with 15+ years of experience writing software documentation across various domains. I am passionate about leveraging AI to enhance the efficiency and quality of technical writing. 
 
@@ -40,8 +46,6 @@ Applying structured thinking means:
 My goal is to cut the fluff so the user gets exactly the information they need. For example, keeping explanations out of how-to guides and using progressive disclosure. Less is more.
 
   
-
-
 
 
 

@@ -15,7 +15,7 @@ const require = createRequire(import.meta.url);
 const config = {
   title: 'AI-Augmented Tech Writer',
   tagline: 'AI is the future!',
-  favicon: 'img/magic-book.png',
+  favicon: 'img/ai-head.svg',
 
   themes: ['docusaurus-theme-openapi-docs'],
 
@@ -134,7 +134,8 @@ const config = {
         title: 'AI-Augmented Tech Writer',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/magic-book.png',
+          src: 'img/ai-head.svg',
+          srcDark: 'img/ai-head-black.svg',
         },
         items: [
           {

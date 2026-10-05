@@ -37,7 +37,7 @@ tutorialSidebar: [
         'intro/intro-my-ai-journey',
       ],
     },
-    
+
     {
       type: 'category',
       label: 'Portfolio',
@@ -124,6 +124,16 @@ tutorialSidebar: [
         },
         'portfolio/how-to-publish-target-zendesk',
         'portfolio/external-links',
+      ],
+    },
+
+    {
+      type: 'category',
+      label: 'AI stuff',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'ai-stuff/prompt-workflow-agent',
       ],
     },
   ],
