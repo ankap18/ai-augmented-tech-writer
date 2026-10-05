@@ -1,38 +1,93 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * src/css/custom.css
+ * Typography: IBM Plex Sans (light) + IBM Plex Mono
+ * Palette: deep blue (light mode), soft blue (dark mode)
+ * Includes the original site customizations (h1/h2 sizes, navbar brand).
  */
 
-/* You can override the default Infima variables here. */
+/* ---------- Fonts (self-hosted via Fontsource) ---------- */
+@import '@fontsource/ibm-plex-sans/300.css';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+
+/* ---------- Light theme (defaults) ---------- */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Article width for regular docs pages (not applied to API pages) */
+  --article-max-width: 52rem;
+
+  /* Font families */
+  --ifm-font-family-base: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ifm-heading-font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ifm-font-family-monospace: 'IBM Plex Mono', SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Weights: thinner overall */
+  --ifm-font-weight-light: 300;
+  --ifm-font-weight-normal: 300;
+  --ifm-font-weight-semibold: 500;
+  --ifm-font-weight-bold: 600;
+  --ifm-heading-font-weight: 400;
+
+  /* Sizing and rhythm */
+  --ifm-font-size-base: 105%;
+  --ifm-line-height-base: 1.75;
+  --ifm-heading-line-height: 1.25;
+  --ifm-code-font-size: 90%;
+
+  /* Dark text keeps weight 300 readable */
+  --ifm-font-color-base: #161616;
+
+  /* Deep blue (light mode) */
+  --ifm-color-primary: #08519c;
+  --ifm-color-primary-dark: #07498c;
+  --ifm-color-primary-darker: #074585;
+  --ifm-color-primary-darkest: #06396d;
+  --ifm-color-primary-light: #0959ac;
+  --ifm-color-primary-lighter: #095db3;
+  --ifm-color-primary-lightest: #0a69cb;
+  --docusaurus-highlighted-code-line-bg: rgba(8, 81, 156, 0.08);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* ---------- Dark theme (soft blue) ---------- */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* Light-on-dark looks thinner, so use 400 */
+  --ifm-font-weight-normal: 400;
+  --ifm-font-color-base: #e8e8e8;
+
+  --ifm-color-primary: #78a9ff;
+  --ifm-color-primary-dark: #5b96ff;
+  --ifm-color-primary-darker: #4c8cff;
+  --ifm-color-primary-darkest: #1b6cff;
+  --ifm-color-primary-light: #95bcff;
+  --ifm-color-primary-lighter: #a4c5ff;
+  --ifm-color-primary-lightest: #d1e1ff;
+  --docusaurus-highlighted-code-line-bg: rgba(120, 169, 255, 0.15);
 }
 
-/* Make the primary page title (h1) a bit smaller for better readability */
+/* ---------- Global rendering ---------- */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--ifm-color-primary) 25%, transparent);
+}
+
+/* ---------- Headings ---------- */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.01em;
+}
+
 h1 {
   font-size: 2.5rem;
   line-height: 1.2;
+  font-weight: 300;
 }
 
 h2 {
@@ -40,7 +95,114 @@ h2 {
   line-height: 1.3;
 }
 
+/* ---------- Links (body text only, so API panels and heading anchors are untouched) ---------- */
+.markdown p a,
+.markdown li a,
+.markdown td a {
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--ifm-color-primary) 40%, transparent);
+}
+
+.markdown p a:hover,
+.markdown li a:hover,
+.markdown td a:hover {
+  border-bottom-color: var(--ifm-color-primary);
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  box-shadow: none;
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+}
+
+.navbar__title {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.navbar__link {
+  font-weight: 400;
+}
+
 /* Temporarily disable click on the navbar brand/title ("AI-augmented tech writer") */
 .navbar__brand {
   pointer-events: none;
+}
+
+/* ---------- Sidebar ---------- */
+.menu__link {
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+/* All categories: same size, color and weight as pages, sentence case */
+.menu__list-item-collapsible > .menu__link--sublist {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 1;
+}
+
+/* Top-level categories only: small uppercase label in full text color */
+.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link--sublist {
+  --ifm-menu-color: var(--ifm-font-color-base);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+/* Quieter expand/collapse arrows */
+.menu__link--sublist-caret:after {
+  opacity: 0.6;
+}
+
+/* ---------- Table of contents ---------- */
+.table-of-contents__link {
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+
+/* ---------- Content width ----------
+   Applies to regular docs pages only. API pages (openapi-docs) render their
+   two-column layout inside .markdown, so capping them squeezes the panel. */
+.markdown:not(.theme-api-markdown):not(:has(.row)) {
+  max-width: var(--article-max-width);
+}
+
+/* Small text stays at 400 for legibility */
+.markdown table,
+.theme-doc-breadcrumbs,
+.pagination-nav__sublabel,
+.footer__link-item {
+  font-weight: 400;
+}
+
+/* ---------- Code ---------- */
+code {
+  font-weight: 400;
+}
+
+pre code {
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* ---------- Admonitions ---------- */
+.alert {
+  font-weight: 300;
+}
+
+[class*='admonitionHeading'] {
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+
+/* Footer matches the navbar in both themes */
+.footer {
+  --ifm-footer-background-color: var(--ifm-navbar-background-color);
+  --ifm-footer-color: var(--ifm-navbar-link-color);
+  --ifm-footer-link-color: var(--ifm-navbar-link-color);
+  --ifm-footer-title-color: var(--ifm-navbar-link-color);
 }

@@ -10,7 +10,7 @@ This portfolio includes various documents:
 Conceptual topics:
 - [Vector search](./vector-search/overview.md)
 - [Algorithms grouped by purpose](https://support.dataclaritycorp.com/hc/en-us/articles/4408961540756-Algorithms-grouped-by-purpose) (an external link)
-- [DCPY_LOFOUTLIER(n_neighbors, leaf_size, contamination, columns)](https://support.dataclaritycorp.com/hc/en-us/articles/4408969747092-DCPY-LOFOUTLIER-n-neighbors-leaf-size-contamination-columns)(an external link)
+- [DCPY_LOFOUTLIER(n_neighbors, leaf_size, contamination, columns)](https://support.dataclaritycorp.com/hc/en-us/articles/4408969747092-DCPY-LOFOUTLIER-n-neighbors-leaf-size-contamination-columns) (an external link)
 
 API documentation (a fake API for synonyms management): 
 - [Synonyms API overview](./api-docs/overview.md)
