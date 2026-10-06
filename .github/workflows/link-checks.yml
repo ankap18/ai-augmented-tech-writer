@@ -28,22 +28,27 @@ jobs:
       - uses: actions/checkout@v6
 
       # Run lychee, the link checker.
-      - name: Check external links
+      - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
           # Fail the job (red X) if any broken link is found.
           fail: true
           # lychee options, one string:
-          #   --scheme https --scheme http  only check web links. Internal links
+          #   --scheme https --scheme http  only check web links. Internal page links
           #                                 are already checked by the Docusaurus build.
+          #   --root-dir .../static         Docusaurus serves the "static" folder at "/".
+          #                                 So an image link like /img/logo.png means
+          #                                 static/img/logo.png. This also catches
+          #                                 missing image files.
           #   --no-progress                 keep the log clean.
           #   --max-retries 2               retry flaky links before reporting them.
           #   --accept '200..=299,429'      treat "OK" and "too many requests" as fine.
-          #                                 Some sites rate-limit bots with a 429.
           # Then the files to scan. Adjust these folders to match your repo.
+          # Links to skip live in the .lycheeignore file at the repo root.
           args: >-
             --scheme https
             --scheme http
+            --root-dir ${{ github.workspace }}/static
             --no-progress
             --max-retries 2
             --accept '200..=299,429'
@@ -52,7 +57,6 @@ jobs:
             './blog/**/*.md'
             './blog/**/*.mdx'
             './src/**/*.md'
-            './src/**/*.mdx'
             './README.md'
         env:
           # Lets lychee call the GitHub API for github.com links without
