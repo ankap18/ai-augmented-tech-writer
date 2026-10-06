@@ -1,0 +1,10 @@
+# Links lychee should NOT check. One regular expression per line.
+# lychee reads this file automatically from the repo root.
+
+# Local development URLs from the Docusaurus tutorial pages.
+# They only work on your own computer while "npm start" is running.
+^https?://localhost
+
+# Fictional example API used in the portfolio API docs.
+# The domain doesn't exist, on purpose.
+^https?://([a-z0-9-]+\.)*synonyms\.io

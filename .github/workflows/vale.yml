@@ -1,0 +1,44 @@
+# The workflow's display name, shown in the Actions tab and on the PR.
+name: Prose lint (Vale)
+
+# TRIGGERS: run when a PR targets main.
+on:
+  pull_request:
+    branches: [main]
+
+# PERMISSIONS: the action posts results back to the PR, so it needs more
+# than read-only access.
+permissions:
+  # Read the repository's code.
+  contents: read
+  # Post inline comments on the PR.
+  pull-requests: write
+  # Create the check result shown on the PR.
+  checks: write
+
+jobs:
+  vale:
+    # The name shown on the PR.
+    name: Vale prose check
+    # A fresh Linux VM.
+    runs-on: ubuntu-latest
+    steps:
+      # Download the PR's code onto the VM.
+      - uses: actions/checkout@v6
+
+      # Install Vale, download the packages from .vale.ini, and run it.
+      - uses: vale-cli/vale-action@v2
+        with:
+          # Which files or folders to check. Add "blog" when you create it:
+          # files: '["docs", "blog"]'
+          files: docs
+          # How results appear on the PR:
+          #   github-pr-check  = a check with annotations on the changed lines
+          #   github-pr-review = inline review comments
+          reporter: github-pr-check
+          # Start in "advisory" mode: show problems but don't fail the job.
+          # Change to true once you've cleaned up and trust the rules.
+          fail_on_error: false
+        env:
+          # Lets the action post results to the PR. GitHub provides this.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
