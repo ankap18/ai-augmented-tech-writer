@@ -1,0 +1,10 @@
+# Words Vale should NOT flag as spelling mistakes.
+# One per line. Regular expressions are allowed.
+# Add product names, tools and jargon as you meet them.
+Docusaurus
+MDX
+Vale
+lychee
+GitHub
+YAML
+(?i)ankap

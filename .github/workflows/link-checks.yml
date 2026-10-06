@@ -1,0 +1,60 @@
+# The workflow's display name, shown in the Actions tab and on the PR.
+name: Link checks
+
+# TRIGGERS: what makes this workflow start.
+on:
+  # Check links when a PR targets main, so you catch problems you introduce.
+  pull_request:
+    branches: [main]
+  # Also run every Monday at 06:00 UTC. External links break over time
+  # even when you change nothing, so a schedule catches "link rot".
+  schedule:
+    - cron: '0 6 * * 1'
+  # Adds a "Run workflow" button for manual runs.
+  workflow_dispatch:
+
+# PERMISSIONS: read-only, because this workflow only reads your files.
+permissions:
+  contents: read
+
+jobs:
+  link-check:
+    # The name shown on the PR (and in branch protection, if you ever require it).
+    name: External link check
+    # A fresh Linux VM.
+    runs-on: ubuntu-latest
+    steps:
+      # Download your repository's code onto the VM.
+      - uses: actions/checkout@v6
+
+      # Run lychee, the link checker.
+      - name: Check external links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Fail the job (red X) if any broken link is found.
+          fail: true
+          # lychee options, one string:
+          #   --scheme https --scheme http  only check web links. Internal links
+          #                                 are already checked by the Docusaurus build.
+          #   --no-progress                 keep the log clean.
+          #   --max-retries 2               retry flaky links before reporting them.
+          #   --accept '200..=299,429'      treat "OK" and "too many requests" as fine.
+          #                                 Some sites rate-limit bots with a 429.
+          # Then the files to scan. Adjust these folders to match your repo.
+          args: >-
+            --scheme https
+            --scheme http
+            --no-progress
+            --max-retries 2
+            --accept '200..=299,429'
+            './docs/**/*.md'
+            './docs/**/*.mdx'
+            './blog/**/*.md'
+            './blog/**/*.mdx'
+            './src/**/*.md'
+            './src/**/*.mdx'
+            './README.md'
+        env:
+          # Lets lychee call the GitHub API for github.com links without
+          # hitting anonymous rate limits. GitHub provides this token automatically.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
