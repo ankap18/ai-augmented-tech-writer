@@ -1,0 +1,51 @@
+# The workflow's display name, shown in the Actions tab and on the PR.
+name: PR checks
+
+# TRIGGERS: what makes this workflow start.
+on:
+  # Run when a PR is opened, updated with new commits, or reopened...
+  pull_request:
+    # ...but only if the PR targets the main branch.
+    branches: [main]
+
+# PERMISSIONS: what this workflow's token is allowed to do.
+# Only read the code. There is no "pages: write", so this workflow
+# is unable to deploy, even by accident.
+permissions:
+  contents: read
+
+# CONCURRENCY: rules for when several runs overlap.
+concurrency:
+  # One group per PR branch (github.ref identifies the branch/PR).
+  group: pr-checks-${{ github.ref }}
+  # If you push again to the same PR, cancel the older run.
+  # Safe here because nothing is published.
+  cancel-in-progress: true
+
+jobs:
+  # The job's ID (used internally by GitHub).
+  pr-build-check:
+    # The name shown on the PR. This is what you select later
+    # in branch protection as a required status check.
+    name: PR build check
+    # The type of machine GitHub starts (a fresh, empty Linux VM).
+    runs-on: ubuntu-latest
+    steps:
+      # Download the PR's code onto the VM.
+      - uses: actions/checkout@v6
+
+      # Install Node.js on the VM.
+      - uses: actions/setup-node@v6
+        with:
+          # Same version as deploy.yml, so PR results match real deploys.
+          node-version: 22
+          # Cache downloaded npm packages so later runs are faster.
+          cache: npm
+
+      # Install dependencies exactly as pinned in package-lock.json.
+      - run: npm ci
+
+      # Build the Docusaurus site. If this fails (broken link, bad MDX,
+      # config error), the PR gets a red X and can't be merged
+      # once branch protection requires this check.
+      - run: npm run build

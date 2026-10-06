@@ -1,0 +1,76 @@
+# The workflow's display name, shown in the Actions tab.
+name: Deploy to GitHub Pages
+
+# TRIGGERS: what makes this workflow start.
+on:
+  # Run whenever code is pushed (this includes merged PRs)...
+  push:
+    # ...but only if the push is to the main branch.
+    branches:
+      - main
+  # Adds a "Run workflow" button in the Actions tab for manual deploys.
+  workflow_dispatch:
+
+# PERMISSIONS: what this workflow's token is allowed to do.
+permissions:
+  # Read the repository's code (needed by checkout).
+  contents: read
+  # Publish the site to GitHub Pages (needed by deploy-pages).
+  pages: write
+  # Let the job prove its identity to GitHub Pages (needed by deploy-pages).
+  id-token: write
+
+# CONCURRENCY: rules for when several runs overlap.
+concurrency:
+  # Runs with the same group name share one "queue".
+  group: pages
+  # Don't cancel a deploy that's already running; let it finish first.
+  # Cancelling mid-deploy could leave the site half-published.
+  cancel-in-progress: false
+
+jobs:
+  # JOB 1: build the site.
+  build:
+    # The type of machine GitHub starts for this job (a fresh, empty Linux VM).
+    runs-on: ubuntu-latest
+    steps:
+      # Download your repository's code onto the VM.
+      - uses: actions/checkout@v6
+
+      # Install Node.js on the VM.
+      - uses: actions/setup-node@v6
+        with:
+          # Which Node.js version to install.
+          node-version: 22
+          # Cache downloaded npm packages so later runs are faster.
+          cache: npm
+
+      # Install dependencies exactly as pinned in package-lock.json.
+      - run: npm ci
+
+      # Build the Docusaurus site into the "build" folder.
+      - run: npm run build
+
+      # Package the built site as an artifact that the deploy job can pick up.
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          # The folder to package. Docusaurus outputs to "build".
+          path: build
+
+  # JOB 2: publish the built site.
+  deploy:
+    # Wait for the build job to succeed first. If build fails, deploy is skipped.
+    needs: build
+    # Another fresh Linux VM (jobs don't share machines).
+    runs-on: ubuntu-latest
+    # ENVIRONMENT: ties this job to the "github-pages" environment,
+    # which is where the deployment branch rules (main only) are enforced.
+    environment:
+      name: github-pages
+      # Show the live site's URL on the run page, filled in by the step below.
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # Publish the artifact from the build job to GitHub Pages.
+      # The id lets the "url:" line above read this step's output.
+      - id: deployment
+        uses: actions/deploy-pages@v5
