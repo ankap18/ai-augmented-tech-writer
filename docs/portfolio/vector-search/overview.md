@@ -1,4 +1,7 @@
 ---
+title: Vector search overview
+sidebar_label: Overview
+description: Learn how vector search retrieves content by semantic similarity and where it is used in AI systems.
 summary: Learn how vector search works and where it is used in AI systems
 content-type: concept
 product: portfolio

@@ -1,5 +1,8 @@
-
-# Synonyms API
+---
+title: Synonyms API - Overview
+sidebar_label: Overview
+description: Learn how the Synonyms API manages synonym relationships for search and query expansion.
+---
 
 The Synonyms API lets you manage synonym relationships for search and query expansion.
 

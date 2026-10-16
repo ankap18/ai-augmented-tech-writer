@@ -52,22 +52,18 @@ tutorialSidebar: [
             {
               type: 'doc',
               id: 'portfolio/vector-search/overview',
-              label: 'Overview',
             },
             {
               type: 'doc',
               id: 'portfolio/vector-search/key-concepts',
-              label: 'Key concepts',
             },
             {
               type: 'doc',
               id: 'portfolio/vector-search/how-it-works',
-              label: 'How it works',
             },
             {
               type: 'doc',
               id: 'portfolio/vector-search/use-cases',
-              label: 'Use cases',
             },
           ],
          },
@@ -78,7 +74,6 @@ tutorialSidebar: [
             {
               type: 'doc',
               id: 'portfolio/api-docs/overview',
-              label: 'Overview ',
             },
             'portfolio/api-docs/authentication',
             'portfolio/api-docs/quickstart',
@@ -94,25 +89,21 @@ tutorialSidebar: [
                 {
                   type: 'doc',
                   id: 'portfolio/api-docs/generated/synonyms-api/create-synonym',
-                  label: 'Create a synonym entry',
                   className: 'api-method post',
                 },
                 {
                   type: 'doc',
                   id: 'portfolio/api-docs/generated/synonyms-api/list-synonyms',
-                  label: 'List synonym entries',
                   className: 'api-method get',
                 },
                 {
                   type: 'doc',
                   id: 'portfolio/api-docs/generated/synonyms-api/get-synonym',
-                  label: 'Get a synonym entry',
                   className: 'api-method get',
                 },
                 {
                   type: 'doc',
                   id: 'portfolio/api-docs/generated/synonyms-api/delete-synonym',
-                  label: 'Delete a synonym entry',
                   className: 'api-method delete',
                 },
               ],
@@ -134,6 +125,17 @@ tutorialSidebar: [
       collapsed: true,
       items: [
         'ai-stuff/prompt-workflow-agent',
+      ],
+    },
+
+    {
+      type: 'category',
+      label: 'TW stuff',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'tw-stuff/add-vale-linter',
+        'tw-stuff/copilot-report-about-site',
       ],
     },
   ],
