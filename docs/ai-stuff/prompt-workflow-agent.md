@@ -6,7 +6,7 @@ sidebar_custom_props:
   card_icon_invert_dark: true
 ---
 
-Almost every AI product now claims to be "agentic," and the terms prompt, workflow, and agent are often used as if they mean the same thing. But they are not the same. Each gives the AI a different level of autonomy, with different costs and risks. This article explains the difference and how to choose the right one.
+Almost every AI product now claims to be "agentic," and the terms prompt, workflow, and agent are often used as if they mean the same thing. But they are not the same. Each gives the AI a different level of autonomy with different costs and risks. This article explains the difference and how to choose the right one.
 
 ## What an AI agent is
 
@@ -61,7 +61,7 @@ Signs you probably need an agent:
 Signs you probably don't:
 
 - **One good prompt would do it.** Summarizing, classifying, extracting, and rewriting rarely need more.
-- **The steps are always the same.** That's a workflow, and it will be cheaper and more reliable.
+- **The steps are always the same.** That's a workflow, and it is cheaper and more reliable.
 - **Mistakes are expensive and hard to catch.** The more costly the error, the more you want tight control instead of autonomy.
 - **Speed or budget is tight.** Agents loop, and every loop costs time and money.
 - **Ordinary software could handle it.** If plain logic solves the problem, use plain logic.

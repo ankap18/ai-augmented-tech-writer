@@ -8,3 +8,7 @@ lychee
 GitHub
 YAML
 (?i)ankap
+agentic
+chatbot
+Korolivska
+Zendesk

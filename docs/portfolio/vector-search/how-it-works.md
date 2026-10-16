@@ -1,5 +1,8 @@
-
-# How vector search works
+---
+title: How vector search works
+sidebar_label: How it works
+description: Follow the indexing and querying phases that turn data and queries into vector search results.
+---
 
 A vector search system operates in two phases: indexing and querying.
 

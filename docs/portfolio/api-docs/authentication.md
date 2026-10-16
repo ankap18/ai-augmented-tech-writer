@@ -1,4 +1,8 @@
-# Authentication
+---
+title: Synonyms API - Authentication
+sidebar_label: Authentication
+description: Learn how to authenticate Synonyms API requests with an access token.
+---
 
 The Synonyms API uses **Bearer token** authentication. You must include a valid token in the `Authorization` header for every request. Requests without a token, or with an invalid or expired token, return an error.
 
@@ -97,4 +101,3 @@ Follow these recommendations:
 - Rotate keys regularly and revoke compromised tokens immediately.
 - Monitor key usage in the developer dashboard.
 - Do not log `Authorization` headers or token values.
-

@@ -1,4 +1,8 @@
-# Quickstart
+---
+title: Synonyms API - Quickstart
+sidebar_label: Quickstart
+description: Follow examples to create, list, and delete a synonym entry with the Synonyms API.
+---
 
 This example shows how to create, list, and delete a synonym entry.
 
@@ -81,4 +85,3 @@ curl -X DELETE "https://api.synonyms.io/v1/synonyms/syn_01hx4k9mzqe8f3b7n2p6r0wc
 ```
 
 A successful request returns status `204 No Content`.
-

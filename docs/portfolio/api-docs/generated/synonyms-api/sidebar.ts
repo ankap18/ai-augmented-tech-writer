@@ -8,7 +8,7 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Synonyms",
+      label: "Synonyms API - Endpoints",
       link: {
         type: "doc",
         id: "portfolio/api-/synonyms",
