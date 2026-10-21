@@ -6,10 +6,66 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 import {createRequire} from 'node:module';
+import {dirname, resolve} from 'node:path';
+import OramaPluginDocusaurus from '@orama/plugin-docusaurus-v3';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const require = createRequire(import.meta.url);
+const oramaPluginDist = dirname(require.resolve('@orama/plugin-docusaurus-v3'));
+const oramaPluginRoot = resolve(oramaPluginDist, '..');
+
+/**
+ * @param {Parameters<typeof OramaPluginDocusaurus>[0]} context
+ * @param {Parameters<typeof OramaPluginDocusaurus>[1]} options
+ */
+function oramaWithoutTutorials(context, options) {
+  const plugin = OramaPluginDocusaurus(context, options);
+  const allContentLoaded = plugin.allContentLoaded;
+
+  if (!allContentLoaded) {
+    throw new Error('Orama plugin does not provide an allContentLoaded hook.');
+  }
+
+  return {
+    ...plugin,
+    getThemePath: () => resolve(oramaPluginDist, 'theme'),
+    getTypeScriptThemePath: () => resolve(oramaPluginRoot, 'src/theme'),
+    getClientModules: () => [resolve(oramaPluginDist, 'theme/SearchBar/index.css')],
+    /**
+     * @param {Parameters<NonNullable<import('@docusaurus/types').Plugin['allContentLoaded']>>[0]} args
+     */
+    allContentLoaded(args) {
+      const allContent = {...args.allContent};
+      const docsPluginContent =
+        allContent['docusaurus-plugin-content-docs'];
+
+      if (docsPluginContent) {
+        /** @type {Record<string, {loadedVersions: Array<{docs: Array<{id: string}>}>}>} */
+        const docsInstances = docsPluginContent;
+        allContent['docusaurus-plugin-content-docs'] = Object.fromEntries(
+          Object.entries(docsInstances).map(([instanceId, instance]) => [
+            instanceId,
+            {
+              ...instance,
+              loadedVersions: instance.loadedVersions.map((version) => ({
+                ...version,
+                docs: version.docs.filter(
+                  ({id}) => !/^tutorial-(basics|extras)\//.test(id),
+                ),
+              })),
+            },
+          ]),
+        );
+      }
+
+      return allContentLoaded({
+        ...args,
+        allContent,
+      });
+    },
+  };
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -20,6 +76,7 @@ const config = {
   themes: ['docusaurus-theme-openapi-docs'],
 
   plugins: [
+    oramaWithoutTutorials,
     function webpackNodeCorePolyfills() {
       return {
         name: 'webpack-node-core-polyfills',
@@ -99,6 +156,10 @@ const config = {
         // If you want to disable it, remove this section and ensure no broken links
         // reference /blog anywhere in your site (navbar/footer/docs). 
         blog: {
+          include: [
+            '2026/2026-10-21-first-blog-post.md',
+            '2026/2026-09-18-linux-cli-course.md',
+          ],
           showReadingTime: true,
           feedOptions: {
             type: ['rss', 'atom'],
@@ -131,8 +192,9 @@ const config = {
       },
       
       navbar: {
-        title: 'AI-Augmented Tech Writer',
+        title: 'AI-AUGMENTED TECH WRITER',
         logo: {
+          href: '/docs/category/welcome',
           alt: 'My Site Logo',
           src: 'img/ai-head.svg',
           srcDark: 'img/ai-head-black.svg',
@@ -143,6 +205,11 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'Docs',
+          },
+          {
+            to: '/blog',
+            label: 'Blog',
+            position: 'left',
           },
           
           {
@@ -171,6 +238,10 @@ const config = {
           {
             title: 'More',
             items: [
+              {
+                label: 'Changelog',
+                to: '/changelog',
+              },
               {
                 label: 'GitHub',
                 href: 'https://github.com/ankap18',

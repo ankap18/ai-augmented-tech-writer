@@ -21,7 +21,6 @@ yarn-error.log*
 
 # Editor-specific folders
 .vscode/
-/blog
 /docs/tutorial-basics
 /docs/tutorial-extras
 

@@ -1,25 +1,10 @@
-yangshun:
-  name: Yangshun Tay
-  title: Ex-Meta Staff Engineer, Co-founder GreatFrontEnd
-  url: https://linkedin.com/in/yangshun
-  image_url: https://github.com/yangshun.png
+annako:
+  name: Anna Korolivska
+  title: Senior Technical Writer
+  url: https://www.linkedin.com/in/anna-korolivska-marchenko/
+  image_url: https://avatars.githubusercontent.com/u/107699526?s=400&u=a11302faadc1a63b3225ee4b06f2f4a63f63b3c5&v=4
   page: true
   socials:
-    x: yangshunz
-    linkedin: yangshun
-    github: yangshun
-    newsletter: https://www.greatfrontend.com
-
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus maintainer
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
-  page:
-    # customize the url of the author page at /blog/authors/<permalink>
-    permalink: '/all-sebastien-lorber-articles'
-  socials:
-    x: sebastienlorber
-    linkedin: sebastienlorber
-    github: slorber
-    newsletter: https://thisweekinreact.com
+    linkedin: https://www.linkedin.com/in/anna-korolivska-marchenko/
+    github: ankap18
+    

@@ -21,19 +21,18 @@ Since 2025, I've been diving into how AI can make that process even better. I've
 
 ## My AI tools
 
-- **ChatGPT, Claude, Gemini** — content generation, editing, brainstorming, and research  
-- **GitHub Copilot Chat in VSC** — in-editor assistance for quick suggestions and improvements  
+- **ChatGPT, Claude, Gemini** — content generation, editing, brainstorming, and research
+- **GitHub Copilot Chat in VSC** — agent that helps me with my repo, Docusaurus website updates, troubleshooting, and much more  
 - **Cursor** — AI-powered development and writing workflows (just starting to explore)
 - **Enterprise AI tools** — integrated into internal workflows and environments
 - **Napkin AI** — icon and image generation
 - **Notebook LM** — research, learn, generate podcasts, and more
 
-
 ## Next steps
 
-- Explore Claude Code 
-- Build agents in GitHub Copilot
+- Explore Claude Code
+- Add skills
+- Build agents and use MCP
 - Explore AI-powered documentation tools and platforms
 - Continue sharing insights and best practices for AI-augmented technical writing
 - Explore dangers of AI in tech writing
-
