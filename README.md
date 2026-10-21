@@ -10,7 +10,7 @@ It serves several purposes:
 - Showcase my portfolio and support my preparation for future roles
 - Share my journey and insights with the technical writing community (work in progress)
 
-👉 [Explore the documentation site](https://ankap18.github.io/ai-augmented-tech-writer/docs/category/welcome-to-my-repository)
+👉 [Explore the documentation site](https://ankap18.github.io/ai-augmented-tech-writer/docs/category/welcome)
 
  
 > **Note**
