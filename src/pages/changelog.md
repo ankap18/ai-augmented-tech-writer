@@ -3,6 +3,8 @@ title: Changelog
 description: Significant updates to the AI-Augmented Tech Writer website.
 ---
 
+# Changelog
+
 Significant updates to the website, newest first.
 
 ## October 16, 2026
