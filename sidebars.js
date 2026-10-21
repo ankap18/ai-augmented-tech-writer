@@ -24,10 +24,10 @@ tutorialSidebar: [
      
      {
       type: 'category',
-      label: 'Welcome to my repository',
+      label: 'Welcome',
       link: {
         type: 'generated-index',
-        title: 'Welcome to my repository',
+        title: 'Welcome',
       },
       collapsible: true,
       collapsed: true, // Keeps the intro folder open by default

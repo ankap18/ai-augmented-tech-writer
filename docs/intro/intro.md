@@ -1,12 +1,12 @@
 ---
-title: Why I created this repo
+title: Why I created this website
 description: Personal repo for exploring AI + tech writing
 sidebar_custom_props:
   card_icon: img/icons/github-outline-light.svg
   card_icon_invert_dark: true
 ---
 
-This is my personal repository, `ai-augmented-tech-writer`, created to explore how technical writing is evolving in the age of AI.
+This is my personal website created to explore how technical writing is evolving in the age of AI.
 
 It serves several purposes:
 
