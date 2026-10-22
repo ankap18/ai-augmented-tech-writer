@@ -27,3 +27,4 @@ yarn-error.log*
 # Vale
 .github/styles/*
 !.github/styles/config/
+!.github/styles/Personal/

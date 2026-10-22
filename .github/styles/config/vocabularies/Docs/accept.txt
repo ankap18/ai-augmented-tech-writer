@@ -4,7 +4,7 @@
 Docusaurus
 MDX
 Vale
-lychee
+[Ll]ychee
 GitHub
 YAML
 (?i)ankap
@@ -12,3 +12,26 @@ agentic
 chatbot
 Korolivska
 Zendesk
+
+# Companies and products
+Atlassian
+Milvus
+Pinecone
+Pinterest
+Plex
+PostgreSQL
+Qdrant
+Spotify
+Weaviate
+npm
+pgvector
+webpack
+
+# Terms and code names
+NDAs
+[Mm]ultimodal
+cybersecurity
+leaf_size
+lockfile
+parallelization
+repo

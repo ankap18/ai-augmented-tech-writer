@@ -14,10 +14,10 @@ An AI agent is an AI model that works in a loop. It looks at a goal, decides wha
 
 An agent has four components:
 
-- **Model** - an LLM that can reason about the situation and choose actions.
-- **Tools** - a list of tools it can use, such as searching a database, reading a file, sending an email, or issuing a refund.
-- **Loop** - feeds the result of each action back to the model.
-- **Guardrails** - limits on what it can do, how long it can run, and when a human has to approve something.
+- **Model** — an LLM that can reason about the situation and choose actions.
+- **Tools** — a list of tools it can use, such as searching a database, reading a file, sending an email, or issuing a refund.
+- **Loop** — feeds the result of each action back to the model.
+- **Guardrails** — limits on what it can do, how long it can run, and when a human has to approve something.
 
 The model decides what to do next, but only from the tools that the people who built the agent have given it.
 

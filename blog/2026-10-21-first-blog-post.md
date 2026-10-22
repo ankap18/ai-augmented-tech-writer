@@ -11,8 +11,6 @@ Most of my best documentation work is protected by NDAs, so how do I show what I
 
 ## Why I built this site
 
-Now I'm adding a blog to share what I learn and document how the site evolves.
-
 I built this site to showcase my technical writing and to demonstrate the tools and AI-assisted workflows behind it.
 
 I wanted the portfolio to feel like a small help portal, with clear navigation, a table of contents, and search. Docusaurus also let me show a docs-as-code workflow, including automated checks on every pull request.

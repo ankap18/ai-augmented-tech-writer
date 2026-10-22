@@ -116,7 +116,7 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://ankap18.githhub.io',
+  url: 'https://ankap18.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/ai-augmented-tech-writer/',
@@ -155,11 +155,10 @@ const config = {
         // Enable the blog plugin so the built-in blog pages are available.
         // If you want to disable it, remove this section and ensure no broken links
         // reference /blog anywhere in your site (navbar/footer/docs). 
+        // Every .md/.mdx file in blog/ is published, except files and folders
+        // starting with "_" (such as _docusaurus-examples). For a work-in-progress
+        // post, add `draft: true` to its front matter: it shows in dev only.
         blog: {
-          include: [
-            '2026/2026-10-21-first-blog-post.md',
-            '2026/2026-09-18-linux-cli-course.md',
-          ],
           showReadingTime: true,
           feedOptions: {
             type: ['rss', 'atom'],

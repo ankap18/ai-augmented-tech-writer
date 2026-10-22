@@ -7,6 +7,14 @@ description: Significant updates to the AI-Augmented Tech Writer website.
 
 Significant updates to the website, newest first.
 
+## October 22, 2026
+
+- Published a blog post about tuning Vale for a personal site, and simplified blog post URLs.
+- Extended Vale checks to the blog, with personal exceptions to Google style, a custom list rule, and stricter rules for writing samples.
+- Rewrote the AI-journey page and refined portfolio, vector search, and AI workflow content.
+- Added a `/blog-post` skill for drafting and publishing posts.
+- Fixed the site URL used in the RSS feed and page metadata.
+
 ## October 16, 2026
 
 - Added the **TW Stuff** section and updated sidebar labels.

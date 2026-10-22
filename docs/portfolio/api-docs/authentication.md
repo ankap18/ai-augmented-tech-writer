@@ -77,7 +77,7 @@ For short-lived tokens, monitor the `expires_in` value and request a new token b
 | Status Code | Meaning | Common Cause |
 |---|---|---|
 | `401 Unauthorized` | Token missing, malformed, or expired | Missing header, incorrect format, or expired token |
-| `403 Forbidden` | Token is valid but lacks permission | UUsing a read-only key for a write operation |
+| `403 Forbidden` | Token is valid but lacks permission | Using a read-only key for a write operation |
 
 
 ## Security best practices
