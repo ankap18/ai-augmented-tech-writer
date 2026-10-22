@@ -49,13 +49,13 @@ A vector database is a storage system designed to store and query large collecti
 
 Common vector databases and libraries include:
 
-- **Pinecone** — Managed vector database  
-- **Weaviate** — Open-source with built-in vectorization and hybrid search  
-- **Qdrant** — Open-source, focused on performance  
-- **Milvus** — Distributed and designed for large-scale workloads  
-- **pgvector** — PostgreSQL extension for vector search  
-- **FAISS** — Library for fast similarity search (not a database)  
-- **Chroma** — Lightweight and commonly used in RAG applications  
+- **Pinecone:** managed vector database
+- **Weaviate:** open source with built-in vectorization and hybrid search
+- **Qdrant:** open source, focused on performance
+- **Milvus:** distributed and designed for large-scale workloads
+- **pgvector:** PostgreSQL extension for vector search
+- **FAISS:** library for fast similarity search (not a database)
+- **Chroma:** lightweight and commonly used in RAG applications
 
 ### Approximate nearest neighbor (ANN) algorithms
 

@@ -29,9 +29,8 @@ jobs:
       # Install Vale, download the packages from .vale.ini, and run it.
       - uses: vale-cli/vale-action@v2
         with:
-          # Which files or folders to check. Add "blog" when you create it:
-          # files: '["docs", "blog"]'
-          files: docs
+          # Which files or folders to check.
+          files: '["docs", "blog"]'
           # How results appear on the PR:
           #   github-pr-check  = a check with annotations on the changed lines
           #   github-pr-review = inline review comments

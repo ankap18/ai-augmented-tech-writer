@@ -1,19 +1,24 @@
 ai:
   label: AI
   permalink: /ai
-  description: AI tag description
+  description: AI-related content and resources
 
 docusaurus:
   label: Docusaurus
   permalink: /docusaurus
-  description: Docusaurus tag description
+  description: Docusaurus-related content and resources
 
 portfolio:
   label: Portfolio
   permalink: /portfolio
-  description: Portfolio tag description
+  description: Portfolio docs or projects
 
 linux:
   label: Linux
   permalink: /linux
   description: Linux and command-line learning
+
+vale:
+  label: Vale
+  permalink: /vale
+  description: Prose linting with Vale and style guides

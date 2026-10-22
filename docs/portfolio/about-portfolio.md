@@ -7,8 +7,8 @@ import IconExternalLink from '@theme/Icon/ExternalLink';
 
 Much of my professional work is under NDA, so I can't share it here. This portfolio instead includes two kinds of samples:
 
-- **Pre-AI writing:** Documentation I wrote entirely myself, before using AI tools.
-- **AI-assisted writing:** Samples I created to explore how AI can support technical writing. I directed the process, then edited, and fact-checked the output.
+- **Pre-AI writing** — Documentation I wrote entirely myself, before using AI tools.
+- **AI-assisted writing** — Samples I created to explore how AI can support technical writing. I directed the process, then edited, and fact-checked the output.
 
 Use the sidebar to browse the Portfolio section, or jump straight to the samples grouped by type:
 

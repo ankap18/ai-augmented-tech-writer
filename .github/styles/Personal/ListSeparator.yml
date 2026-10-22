@@ -1,0 +1,14 @@
+extends: existence
+message: "Separate a list term from its description with a spaced em dash: '**Term** — description'."
+level: warning
+# Personal style rule. Applies to list items that start with a bold term.
+# `raw` scope is needed because the bold markers are gone in Vale's other scopes.
+scope: raw
+nonword: true
+tokens:
+  # **Term:** description   or   **Term**: description
+  - '(?m)^[ \t]*(?:[-*+]|\d+\.)[ \t]+\*\*[^*\n]+(?::\*\*|\*\*:)'
+  # **Term** - description   or   **Term** – description
+  - '(?m)^[ \t]*(?:[-*+]|\d+\.)[ \t]+\*\*[^*\n]+\*\*[ \t]*[-–][ \t]'
+  # **Term**—description, **Term**— description, or **Term** —description
+  - '(?m)^[ \t]*(?:[-*+]|\d+\.)[ \t]+\*\*[^*\n]+\*\*(?:—|[ \t]+—(?=\S))'
