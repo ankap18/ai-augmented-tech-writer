@@ -34,12 +34,14 @@ Posts are short: roughly 250–450 words. Follow this shape:
    - Application: "Then I actually used it"
    - Close: "The takeaway"
 4. **One bulleted list** in the middle section, with a **bold lead-in** per item:
-   - Term and description: `- **Visual design** — Customized the CSS to...` This is Anna's personal style rule: always a spaced em dash ( — ) after the bold term, never a colon, hyphen, en dash, or unspaced em dash. Vale enforces it with `Personal.ListSeparator`.
+   - Term and description: `- **Visual design** — customized the CSS to...` This is Anna's personal style rule: always a spaced em dash ( — ) after the bold term, never a colon, hyphen, en dash, or unspaced em dash. Vale enforces it with `Personal.ListSeparator`. Start the description in lowercase unless its first word is a proper noun, such as `Docusaurus` or `Google`.
    - Bold sentence: `- **Tab is your friend.** Autocomplete everything you can.` Use when the bold part is a complete statement ending with a period.
    Pick one style per list and keep it consistent.
 5. **Closing takeaway (1–3 sentences)** that answers the opening question and, when relevant, ties back to AI.
 
 Don't use H1 in the body (the title comes from front matter), and don't go deeper than H3.
+
+Avoid stacked headings: put at least one sentence of context between a heading and the next heading. Vale enforces it with `Personal.StackedHeadings`.
 
 ## Front matter
 

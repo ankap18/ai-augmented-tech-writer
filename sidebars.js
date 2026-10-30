@@ -125,6 +125,7 @@ tutorialSidebar: [
       collapsed: true,
       items: [
         'ai-stuff/prompt-workflow-agent',
+        'ai-stuff/llms-txt',
       ],
     },
 

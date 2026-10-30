@@ -7,6 +7,14 @@ description: Significant updates to the AI-Augmented Tech Writer website.
 
 Significant updates to the website, newest first.
 
+## October 30, 2026
+
+- Added a homepage with a short introduction and links to the API documentation and vector search samples.
+- Added an llms.txt file for AI tools, and a page about what it is and how it was written.
+- Improved how search engines and AI tools identify the site and its author, and removed the leftover Docusaurus tutorial pages.
+- Expanded the AI-journey page with the MCP servers I use, and refined the footer, navigation bar, sidebar, and theme icons.
+- Added Vale rules for straight quotes and stacked headings, rendered quotes as curly on the site, and cleaned up list punctuation across pages.
+
 ## October 22, 2026
 
 - Published a blog post about tuning Vale for a personal site, and simplified blog post URLs.

@@ -1,0 +1,32 @@
+extends: script
+message: "Avoid stacked headings. Add at least one sentence of context between headings."
+level: warning
+# Personal style rule. Flags a heading that follows another heading with only
+# blank lines in between. A script rule is used instead of a regex so that
+# `#` comment lines inside fenced code blocks aren't mistaken for headings.
+scope: raw
+script: |
+  text := import("text")
+
+  matches := []
+  offset := 0
+  in_fence := false
+  prev_heading := false
+
+  for line in text.split(scope, "\n") {
+    trimmed := text.trim_space(line)
+
+    if text.has_prefix(trimmed, "```") || text.has_prefix(trimmed, "~~~") {
+      in_fence = !in_fence
+      prev_heading = false
+    } else if !in_fence && text.re_match(`^#{1,6}\s`, trimmed) {
+      if prev_heading {
+        matches = append(matches, {begin: offset, end: offset + len(text.trim_right(line, "\r"))})
+      }
+      prev_heading = true
+    } else if trimmed != "" {
+      prev_heading = false
+    }
+
+    offset += len(line) + 1
+  }

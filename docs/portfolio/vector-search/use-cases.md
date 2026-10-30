@@ -19,7 +19,7 @@ Enterprise search systems use vector search to help employees find documents bas
 
 ## Recommendation systems
 
-E-commerce and media platforms represent products, articles, songs, and user interactions as vectors. The system compares these vectors to a user’s preference vector to generate personalized recommendations.
+E-commerce and media platforms represent products, articles, songs, and user interactions as vectors. The system compares these vectors to a user's preference vector to generate personalized recommendations.
 
 - **Spotify:** Uses song vectors based on listening patterns to generate weekly recommendations.  
 - **Amazon:** Uses product vectors from purchase and browsing history to suggest related items.  

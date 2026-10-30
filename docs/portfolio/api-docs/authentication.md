@@ -82,7 +82,7 @@ For short-lived tokens, monitor the `expires_in` value and request a new token b
 
 ## Security best practices
 
-**Don’t hard-code tokens in source code.** Anyone with access to your repository or build artifacts can read them.
+**Don't hard-code tokens in source code.** Anyone with access to your repository or build artifacts can read them.
 
 ```bash
 # Avoid this

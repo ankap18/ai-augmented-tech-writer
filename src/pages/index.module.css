@@ -12,12 +12,68 @@
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 2rem 1rem;
+  }
+}
+
+.avatar {
+  display: block;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px var(--ifm-color-primary);
+}
+
+.tagline {
+  max-width: 40rem;
+  margin: 0 auto 0.75rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.postscript {
+  max-width: 40rem;
+  margin: 0 auto 2rem;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.subline {
+  max-width: 40rem;
+  margin: 0 auto 1rem;
+  font-size: 1.1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+@media screen and (max-width: 996px) {
+  .tagline {
+    font-size: 1.3rem;
+  }
+
+  .subline {
+    font-size: 1rem;
   }
 }
 
 .buttons {
   display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
+}
+
+/* Uppercase in CSS only: screen readers and crawlers still get normal case. */
+.buttons :global(.button) {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+/* A light tint instead of Infima's solid fill, so the hovered outline button
+   never looks like the filled "View portfolio" button at rest. */
+.buttons :global(.button.button--outline.button--primary:hover) {
+  background-color: color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
+  color: var(--ifm-color-primary);
 }

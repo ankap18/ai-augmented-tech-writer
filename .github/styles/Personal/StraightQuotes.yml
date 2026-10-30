@@ -1,0 +1,7 @@
+extends: existence
+message: "Use straight quotes (' and \") instead of curly quotes ('%s'). The site renders them curly."
+level: warning
+scope: text
+nonword: true
+tokens:
+  - '[‘’“”]'
