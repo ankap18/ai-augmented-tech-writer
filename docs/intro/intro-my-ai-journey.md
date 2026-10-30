@@ -22,6 +22,8 @@ AI speeds up each of these steps, but it doesn't replace judgment. I still decid
 
 ## My toolkit
 
+I rely on four kinds of AI tools: general-purpose assistants, agents that work in this site's repo, MCP servers that connect them to other apps, and specialized tools for specific tasks.
+
 ### Assistants
 
 I use AI assistants as tutors and thinking partners: to learn new topics and to think through ideas before I write.
@@ -39,6 +41,13 @@ I use GitHub Copilot in VS Code and Claude Code in much the same way: as agents 
 - **Troubleshoot** — build errors, broken routes, and dependency issues
 - **Draft and review content** — blog posts and documentation pages
 
+### Connected apps
+
+The Model Context Protocol (MCP) lets an AI assistant connect to other apps and tools. I've started using MCP servers with Claude:
+
+- **Notion** — exporting notes and drafts from AI chats into Notion pages, so the work is organized and easy to come back to
+- **Browser** — opening my local preview of this site, so Claude Code can check how a page looks after a change
+
 ### Specialized and workplace tools
 
 - **Napkin AI** — the minimalist icons on this site
@@ -47,7 +56,7 @@ I use GitHub Copilot in VS Code and Claude Code in much the same way: as agents 
 ## What I'm exploring next
 
 - **More skills** — automating repeatable tasks, building on `/peek` and `/blog-post`
-- **Agents and the Model Context Protocol (MCP)** — connecting agents to more tools and data
+- **More MCP servers** — connecting agents to more of the tools and data I use every day
 - **AI documentation platforms** — tools built specifically for docs teams
 - **The risks** — where AI goes wrong in technical writing, and how to catch it
 

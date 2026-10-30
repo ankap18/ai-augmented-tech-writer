@@ -25,7 +25,7 @@ The project requires **Node.js 20 or newer** and **npm**. Its package manifest d
 
 - Docusaurus core and the classic preset, for the site generator and standard docs features
 - The OpenAPI docs plugin and theme, for rendering the API reference
-- React and React DOM, used by Docusaurus and the site’s custom React components
+- React and React DOM, used by Docusaurus and the site's custom React components
 - MDX, Prism, and `clsx`, for documentation rendering, code highlighting, and UI styling
 - IBM Plex Sans and Mono font packages
 - `path-browserify`, as a browser-compatible path fallback configured for webpack
@@ -48,10 +48,10 @@ To create a production build:
 npm run build
 ```
 
-The scripts are defined in `package.json`. The exact original install command history isn’t recorded in these files, but `npm ci` installs the dependencies pinned by the project.
+The scripts are defined in `package.json`. The exact original install command history isn't recorded in these files, but `npm ci` installs the dependencies pinned by the project.
 
 ## How it is built and published
 
 The OpenAPI plugin reads the Synonyms API spec and outputs generated docs under `docs/portfolio/api-docs/generated/synonyms-api`. Those pages use components from the OpenAPI theme to display endpoint details, request schemas, and response codes. The sidebar links to the API overview and endpoint pages (`docusaurus.config.js`, `sidebars.js`).
 
-For publishing, GitHub Actions sets up Node 22, runs `npm ci` and `npm run build`, then deploys the generated `build` directory to GitHub Pages (`deploy.yml`). Separate workflows run a build check for pull requests and check writing style and external links (`pr-checks.yml`, `vale.yml`, `link-checks.yml`). The Vale and link-check tools are run by those GitHub Actions; they aren’t listed as npm dependencies.
+For publishing, GitHub Actions sets up Node 22, runs `npm ci` and `npm run build`, then deploys the generated `build` directory to GitHub Pages (`deploy.yml`). Separate workflows run a build check for pull requests and check writing style and external links (`pr-checks.yml`, `vale.yml`, `link-checks.yml`). The Vale and link-check tools are run by those GitHub Actions; they aren't listed as npm dependencies.

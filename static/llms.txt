@@ -1,0 +1,38 @@
+# AI-Augmented Tech Writer
+
+> Personal site of Anna Korolivska, a senior technical writer exploring how AI changes documentation work. It includes technical writing samples (vector search concepts and a REST API reference), notes on AI tools and agents, notes on docs tooling such as the Vale prose linter, and a blog about learning and AI-assisted writing.
+
+The site is built with Docusaurus. Pages under Portfolio are writing samples that follow the Google developer documentation style guide. Other pages are first-person notes.
+
+## Welcome
+
+- [Why I created this website](https://ankap18.github.io/ai-augmented-tech-writer/docs/intro): the purpose of the site and what it covers
+- [About me](https://ankap18.github.io/ai-augmented-tech-writer/docs/intro/intro-about-me): principles that define my approach to technical communication
+- [About my AI journey](https://ankap18.github.io/ai-augmented-tech-writer/docs/intro/intro-my-ai-journey): how I use AI in technical writing, the tools and MCP servers I rely on, and what I'm exploring next
+
+## Portfolio
+
+- [About my portfolio](https://ankap18.github.io/ai-augmented-tech-writer/docs/portfolio/about-portfolio): what the samples are and which ones were written with AI assistance
+- [Vector search overview](https://ankap18.github.io/ai-augmented-tech-writer/docs/portfolio/vector-search/overview): how vector search retrieves content by semantic similarity and where it's used in AI systems
+- [Key concepts in vector search](https://ankap18.github.io/ai-augmented-tech-writer/docs/portfolio/vector-search/key-concepts): embeddings, vector representations, and core terms
+- [How vector search works](https://ankap18.github.io/ai-augmented-tech-writer/docs/portfolio/vector-search/how-it-works): the indexing and querying phases
+- [Common uses of vector search](https://ankap18.github.io/ai-augmented-tech-writer/docs/portfolio/vector-search/use-cases): retrieval-augmented generation, semantic search, recommendations, and more
+- [Synonyms API overview](https://ankap18.github.io/ai-augmented-tech-writer/docs/portfolio/api-docs/overview): how the sample Synonyms API manages synonym relationships for search
+- [Synonyms API authentication](https://ankap18.github.io/ai-augmented-tech-writer/docs/portfolio/api-docs/authentication): authenticating requests with an access token
+- [Synonyms API quickstart](https://ankap18.github.io/ai-augmented-tech-writer/docs/portfolio/api-docs/quickstart): create, list, and delete a synonym entry
+- [Publishing from MadCap Flare to Zendesk](https://ankap18.github.io/ai-augmented-tech-writer/docs/portfolio/how-to-publish-target-zendesk): a how-to sample for an internal publishing workflow
+- [External documentation samples](https://ankap18.github.io/ai-augmented-tech-writer/docs/portfolio/external-links): samples written for a data analytics platform
+
+## AI stuff
+
+- [Prompt, Workflow, or Agent?](https://ankap18.github.io/ai-augmented-tech-writer/docs/ai-stuff/prompt-workflow-agent): the difference between prompts, workflows, and AI agents, and when to use each
+- [What is llms.txt?](https://ankap18.github.io/ai-augmented-tech-writer/docs/ai-stuff/llms-txt): what this file is, why docs sites publish one, and how I wrote this one by hand
+
+## TW stuff
+
+- [Run Vale in VS Code](https://ankap18.github.io/ai-augmented-tech-writer/docs/tw-stuff/add-vale-linter): installing Vale to check content against the Google developer documentation style guide
+- [GitHub Copilot report about this project](https://ankap18.github.io/ai-augmented-tech-writer/docs/tw-stuff/copilot-report-about-site): notes on the Docusaurus site and its customizations
+
+## Optional
+
+- [Blog](https://ankap18.github.io/ai-augmented-tech-writer/blog): short first-person posts on learning, tooling, and AI-assisted technical writing

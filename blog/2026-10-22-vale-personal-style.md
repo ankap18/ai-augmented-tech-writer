@@ -20,10 +20,10 @@ The Google style guide targets product documentation, where "I" rarely belongs. 
 I worked through the alerts with Claude Code, which grouped them by rule so I could decide on each group instead of each line.
 
 - **Skipped files I didn't write** — Docusaurus samples and generated API pages no longer get checked.
-- **Taught Vale real names** — Added products like Pinecone, Qdrant, and PostgreSQL to the vocabulary instead of turning off spell checking.
+- **Taught Vale real names** — added products like Pinecone, Qdrant, and PostgreSQL to the vocabulary instead of turning off spell checking.
 - **Allowed first person** — "I," "we," and "our" are fine on my own pages.
 - **Allowed spaced em dashes** — Google and Microsoft both want no spaces, but AP style uses them, and my list format needs them (more on that below).
-- **Kept my writing samples strict** — The vector search and API docs still follow Google style exactly, because they show I can write to a professional standard.
+- **Kept my writing samples strict** — the vector search and API docs still follow Google style exactly, because they show I can write to a professional standard.
 
 The exceptions and the strict samples live side by side in `.vale.ini`. Later sections override earlier ones, so the samples get the rules back:
 

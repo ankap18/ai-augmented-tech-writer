@@ -6,7 +6,7 @@ sidebar_custom_props:
   card_icon_invert_dark: true
 ---
 
-I’m Anna Korolivska, a technical writer with 15+ years of experience writing software documentation across various domains. I'm passionate about employing AI to enhance the efficiency and quality of technical writing.
+I'm Anna Korolivska, a technical writer with 15+ years of experience writing software documentation across various domains. I'm passionate about employing AI to enhance the efficiency and quality of technical writing.
 
 The following principles define my approach to technical communication:
 

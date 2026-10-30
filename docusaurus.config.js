@@ -8,6 +8,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import {createRequire} from 'node:module';
 import {dirname, resolve} from 'node:path';
 import OramaPluginDocusaurus from '@orama/plugin-docusaurus-v3';
+import remarkSmartypants from 'remark-smartypants';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -15,57 +16,60 @@ const require = createRequire(import.meta.url);
 const oramaPluginDist = dirname(require.resolve('@orama/plugin-docusaurus-v3'));
 const oramaPluginRoot = resolve(oramaPluginDist, '..');
 
+// Write straight quotes in the source; the site renders them curly.
+// Code blocks and inline code are left alone. Only quotes are converted,
+// so "--flag" and "..." in prose stay as typed.
+/** @type {[typeof remarkSmartypants, import('remark-smartypants').Options]} */
+const smartQuotes = [
+  remarkSmartypants,
+  {dashes: false, ellipses: false, backticks: false},
+];
+
 /**
  * @param {Parameters<typeof OramaPluginDocusaurus>[0]} context
  * @param {Parameters<typeof OramaPluginDocusaurus>[1]} options
  */
-function oramaWithoutTutorials(context, options) {
+function oramaSearch(context, options) {
   const plugin = OramaPluginDocusaurus(context, options);
-  const allContentLoaded = plugin.allContentLoaded;
 
-  if (!allContentLoaded) {
-    throw new Error('Orama plugin does not provide an allContentLoaded hook.');
-  }
-
+  // Point Docusaurus at the plugin's own theme and stylesheet paths.
   return {
     ...plugin,
     getThemePath: () => resolve(oramaPluginDist, 'theme'),
     getTypeScriptThemePath: () => resolve(oramaPluginRoot, 'src/theme'),
     getClientModules: () => [resolve(oramaPluginDist, 'theme/SearchBar/index.css')],
-    /**
-     * @param {Parameters<NonNullable<import('@docusaurus/types').Plugin['allContentLoaded']>>[0]} args
-     */
-    allContentLoaded(args) {
-      const allContent = {...args.allContent};
-      const docsPluginContent =
-        allContent['docusaurus-plugin-content-docs'];
-
-      if (docsPluginContent) {
-        /** @type {Record<string, {loadedVersions: Array<{docs: Array<{id: string}>}>}>} */
-        const docsInstances = docsPluginContent;
-        allContent['docusaurus-plugin-content-docs'] = Object.fromEntries(
-          Object.entries(docsInstances).map(([instanceId, instance]) => [
-            instanceId,
-            {
-              ...instance,
-              loadedVersions: instance.loadedVersions.map((version) => ({
-                ...version,
-                docs: version.docs.filter(
-                  ({id}) => !/^tutorial-(basics|extras)\//.test(id),
-                ),
-              })),
-            },
-          ]),
-        );
-      }
-
-      return allContentLoaded({
-        ...args,
-        allContent,
-      });
-    },
   };
 }
+
+const siteUrl = 'https://ankap18.github.io/ai-augmented-tech-writer/';
+
+// Structured data that tells search engines and AI answer engines who the
+// site belongs to. `sameAs` links this site to the same person's profiles,
+// so keep it in sync with blog/authors.yml.
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${siteUrl}#person`,
+  name: 'Anna Korolivska',
+  jobTitle: 'Senior Technical Writer',
+  description:
+    'Senior technical writer with 15+ years of experience in API ' +
+    'documentation, AI-assisted workflows, and docs-as-code.',
+  url: siteUrl,
+  image: `${siteUrl}img/anna-korolivska.jpg`,
+  knowsAbout: [
+    'Technical writing',
+    'API documentation',
+    'Docs-as-code',
+    'Information architecture',
+    'AI-assisted documentation',
+    'Vector search',
+  ],
+  sameAs: [
+    'https://www.linkedin.com/in/anna-korolivska-marchenko/',
+    'https://github.com/ankap18',
+  ],
+};
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -73,10 +77,21 @@ const config = {
   tagline: 'AI is the future!',
   favicon: 'img/ai-head.svg',
 
+  // Added to the <head> of every page.
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {type: 'application/ld+json'},
+      innerHTML: JSON.stringify(personJsonLd),
+    },
+  ],
+
   themes: ['docusaurus-theme-openapi-docs'],
 
+  clientModules: ['./src/clientModules/oramaFixes.js'],
+
   plugins: [
-    oramaWithoutTutorials,
+    oramaSearch,
     function webpackNodeCorePolyfills() {
       return {
         name: 'webpack-node-core-polyfills',
@@ -146,6 +161,7 @@ const config = {
           exclude: ['**/synonyms-api/synonyms.md'],
           sidebarPath: './sidebars.js',
           docItemComponent: '@theme/ApiItem',
+          remarkPlugins: [smartQuotes],
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -160,6 +176,7 @@ const config = {
         // post, add `draft: true` to its front matter: it shows in dev only.
         blog: {
           showReadingTime: true,
+          remarkPlugins: [smartQuotes],
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
@@ -174,6 +191,10 @@ const config = {
           onUntruncatedBlogPosts: 'warn',
         },
         
+        pages: {
+          remarkPlugins: [smartQuotes],
+        },
+
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -189,12 +210,18 @@ const config = {
       colorMode: {
         respectPrefersColorScheme: true,
       },
-      
+      docs: {
+        sidebar: {
+          // Adds a "Collapse sidebar" button so readers can widen the content.
+          hideable: true,
+        },
+      },
+
       navbar: {
         title: 'AI-AUGMENTED TECH WRITER',
         logo: {
-          href: '/docs/category/welcome',
-          alt: 'My Site Logo',
+          href: '/',
+          alt: 'AI-Augmented Tech Writer logo',
           src: 'img/ai-head.svg',
           srcDark: 'img/ai-head-black.svg',
         },
@@ -222,15 +249,19 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Explore',
             items: [
               {
-                label: 'Docs intro',
-                to: '/docs/intro',
+                label: 'About me',
+                to: '/docs/intro/intro-about-me',
               },
               {
-                label: 'Docs portfolio',
+                label: 'Portfolio',
                 to: '/docs/portfolio/about-portfolio',
+              },
+              {
+                label: 'About site',
+                to: '/docs/intro',
               },
             ],
           },
@@ -248,7 +279,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} AI-Augmented Tech Writer, Inc. Built with Docusaurus.`,
+        copyright: `© ${new Date().getFullYear()} Anna Korolivska. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,

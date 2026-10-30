@@ -2,6 +2,7 @@
 # One per line. Regular expressions are allowed.
 # Add product names, tools and jargon as you meet them.
 Docusaurus
+Diátaxis
 MDX
 Vale
 [Ll]ychee

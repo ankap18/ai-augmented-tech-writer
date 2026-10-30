@@ -1,11 +1,11 @@
 
 # Key considerations and challenges
 
-Vector search systems can feel “plug and play” during prototyping, but production deployments surface recurring challenges.
+Vector search systems can feel "plug and play" during prototyping, but production deployments surface recurring challenges.
 
 ## Embedding quality and drift
 
-Embedding models determine what “similar” means. Model choice, prompt/style of content, and language/domain coverage all affect retrieval quality. If you change the embedding model (or even upgrade it), you may need to **re-embed and re-index** your data to avoid inconsistent results.
+Embedding models determine what "similar" means. Model choice, prompt/style of content, and language/domain coverage all affect retrieval quality. If you change the embedding model (or even upgrade it), you may need to **re-embed and re-index** your data to avoid inconsistent results.
 
 ## Index configuration trade-offs
 
@@ -17,7 +17,7 @@ Approximate nearest neighbor (ANN) indexes trade recall for speed and cost. Comm
 
 ## Filtering, metadata, and hybrid retrieval
 
-Real applications often need constraints such as “only within this tenant,” “only documents from last 30 days,” or “only items in stock.” These filters can interact with ANN search in non-obvious ways. Many systems combine:
+Real applications often need constraints such as "only within this tenant," "only documents from last 30 days," or "only items in stock." These filters can interact with ANN search in non-obvious ways. Many systems combine:
 
 - **Vector similarity** for semantic matching
 - **Keyword/BM25** for exact terms (hybrid search)

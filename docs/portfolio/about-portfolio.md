@@ -7,8 +7,8 @@ import IconExternalLink from '@theme/Icon/ExternalLink';
 
 Much of my professional work is under NDA, so I can't share it here. This portfolio instead includes two kinds of samples:
 
-- **Pre-AI writing** — Documentation I wrote entirely myself, before using AI tools.
-- **AI-assisted writing** — Samples I created to explore how AI can support technical writing. I directed the process, then edited, and fact-checked the output.
+- **Pre-AI writing** — documentation I wrote entirely myself, before using AI tools.
+- **AI-assisted writing** — samples I created to explore how AI can support technical writing. I directed the process, then edited, and fact-checked the output.
 
 Use the sidebar to browse the Portfolio section, or jump straight to the samples grouped by type:
 
@@ -22,7 +22,7 @@ Use the sidebar to browse the Portfolio section, or jump straight to the samples
 <details>
 <summary>API documentation</summary>
 
-This is a fake API for synonyms management (AI-assisted writing): 
+This is a fake API for synonyms management (AI-assisted writing):
 - [Synonyms API - Overview](./api-docs/overview.md)
 - [Synonyms API - Quickstart](./api-docs/quickstart.md)
 - [Synonyms API - Authentication](./api-docs/authentication.md)

@@ -54,7 +54,10 @@
 [data-theme='dark'] {
   /* Light-on-dark looks thinner, so use 400 */
   --ifm-font-weight-normal: 400;
-  --ifm-font-color-base: #e8e8e8;
+  --ifm-font-color-base: #faf9f9;
+
+  --ifm-background-color: #202427;
+  --ifm-background-surface-color: #2d333b;
 
   --ifm-color-primary: #78a9ff;
   --ifm-color-primary-dark: #5b96ff;
@@ -86,6 +89,7 @@ body {
 [data-theme='dark'] .markdown details {
   background-color: #384144;
   border: 0;
+  padding: 12px;
   border-left: 3px solid var(--ifm-color-primary);
   --docusaurus-details-decoration-color: var(--ifm-color-primary);
 }
@@ -93,6 +97,7 @@ body {
 :root:not([data-theme='dark']) .markdown details {
   background-color: #e9eff5;
   border: 0;
+  padding: 12px;
   border-left: 3px solid var(--ifm-menu-color-active);
   --docusaurus-details-decoration-color: var(--ifm-menu-color-active);
 }
@@ -145,8 +150,13 @@ h2 {
 }
 
 /* ---------- Sidebar ---------- */
+/* Items one step softer than the main text; the active page keeps the primary blue. */
 .menu {
   --ifm-menu-link-padding-vertical: 0.25rem;
+  --ifm-menu-color: var(--ifm-color-emphasis-800);
+  /* Thin outline chevron to match the site's line icons. It points up and
+     Infima rotates it; dark mode inverts it with its own filter. */
+  --ifm-menu-link-sublist-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.5 14L12 10.5L15.5 14" fill="none" stroke="black" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>');
 }
 
 .menu__link {
@@ -171,9 +181,40 @@ h2 {
   letter-spacing: 0.06em;
 }
 
-/* Quieter expand/collapse arrows */
-.menu__link--sublist-caret:after {
-  opacity: 0.6;
+/* Collapse button: a small icon at the bottom right of the sidebar instead of
+   a full-width bar. The expand icon on the collapsed strip sits at the bottom
+   too, so the toggle stays in the same place. Docusaurus hashes these class
+   names, so match on their prefix. */
+@media (min-width: 997px) {
+  .theme-doc-sidebar-container button[class*='collapseSidebarButton_'] {
+    align-self: flex-end;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin: 0.5rem 0.75rem;
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+    color: var(--ifm-color-emphasis-700);
+  }
+
+  .theme-doc-sidebar-container button[class*='collapseSidebarButton_'] svg {
+    margin-top: 0;
+  }
+
+  .theme-doc-sidebar-container div[class*='expandButton_'] {
+    align-items: flex-end;
+    padding-bottom: 0.875rem;
+    color: var(--ifm-color-emphasis-700);
+  }
+}
+
+/* Quieter expand/collapse arrows (plain categories and linked categories) */
+.menu__link--sublist-caret:after,
+.menu__caret:before {
+  opacity: 0.7;
 }
 
 /* ---------- Table of contents ---------- */
@@ -197,6 +238,35 @@ h2 {
   font-weight: 400;
 }
 
+/* ---------- Previous / Next links ---------- */
+/* Same corner radius as the homepage cards */
+.pagination-nav {
+  --ifm-pagination-nav-border-radius: var(--ifm-card-border-radius);
+}
+
+/* Thin chevrons instead of « and ». A mask filled with currentColor keeps
+   them the link color in both themes. */
+.pagination-nav__link--prev .pagination-nav__label::before,
+.pagination-nav__link--next .pagination-nav__label::after {
+  content: '';
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  vertical-align: -0.1em;
+  background-color: currentColor;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') center / contain no-repeat;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') center / contain no-repeat;
+}
+
+.pagination-nav__link--prev .pagination-nav__label::before {
+  margin-right: 0.3em;
+  transform: rotate(180deg);
+}
+
+.pagination-nav__link--next .pagination-nav__label::after {
+  margin-left: 0.3em;
+}
+
 /* ---------- Code ---------- */
 code {
   font-weight: 400;
@@ -205,6 +275,23 @@ code {
 pre code {
   font-weight: 400;
   line-height: 1.6;
+}
+
+/* Code block backgrounds. Prism sets both values as inline styles, so
+   !important is needed. */
+
+/* Light: a faint tint of the primary blue instead of GitHub's neutral gray. */
+[data-theme='light'] .theme-code-block {
+  --prism-background-color: color-mix(in srgb, var(--ifm-color-primary) 7%, #fff) !important;
+}
+
+/* Dark: Dracula's #282a36 reads too dark against the page; use the surface color. */
+[data-theme='dark'] .theme-code-block {
+  --prism-background-color: var(--ifm-background-surface-color) !important;
+}
+
+.theme-code-block pre {
+  background-color: var(--prism-background-color) !important;
 }
 
 /* ---------- Admonitions ---------- */
