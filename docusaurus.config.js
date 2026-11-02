@@ -74,7 +74,8 @@ const personJsonLd = {
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'AI-Augmented Tech Writer',
-  tagline: 'AI is the future!',
+  tagline:
+    'Technical writing portfolio — API docs, AI-assisted workflows, and docs-as-code',
   favicon: 'img/ai-head.svg',
 
   // Added to the <head> of every page.
@@ -88,7 +89,29 @@ const config = {
 
   themes: ['docusaurus-theme-openapi-docs'],
 
-  clientModules: ['./src/clientModules/oramaFixes.js'],
+  clientModules: [
+    './src/clientModules/oramaFixes.js',
+    './src/clientModules/analytics.js',
+  ],
+
+  // Google Analytics 4. Not loaded through the gtag plugin: the plugin starts
+  // tracking on page load, and GA must wait for the consent banner instead.
+  // See src/utils/analytics.js.
+  customFields: {
+    gaMeasurementId: 'G-KGSYRF2DBX',
+  },
+
+  // GoatCounter counts every visit. It sets no cookies, so it runs without
+  // asking for consent. It skips localhost, so dev and `npm run serve`
+  // sessions aren't counted. Page changes inside the site are counted in
+  // src/clientModules/analytics.js.
+  scripts: [
+    {
+      src: 'https://gc.zgo.at/count.js',
+      async: true,
+      'data-goatcounter': 'https://ai-augmented-tech-writer.goatcounter.com/count',
+    },
+  ],
 
   plugins: [
     oramaSearch,
@@ -162,10 +185,7 @@ const config = {
           sidebarPath: './sidebars.js',
           docItemComponent: '@theme/ApiItem',
           remarkPlugins: [smartQuotes],
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // No editUrl, so pages don't show an "Edit this page" link.
         },
       
         // Enable the blog plugin so the built-in blog pages are available.
@@ -181,10 +201,6 @@ const config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -207,6 +223,15 @@ const config = {
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
+      // Added as <meta> tags to every page.
+      metadata: [
+        {name: 'author', content: 'Anna Korolivska'},
+        {
+          name: 'keywords',
+          content:
+            'technical writer, API documentation, docs-as-code, AI-assisted documentation, vector search, Docusaurus',
+        },
+      ],
       colorMode: {
         respectPrefersColorScheme: true,
       },
@@ -271,6 +296,10 @@ const config = {
               {
                 label: 'Changelog',
                 to: '/changelog',
+              },
+              {
+                label: 'Privacy',
+                to: '/privacy',
               },
               {
                 label: 'GitHub',

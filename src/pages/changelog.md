@@ -7,6 +7,13 @@ description: Significant updates to the AI-Augmented Tech Writer website.
 
 Significant updates to the website, newest first.
 
+## November 2, 2026
+
+- Added visit counting with GoatCounter, which doesn't use cookies, and Google Analytics, which runs only if you say yes in a new consent banner.
+- Added a Privacy page that explains what each tool collects and lets you turn Google Analytics on or off.
+- Made the Close button in the search dialog visible on phones and tablets.
+- Refined the sidebar, code, navigation bar, and homepage styles, and updated the site tagline.
+
 ## October 30, 2026
 
 - Added a homepage with a short introduction and links to the API documentation and vector search samples.

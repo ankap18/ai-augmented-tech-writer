@@ -5,6 +5,12 @@
   width: 100%;
 }
 
+/* Light mode: the same faint primary-blue tint as code blocks, so the white
+   cards stand out from the band behind them. */
+[data-theme='light'] .features {
+  background-color: color-mix(in srgb, var(--ifm-color-primary) 7%, #fff);
+}
+
 .featureCol {
   margin-bottom: 1.5rem;
 }

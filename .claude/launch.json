@@ -7,6 +7,12 @@
       "runtimeArgs": ["run", "serve", "--", "--port", "3000", "--no-open"],
       "port": 3000,
       "url": "http://localhost:3000"
+    },
+    {
+      "name": "docusaurus-start",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start", "--", "--port", "3002", "--no-open"],
+      "port": 3002
     }
   ]
 }
