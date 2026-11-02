@@ -56,8 +56,8 @@
   --ifm-font-weight-normal: 400;
   --ifm-font-color-base: #faf9f9;
 
-  --ifm-background-color: #202427;
-  --ifm-background-surface-color: #2d333b;
+  /* Inline code: one step lighter than code blocks (#2f3033) */
+  --ifm-code-background: #3a3b3f;
 
   --ifm-color-primary: #78a9ff;
   --ifm-color-primary-dark: #5b96ff;
@@ -149,6 +149,48 @@ h2 {
   font-weight: 400;
 }
 
+/* Mobile and tablet: the Orama search field collapses to an icon button so it
+   doesn't overlap the site name. Its shadow DOM exposes no parts, so the host
+   draws the button, the inner one goes transparent, and the label and
+   Ctrl + K badge are clipped away. --spacing-s sets the inner padding,
+   which centers the magnifying glass; --spacing-xs widens the gap after it
+   so the label starts outside the visible box. */
+@media (max-width: 996px) {
+  .navbar__items--left,
+  .navbar__brand {
+    min-width: 0;
+  }
+
+  /* Docusaurus positions the search absolutely here, so it takes no room
+     and the title runs under it. In the flow, the title truncates instead. */
+  .navbar__items--right > [class*='navbarSearchContainer'] {
+    position: static;
+    margin-left: 0.5rem;
+  }
+
+  orama-search-button.DocSearch-Button {
+    --button-background-color-secondary: transparent;
+    --button-background-color-secondary-hover: transparent;
+    --button-border-color-secondary: transparent;
+    --button-text-color-secondary: var(--ifm-navbar-link-color);
+    --spacing-s: 11px;
+    --spacing-xs: 1rem;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    overflow: hidden;
+    border: 1px solid var(--ifm-toc-border-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
+  orama-search-button.DocSearch-Button:hover {
+    background-color: var(--ifm-color-emphasis-100);
+  }
+}
+
 /* ---------- Sidebar ---------- */
 /* Items one step softer than the main text; the active page keeps the primary blue. */
 .menu {
@@ -181,6 +223,14 @@ h2 {
   letter-spacing: 0.06em;
 }
 
+/* Nested lists: a thin primary-blue guide line down the left edge, so each
+   category's children read as one group. */
+.menu__list .menu__list {
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--ifm-color-primary);
+}
+
 /* Collapse button: a small icon at the bottom right of the sidebar instead of
    a full-width bar. The expand icon on the collapsed strip sits at the bottom
    too, so the toggle stays in the same place. Docusaurus hashes these class
@@ -209,18 +259,45 @@ h2 {
     padding-bottom: 0.875rem;
     color: var(--ifm-color-emphasis-700);
   }
+
+  /* Both toggles turn primary blue on hover; the icons use currentColor */
+  .theme-doc-sidebar-container button[class*='collapseSidebarButton_']:hover,
+  .theme-doc-sidebar-container div[class*='expandButton_']:hover {
+    color: var(--ifm-color-primary);
+  }
 }
 
-/* Quieter expand/collapse arrows (plain categories and linked categories) */
+/* Quieter expand/collapse arrows (plain categories and linked categories).
+   The chevron is drawn as a mask over the menu color instead of a background
+   image, so it can change color; this also replaces Infima's dark-mode
+   invert filter. */
 .menu__link--sublist-caret:after,
 .menu__caret:before {
   opacity: 0.7;
+  background: var(--ifm-menu-color);
+  -webkit-mask: var(--ifm-menu-link-sublist-icon) 50% / 2rem 2rem no-repeat;
+  mask: var(--ifm-menu-link-sublist-icon) 50% / 2rem 2rem no-repeat;
+  filter: none;
+}
+
+/* Arrows turn primary blue on hover, like the sidebar toggle */
+.menu__link--sublist-caret:hover:after,
+.menu__caret:hover:before {
+  opacity: 1;
+  background: var(--ifm-color-primary);
 }
 
 /* ---------- Table of contents ---------- */
 .table-of-contents__link {
   font-weight: 400;
   font-size: 0.85rem;
+}
+
+/* ---------- Blog sidebar ---------- */
+/* Post titles turn primary blue on hover, like the docs sidebar. Docusaurus
+   hashes the class name, so match on its prefix. */
+a[class*='sidebarItemLink_']:hover {
+  color: var(--ifm-color-primary);
 }
 
 /* ---------- Content width ----------
@@ -277,6 +354,13 @@ pre code {
   line-height: 1.6;
 }
 
+/* Inline code only (not code blocks): a hairline primary-blue outline.
+   0.5px is a true hairline on high-density screens; standard screens round it
+   up to 1px, so the softened blue keeps it looking light there too. */
+[data-theme='dark'] :not(pre) > code {
+  border: 0.5px solid color-mix(in srgb, var(--ifm-color-primary) 65%, transparent);
+}
+
 /* Code block backgrounds. Prism sets both values as inline styles, so
    !important is needed. */
 
@@ -285,13 +369,19 @@ pre code {
   --prism-background-color: color-mix(in srgb, var(--ifm-color-primary) 7%, #fff) !important;
 }
 
-/* Dark: Dracula's #282a36 reads too dark against the page; use the surface color. */
+/* Dark: a neutral gray a few steps lighter than the page, so code blocks stand
+   out from both the page and the navbar. */
 [data-theme='dark'] .theme-code-block {
-  --prism-background-color: var(--ifm-background-surface-color) !important;
+  --prism-background-color: #2f3033 !important;
 }
 
 .theme-code-block pre {
   background-color: var(--prism-background-color) !important;
+}
+
+/* A light primary-blue border, softer than the inline code outline */
+.theme-code-block {
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 20%, transparent);
 }
 
 /* ---------- Admonitions ---------- */

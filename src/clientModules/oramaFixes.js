@@ -7,6 +7,9 @@
 // - The modal dims the whole page with a 70% black overlay. Remove it, and
 //   give the panel a border and shadow so it still stands out from the page.
 //   Site variables like --ifm-color-emphasis-300 inherit into shadow DOM.
+// - Up to 1024px the dialog fills the screen, so there's no backdrop to tap
+//   and Esc is the only way out. Orama renders a Close button but hides it
+//   for keyboard users only; show it beside the search field.
 //
 // Theme: the plugin reads <html data-theme> only when the search bar renders,
 // so toggling light/dark mode doesn't reach the search until the next
@@ -22,6 +25,30 @@ const CSS = `
   .modal-content {
     border: 1px solid var(--ifm-color-emphasis-300) !important;
     box-shadow: 0 12px 32px rgb(0 0 0 / 18%), 0 2px 6px rgb(0 0 0 / 8%) !important;
+  }
+  @media (max-width: 1024px) {
+    .modal-close {
+      position: fixed !important;
+      top: 1.05rem;
+      right: 0.5rem;
+      z-index: 1;
+      width: auto !important;
+      height: 3.1rem !important;
+      padding: 0 0.75rem;
+      clip: auto !important;
+      clip-path: none !important;
+      overflow: visible !important;
+      border: 0;
+      background: none;
+      color: var(--ifm-color-primary);
+      font: inherit;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    orama-search orama-input {
+      padding-right: 5.5rem !important;
+    }
   }
 `;
 
