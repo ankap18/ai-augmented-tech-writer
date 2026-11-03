@@ -12,19 +12,16 @@ Start Docusaurus's development server so the user can preview the site and see s
 
 ## Procedure
 
-1. Confirm the working directory is this repository root (the directory containing `package.json`).
-2. Check whether port 3000 is already in use:
-   - If a Docusaurus development server for this repository is already running, reuse it.
-   - If a production `docusaurus serve` process for this repository is using the port, leave it running and use another available port, such as 3001, for the development server.
-   - If another unrelated process owns port 3000, do not stop it; choose another available port.
-3. Start the development server with the Windows npm command shim:
+1. Use the current workspace as the repository; confirm `package.json` exists at its root. Do not search the repository to rediscover its structure.
+2. Check ports 3000–3100 in one pass. If this repository's Docusaurus dev server is already responding at the expected base URL, reuse it. Otherwise choose the first unused port in that range. Never stop another process or try occupied ports one by one.
+3. Start the development server with the Windows npm command shim. Use `npm.cmd` (not `npm`) to avoid PowerShell execution-policy failures:
 
    ```powershell
    npm.cmd start -- --host localhost --port 3000 --no-open
    ```
 
-   Start it as an attached asynchronous process so it stays available during the session; do not detach it. Substitute the chosen available port when needed.
-4. Wait for the development server to report that it is ready, then verify it responds successfully before reporting the preview URL. If it fails to start or the HTTP check fails, report the error instead of claiming the preview is available.
+   Substitute the chosen port. Start it as an attached asynchronous process; do not detach it.
+4. Wait for the ready message and make one HTTP request to verify the server. If startup or the request fails, report the error instead of claiming the preview is available.
 5. This site uses `baseUrl: '/ai-augmented-tech-writer/'`. Give the user the preview URL in this form:
 
    ```text
@@ -32,8 +29,7 @@ Start Docusaurus's development server so the user can preview the site and see s
    ```
 
    Substitute the actual port if it differs. If browser tools are available, open the preview URL; otherwise provide it so the user can open it.
-6. Explain that source-file changes should update the running preview automatically. If file watching does not detect changes, restart the dev server or retry with Docusaurus's `--poll` option.
-7. Tell the user the server remains running and can be stopped with Ctrl+C in its terminal.
+6. Explain that source-file changes should update the running preview automatically and that the server can be stopped with Ctrl+C.
 
 ## Notes
 
