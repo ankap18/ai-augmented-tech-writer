@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Download your repository's code onto the VM.
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       # Run lychee, the link checker.
       - name: Check links
