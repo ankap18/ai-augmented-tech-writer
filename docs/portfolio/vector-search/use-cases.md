@@ -2,6 +2,9 @@
 title: Common uses of vector search
 sidebar_label: Common uses
 description: Explore how vector search supports retrieval-augmented generation, semantic search, recommendations, and more.
+sidebar_custom_props:
+  card_icon: img/icons/layout-grid.svg
+  card_icon_invert_dark: true
 ---
 
 Vector search is commonly used in modern AI systems. It helps applications find relevant content even when keywords do not match.

@@ -22,6 +22,12 @@
   font-size: 1.2rem;
 }
 
+/* Endpoint titles wrap instead of truncating, since the method badge takes
+   room that a one-character icon doesn't. */
+.cardContainer:global(.api-method) .cardTitle {
+  white-space: normal;
+}
+
 .cardDescription {
   font-size: 0.8rem;
 }

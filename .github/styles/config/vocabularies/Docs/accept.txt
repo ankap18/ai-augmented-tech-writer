@@ -16,6 +16,7 @@ Zendesk
 
 # Companies and products
 Atlassian
+Dependabot
 Milvus
 Pinecone
 Pinterest
@@ -36,3 +37,6 @@ leaf_size
 lockfile
 parallelization
 repo
+Transifex
+autocorrect
+gettext

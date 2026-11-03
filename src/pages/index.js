@@ -8,9 +8,10 @@ import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import styles from './index.module.css';
 
 // The visible pitch, for people who already landed on the page.
-const TAGLINE = 'I use AI to move faster — and human judgment to get it right.';
+const TAGLINE = 'Senior Technical Writer | Information Architecture | Docs-as-Code | AI-Assisted Documentation | API & Developer Docs';
 const SUBLINE =
-  '15+ years of helping teams ship documentation that users trust. I start ' +
+  'I use AI to move faster — and human judgment to get it right. ' +
+  '15+ years of helping teams publish documentation that users trust. I start ' +
   'with structure — taxonomy, information architecture, templates — then use ' +
   'docs-as-code and AI to scale it across teams and products.';
 // A small personality beat before the buttons.
@@ -35,7 +36,7 @@ function HomepageHeader() {
           height={140}
         />
         <Heading as="h1" className="hero__title">
-          Anna Korolivska — Senior Technical Writer
+          ANNA KOROLIVSKA
         </Heading>
         <p className={clsx('hero__subtitle', styles.tagline)}>{TAGLINE}</p>
         <p className={styles.subline}>{SUBLINE}</p>

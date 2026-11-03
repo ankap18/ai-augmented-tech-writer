@@ -2,6 +2,9 @@
 title: External documentation samples
 sidebar_label: External samples
 description: Explore documentation samples created for a data analytics platform.
+sidebar_custom_props:
+  card_icon: img/icons/external-link.svg
+  card_icon_invert_dark: true
 ---
 
 import IconExternalLink from '@theme/Icon/ExternalLink';

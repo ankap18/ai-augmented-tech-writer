@@ -153,6 +153,16 @@ const config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
+  // Since 3.10, future.v4 turns off MDX v1 compatibility. Keep it on so
+  // posts can still use <!-- truncate --> and other HTML comments.
+  markdown: {
+    mdx1Compat: {
+      comments: true,
+      admonitions: true,
+      headingIds: true,
+    },
+  },
+
   // Set the production url of your site here
   url: 'https://ankap18.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served

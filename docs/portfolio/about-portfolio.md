@@ -4,6 +4,7 @@ description: Browse technical writing samples, including vector search, API docu
 ---
 
 import IconExternalLink from '@theme/Icon/ExternalLink';
+import DocCardList from '@theme/DocCardList';
 
 Much of my professional work is under NDA, so I can't share it here. This portfolio instead includes two kinds of samples:
 
@@ -41,3 +42,7 @@ This is a fake API for synonyms management (AI-assisted writing):
 - <a href="https://support.dataclaritycorp.com/hc/en-us/articles/4408961534484-Extract-data-for-a-dataset" target="_blank" rel="noopener noreferrer">Extract data for a dataset <IconExternalLink /></a>
 - [How to publish a target from MadCap Flare to Zendesk](./how-to-publish-target-zendesk.md)
 </details>
+
+## Browse the samples
+
+<DocCardList />

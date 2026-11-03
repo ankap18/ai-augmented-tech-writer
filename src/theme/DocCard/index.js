@@ -48,6 +48,49 @@ function CardIcon({src, invertInDark}) {
   );
 }
 
+// Returns the custom icon set in the item's custom props, or the fallback.
+// Docs set these through `sidebar_custom_props` front matter; categories set
+// them through `customProps` in sidebars.js.
+function getCardIcon(item, fallback) {
+  const cardIcon = item.customProps?.card_icon;
+  const invertIconInDark = item.customProps?.card_icon_invert_dark;
+
+  if (
+    cardIcon !== undefined &&
+    (typeof cardIcon !== 'string' || !cardIcon.trim())
+  ) {
+    throw new Error(
+      `Invalid card_icon for "${item.label}": expected a non-empty image path.`,
+    );
+  }
+  if (
+    invertIconInDark !== undefined &&
+    typeof invertIconInDark !== 'boolean'
+  ) {
+    throw new Error(
+      `Invalid card_icon_invert_dark for "${item.label}": expected a boolean.`,
+    );
+  }
+
+  return cardIcon ? (
+    <CardIcon src={cardIcon} invertInDark={invertIconInDark} />
+  ) : (
+    fallback
+  );
+}
+
+const API_METHODS = ['get', 'post', 'put', 'patch', 'delete'];
+
+// Endpoint docs get `className: 'api-method <method>'` in sidebars.js.
+// Returns that method, or undefined for any other card.
+function getApiMethod(className) {
+  const classes = className?.split(/\s+/) ?? [];
+  if (!classes.includes('api-method')) {
+    return undefined;
+  }
+  return classes.find((name) => API_METHODS.includes(name));
+}
+
 function CardCategory({item}) {
   const href = findFirstSidebarItemLink(item);
   const {selectMessage} = usePluralForm();
@@ -75,7 +118,7 @@ function CardCategory({item}) {
     <CardLayout
       className={item.className}
       href={href}
-      icon="🗃️"
+      icon={getCardIcon(item, '🗃️')}
       title={item.label}
       description={description}
     />
@@ -84,32 +127,12 @@ function CardCategory({item}) {
 
 function CardLink({item}) {
   const doc = useDocById(item.docId ?? undefined);
-  const cardIcon = item.customProps?.card_icon;
-  const invertIconInDark = item.customProps?.card_icon_invert_dark;
-
-  if (
-    cardIcon !== undefined &&
-    (typeof cardIcon !== 'string' || !cardIcon.trim())
-  ) {
-    throw new Error(
-      `Invalid sidebar_custom_props.card_icon for "${item.label}": expected a non-empty image path.`,
-    );
-  }
-  if (
-    invertIconInDark !== undefined &&
-    typeof invertIconInDark !== 'boolean'
-  ) {
-    throw new Error(
-      `Invalid sidebar_custom_props.card_icon_invert_dark for "${item.label}": expected a boolean.`,
-    );
-  }
-
-  const icon = cardIcon ? (
-    <CardIcon src={cardIcon} invertInDark={invertIconInDark} />
-  ) : isInternalUrl(item.href) ? (
-    '📄️'
+  const apiMethod = getApiMethod(item.className);
+  // Badge colors come from the api-method rules in src/css/custom.css.
+  const icon = apiMethod ? (
+    <span className="api-method-badge">{apiMethod}</span>
   ) : (
-    '🔗'
+    getCardIcon(item, isInternalUrl(item.href) ? '📄️' : '🔗')
   );
 
   return (
