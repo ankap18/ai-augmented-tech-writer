@@ -1,0 +1,65 @@
+# Dependabot keeps dependencies up to date by opening pull requests.
+# Security alerts and security update PRs are switched on separately,
+# in the repo's Settings > Code security. This file controls the
+# regular, scheduled version-update PRs.
+# Docs: https://docs.github.com/code-security/dependabot/working-with-dependabot/dependabot-options-reference
+version: 2
+
+updates:
+  # NPM PACKAGES: everything in package.json and package-lock.json.
+  - package-ecosystem: npm
+    # Where package.json lives (the repo root).
+    directory: /
+    schedule:
+      # Once a week is enough for a static site. Monday matches
+      # the weekly link check in link-checks.yml.
+      interval: weekly
+      day: monday
+    # Open at most 5 update PRs at a time, so they don't pile up.
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    # GROUPS: bundle related packages into one PR instead of one each.
+    # Only minor and patch updates are grouped. A major version
+    # (for example, Docusaurus 4) gets its own PR, because it
+    # usually needs config or content changes.
+    groups:
+      # All @docusaurus/* packages must stay on the same version,
+      # or the build fails.
+      docusaurus:
+        patterns:
+          - "@docusaurus/*"
+        update-types: [minor, patch]
+      # The OpenAPI plugin and theme are released together.
+      openapi-docs:
+        patterns:
+          - "docusaurus-plugin-openapi-docs"
+          - "docusaurus-theme-openapi-docs"
+        update-types: [minor, patch]
+      # react and react-dom must match.
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+        update-types: [minor, patch]
+      # Everything else (fonts, Orama, clsx, and so on) in one PR.
+      other:
+        patterns:
+          - "*"
+        update-types: [minor, patch]
+
+  # GITHUB ACTIONS: the actions the workflows use, such as
+  # actions/checkout and vale-cli/vale-action.
+  - package-ecosystem: github-actions
+    # "/" tells Dependabot to look in .github/workflows.
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    labels:
+      - dependencies
+    groups:
+      # One PR for all action updates.
+      actions:
+        patterns:
+          - "*"

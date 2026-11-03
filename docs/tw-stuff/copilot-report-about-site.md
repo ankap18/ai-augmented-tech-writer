@@ -2,6 +2,9 @@
 title: GitHub Copilot report about this project
 sidebar_label: AI about this project
 description: My notes on the Docusaurus site and my customizations
+sidebar_custom_props:
+  card_icon: img/icons/file-text.svg
+  card_icon_invert_dark: true
 keywords:
   - AI
   - Docusaurus

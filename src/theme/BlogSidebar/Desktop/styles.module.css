@@ -1,0 +1,37 @@
+/* Matches the docs sidebar: fixed width, flush left, border on the right.
+   Hidden below 997px, where the blog uses the mobile navbar menu instead. */
+.sidebarContainer {
+  display: none;
+}
+
+@media (min-width: 997px) {
+  .sidebarContainer {
+    display: block;
+    flex-shrink: 0;
+    width: var(--doc-sidebar-width, 300px);
+    border-right: 1px solid var(--ifm-toc-border-color);
+  }
+
+  .sidebar {
+    position: sticky;
+    top: var(--ifm-navbar-height);
+    max-height: calc(100vh - var(--ifm-navbar-height));
+    overflow-y: auto;
+    /* Space below the navbar, level with the top of the post */
+    padding: 1rem 0.5rem 0.5rem;
+  }
+}
+
+/* Same look as a top-level docs category label (see custom.css) */
+.groupLabel {
+  color: var(--ifm-font-color-base);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: default;
+}
+
+.groupLabel:hover {
+  background: none;
+}

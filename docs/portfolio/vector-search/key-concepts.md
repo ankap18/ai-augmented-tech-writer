@@ -2,6 +2,9 @@
 title: Key concepts in vector search
 sidebar_label: Key concepts
 description: Understand embeddings, vector representations, and the core terms used to explain vector search.
+sidebar_custom_props:
+  card_icon: img/icons/lightbulb.svg
+  card_icon_invert_dark: true
 ---
 
 Before you explore how vector search works, review these key concepts.

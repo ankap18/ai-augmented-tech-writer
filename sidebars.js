@@ -41,18 +41,19 @@ tutorialSidebar: [
     {
       type: 'category',
       label: 'Portfolio',
+      link: {type: 'doc', id: 'portfolio/about-portfolio'},
       collapsible: true,
       collapsed: true, // Keeps the portfolio folder open by default
       items: [
-        'portfolio/about-portfolio',
       {
           type: 'category',
           label: 'Vector search',
+          link: {type: 'doc', id: 'portfolio/vector-search/overview'},
+          customProps: {
+            card_icon: 'img/icons/vector-search.svg',
+            card_icon_invert_dark: true,
+          },
           items: [
-            {
-              type: 'doc',
-              id: 'portfolio/vector-search/overview',
-            },
             {
               type: 'doc',
               id: 'portfolio/vector-search/key-concepts',
@@ -70,11 +71,12 @@ tutorialSidebar: [
         {
           type: 'category',
           label: 'Synonyms API',
+          link: {type: 'doc', id: 'portfolio/api-docs/overview'},
+          customProps: {
+            card_icon: 'img/icons/api-code.svg',
+            card_icon_invert_dark: true,
+          },
           items: [
-            {
-              type: 'doc',
-              id: 'portfolio/api-docs/overview',
-            },
             'portfolio/api-docs/authentication',
             'portfolio/api-docs/quickstart',
 
@@ -84,6 +86,10 @@ tutorialSidebar: [
               link: {
                 type: 'doc',
                 id: 'portfolio/api-docs/generated/synonyms-api/synonyms',  // no .mdx extension
+              },
+              customProps: {
+                card_icon: 'img/icons/arrow-left-right.svg',
+                card_icon_invert_dark: true,
               },
               items: [
                 {
@@ -121,6 +127,7 @@ tutorialSidebar: [
     {
       type: 'category',
       label: 'AI stuff',
+      link: {type: 'doc', id: 'ai-stuff/about-ai-stuff'},
       collapsible: true,
       collapsed: true,
       items: [
@@ -132,6 +139,7 @@ tutorialSidebar: [
     {
       type: 'category',
       label: 'TW stuff',
+      link: {type: 'doc', id: 'tw-stuff/about-tw-stuff'},
       collapsible: true,
       collapsed: true,
       items: [

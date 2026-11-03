@@ -2,6 +2,9 @@
 title: Run Vale in VS Code
 sidebar_label: Run Vale in VS Code
 description: My notes on installing Vale Linter to check content against the Google Developer Style Guide
+sidebar_custom_props:
+  card_icon: img/icons/spell-check.svg
+  card_icon_invert_dark: true
 keywords:
   - Vale Linter
   - VS Code

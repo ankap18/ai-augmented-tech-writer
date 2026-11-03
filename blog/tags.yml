@@ -22,3 +22,12 @@ vale:
   label: Vale
   permalink: /vale
   description: Prose linting with Vale and style guides
+localization:
+  label: Localization
+  permalink: /localization
+  description: Translating and localizing documentation
+
+diataxis:
+  label: Diátaxis
+  permalink: /diataxis
+  description: The Diátaxis documentation framework

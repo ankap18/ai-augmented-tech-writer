@@ -7,6 +7,15 @@ description: Significant updates to the AI-Augmented Tech Writer website.
 
 Significant updates to the website, newest first.
 
+## November 3, 2026
+
+- Published part 1 of a blog post about translating Diátaxis into Ukrainian with AI, and added Localization and Diátaxis blog tags.
+- Added landing pages for the Portfolio, AI stuff, and TW stuff sections, with cards that link to each page, and gave the cards custom icons.
+- Added color-coded method labels, such as GET and POST, to the Synonyms API endpoints in the sidebar and on their cards.
+- Redesigned the blog layout to match the docs, with a sidebar of posts grouped by year and a wider table of contents.
+- Updated the homepage headline and tagline, renamed the Vale blog post, and toned down the search button colors.
+- Upgraded Docusaurus to 3.10.2 and the OpenAPI plugins to 5.2, and added Dependabot and a `/deps-check` skill to keep dependencies up to date.
+
 ## November 2, 2026
 
 - Added visit counting with GoatCounter, which doesn't use cookies, and Google Analytics, which runs only if you say yes in a new consent banner.

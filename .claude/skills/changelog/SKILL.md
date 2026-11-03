@@ -14,7 +14,7 @@ Summarize what changed on the current branch as a new dated entry in `src/pages/
 Read `src/pages/changelog.md` first. The existing entries are the source of truth; this section summarizes them.
 
 - **One section per date** — `## October 30, 2026`, newest first, directly under the intro sentence. Use today's date.
-- **Two to five bullets** — each one a past-tense sentence that ends with a period: "Added…", "Refined…", "Fixed…".
+- **As many bullets as the changes need** — usually two to five, but more is fine for a big branch. Each one is a past-tense sentence that ends with a period: "Added…", "Refined…", "Fixed…". Group related edits, but don't merge unrelated ones just to keep the list short.
 - **Written for site visitors** — describe what changed on the site, not which files changed. Group related edits into one bullet ("Refined portfolio, vector search, and AI workflow content").
 - **No bold terms** — plain sentences only. Bold is fine for a section name, such as **TW Stuff**.
 

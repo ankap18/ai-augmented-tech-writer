@@ -1,5 +1,5 @@
 ---
-title: Making the Google style guide my own with Vale
+title: Tuning Vale for a personal site
 description: How I tuned Vale's Google style rules for a personal site, added my own list rule, and kept my writing samples strict.
 authors: [annako]
 tags: [vale, ai]

@@ -149,6 +149,14 @@ h2 {
   font-weight: 400;
 }
 
+/* Orama's default hover and Ctrl + K badge are lavender (#eee9f6) in light
+   mode. Use the site's neutral emphasis grays, which also adapt to dark mode.
+   The id selector outranks Orama's [id^='orama-ui'].theme-* token rules. */
+orama-search-button[id^='orama-ui'].DocSearch-Button {
+  --button-background-color-secondary-hover: var(--ifm-color-emphasis-200);
+  --background-color-tertiary: var(--ifm-color-emphasis-100);
+}
+
 /* Mobile and tablet: the Orama search field collapses to an icon button so it
    doesn't overlap the site name. Its shadow DOM exposes no parts, so the host
    draws the button, the inner one goes transparent, and the label and
@@ -287,17 +295,65 @@ h2 {
   background: var(--ifm-color-primary);
 }
 
+/* ---------- API method badges ----------
+   Endpoints get `className: 'api-method <method>'` in sidebars.js. Docusaurus
+   puts that class on the sidebar item and on the endpoint's DocCard, so both
+   pick up the method color here. Colors are GitHub Primer's, which stay
+   readable on the page and sidebar backgrounds in both themes. */
+.api-method {
+  --api-method-color: var(--ifm-color-emphasis-700);
+}
+
+.api-method.get { --api-method-color: #0969da; }
+.api-method.post { --api-method-color: #1a7f37; }
+.api-method.put,
+.api-method.patch { --api-method-color: #9a6700; }
+.api-method.delete { --api-method-color: #cf222e; }
+
+[data-theme='dark'] .api-method.get { --api-method-color: #6cb6ff; }
+[data-theme='dark'] .api-method.post { --api-method-color: #57ab5a; }
+[data-theme='dark'] .api-method.put,
+[data-theme='dark'] .api-method.patch { --api-method-color: #d4a72c; }
+[data-theme='dark'] .api-method.delete { --api-method-color: #f47067; }
+
+/* A plain colored label: no pill, border or background */
+.api-method-badge,
+.menu__list-item.api-method > .menu__link::after {
+  flex-shrink: 0;
+  color: var(--api-method-color);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Sidebar: the label sits at the right edge, and the endpoint name wraps
+   before it if it's too long. */
+.menu__list-item.api-method > .menu__link {
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.menu__list-item.api-method > .menu__link::after {
+  margin-left: auto;
+}
+
+.menu__list-item.api-method.get > .menu__link::after { content: 'get'; }
+.menu__list-item.api-method.post > .menu__link::after { content: 'post'; }
+.menu__list-item.api-method.put > .menu__link::after { content: 'put'; }
+.menu__list-item.api-method.patch > .menu__link::after { content: 'patch'; }
+.menu__list-item.api-method.delete > .menu__link::after { content: 'delete'; }
+
+/* Cards: the label sits before the title, raised to the title's middle */
+.api-method-badge {
+  margin-right: 0.25rem;
+  vertical-align: 0.15em;
+}
+
 /* ---------- Table of contents ---------- */
 .table-of-contents__link {
   font-weight: 400;
   font-size: 0.85rem;
-}
-
-/* ---------- Blog sidebar ---------- */
-/* Post titles turn primary blue on hover, like the docs sidebar. Docusaurus
-   hashes the class name, so match on its prefix. */
-a[class*='sidebarItemLink_']:hover {
-  color: var(--ifm-color-primary);
 }
 
 /* ---------- Content width ----------

@@ -4,6 +4,8 @@ sidebar_label: Overview
 description: Learn how the Synonyms API manages synonym relationships for search and query expansion.
 ---
 
+import DocCardList from '@theme/DocCardList';
+
 The Synonyms API lets you manage synonym relationships for search and query expansion.
 
 Use this API to define how terms relate to each other. You can apply these relationships across search engines, autocomplete systems, and query processing pipelines to improve relevance and consistency.
@@ -47,3 +49,7 @@ Include these headers in all requests:
 Content-Type: application/json
 Accept: application/json
 ```
+
+## In this section
+
+<DocCardList />

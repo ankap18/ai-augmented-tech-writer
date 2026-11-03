@@ -12,6 +12,8 @@ prerequisites:
   - Familiarity with APIs and databases
 ---
 
+import DocCardList from '@theme/DocCardList';
+
 # Vector search overview
 
 Vector search is a method for retrieving data based on similarity in meaning rather than exact keyword matches.
@@ -34,6 +36,4 @@ In this article, you learn:
 
 ## In this section
 
-- [Key concepts](./key-concepts.md)  
-- [How vector search works](./how-it-works.md)  
-- [Common uses of vector search](./use-cases.md)
+<DocCardList />

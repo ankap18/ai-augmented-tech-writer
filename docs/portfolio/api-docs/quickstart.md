@@ -2,6 +2,9 @@
 title: Synonyms API - Quickstart
 sidebar_label: Quickstart
 description: Follow examples to create, list, and delete a synonym entry with the Synonyms API.
+sidebar_custom_props:
+  card_icon: img/icons/zap.svg
+  card_icon_invert_dark: true
 ---
 
 This example shows how to create, list, and delete a synonym entry.
