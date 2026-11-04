@@ -31,3 +31,8 @@ diataxis:
   label: Diátaxis
   permalink: /diataxis
   description: The Diátaxis documentation framework
+
+n8n:
+  label: n8n
+  permalink: /n8n
+  description: Workflow automation with n8n

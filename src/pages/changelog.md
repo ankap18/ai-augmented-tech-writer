@@ -7,6 +7,12 @@ description: Significant updates to the AI-Augmented Tech Writer website.
 
 Significant updates to the website, newest first.
 
+## November 4, 2026
+
+- Published a blog post about my first n8n workflow, a Diátaxis auditor that sorts my portfolio pages by type with two local AI models, and added an n8n blog tag.
+- Darkened the teal and pink code highlighting colors in light mode so they meet WCAG AA contrast.
+- Fixed a broken code block in the Synonyms API quickstart and replaced the placeholder alt text on the MadCap Flare to Zendesk screenshot.
+
 ## November 3, 2026
 
 - Published part 1 of a blog post about translating Diátaxis into Ukrainian with AI, and added Localization and Diátaxis blog tags.

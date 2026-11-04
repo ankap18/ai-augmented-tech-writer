@@ -25,7 +25,12 @@ PostgreSQL
 Qdrant
 Spotify
 Weaviate
+n8n
 npm
+Ollama
+Qwen
+gpt-oss
+MadCap
 pgvector
 webpack
 

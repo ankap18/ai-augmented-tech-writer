@@ -14,9 +14,10 @@ Start Docusaurus's development server so the user can preview the site and see s
 
 1. Use the current workspace as the repository; confirm `package.json` exists at its root. Do not search the repository to rediscover its structure.
 2. Check ports 3000–3100 in one pass. If this repository's Docusaurus dev server is already responding at the expected base URL, reuse it. Otherwise choose the first unused port in that range. Never stop another process or try occupied ports one by one.
-3. Start the development server with the Windows npm command shim. Use `npm.cmd` (not `npm`) to avoid PowerShell execution-policy failures:
+3. Start the development server with the Windows npm command shim. Use `npm.cmd` (not `npm`) to avoid PowerShell execution-policy failures. Disable Docusaurus's persistent cache for this preview because Rspack's persistent cache has crashed repeatedly in this workspace:
 
    ```powershell
+   $env:DOCUSAURUS_NO_PERSISTENT_CACHE = 'true'
    npm.cmd start -- --host localhost --port 3000 --no-open
    ```
 

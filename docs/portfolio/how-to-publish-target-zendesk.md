@@ -9,4 +9,4 @@ sidebar_custom_props:
 
 This how-to guide, originally written in the pre-AI era, details our internal workflow for publishing from MadCap Flare to Zendesk. I documented this process to ensure the instructions reflect our environment.
 
-![alt text](/img/publish-target-to-zendesk.png)
+![Original guide page with steps for creating and publishing a Flare target to Zendesk, including a screenshot of the Advanced tab](/img/publish-target-to-zendesk.png)
