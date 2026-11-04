@@ -53,7 +53,8 @@ curl -X GET "https://api.synonyms.io/v1/synonyms?tag=ecommerce&page=1&page_size=
 ```
 **Response**
 
-```json{
+```json
+{
   "data": [
     {
       "id": "syn_01hx4k9mzqe8f3b7n2p6r0wc",

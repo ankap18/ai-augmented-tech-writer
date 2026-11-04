@@ -435,6 +435,19 @@ pre code {
   background-color: var(--prism-background-color) !important;
 }
 
+/* Light: darker shades of the GitHub theme's teal and pink, which fall below
+   WCAG AA (4.5:1) on the tinted background. Prism sets token colors as inline
+   styles, so !important is needed. */
+[data-theme='light'] .theme-code-block :is(.token.entity, .token.url, .token.symbol,
+  .token.number, .token.boolean, .token.variable, .token.constant,
+  .token.property, .token.regex, .token.inserted) {
+  color: #167370 !important;
+}
+
+[data-theme='light'] .theme-code-block :is(.token.string, .token.attr-value) {
+  color: #c80f5f !important;
+}
+
 /* A light primary-blue border, softer than the inline code outline */
 .theme-code-block {
   border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 20%, transparent);
