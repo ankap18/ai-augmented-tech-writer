@@ -1,0 +1,12 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+/* Keep the button on the right even when there are no breadcrumbs. */
+.row > :last-child {
+  margin-left: auto;
+}
