@@ -1,6 +1,6 @@
 ---
 title: Why I created this website
-description: Personal repo for exploring AI + tech writing
+description: Why I built this site, a place to explore how AI is changing technical writing, research AI-driven documentation, and share my portfolio.
 sidebar_custom_props:
   card_icon: img/icons/github-outline-light.svg
   card_icon_invert_dark: true

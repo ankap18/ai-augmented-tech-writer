@@ -9,6 +9,7 @@ import {createRequire} from 'node:module';
 import {dirname, resolve} from 'node:path';
 import OramaPluginDocusaurus from '@orama/plugin-docusaurus-v3';
 import remarkSmartypants from 'remark-smartypants';
+import sidebars from './sidebars.js';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -39,6 +40,26 @@ function oramaSearch(context, options) {
     getTypeScriptThemePath: () => resolve(oramaPluginRoot, 'src/theme'),
     getClientModules: () => [resolve(oramaPluginDist, 'theme/SearchBar/index.css')],
   };
+}
+
+/**
+ * Lists every doc ID in a sidebar, in sidebar order, including the docs that
+ * category headings link to. Used to give llms.txt the same order as the
+ * sidebar, because docusaurus-plugin-llms reads files from disk, not the
+ * sidebar.
+ * @param {any[]} items
+ * @returns {string[]}
+ */
+function sidebarDocIds(items) {
+  return items.flatMap((item) => {
+    if (typeof item === 'string') return [item];
+    if (item.type === 'doc') return [item.id];
+    if (item.type === 'category') {
+      const landingPage = item.link?.type === 'doc' ? [item.link.id] : [];
+      return [...landingPage, ...sidebarDocIds(item.items ?? [])];
+    }
+    return [];
+  });
 }
 
 const siteUrl = 'https://ankap18.github.io/ai-augmented-tech-writer/';
@@ -146,6 +167,32 @@ const config = {
         },
       },
     ],
+    // Generates llms.txt and llms-full.txt at build time, plus a .md copy of
+    // each doc that llms.txt links to. Replaces the hand-written
+    // static/llms.txt, so new pages are listed automatically.
+    [
+      'docusaurus-plugin-llms',
+      {
+        title: 'AI-Augmented Tech Writer',
+        description:
+          'Personal site of Anna Korolivska, a senior technical writer exploring how AI changes documentation work. It includes technical writing samples (vector search concepts and a REST API reference), notes on AI tools, agents, and making docs ready for AI, and notes on the craft of technical writing.',
+        rootContent:
+          'The site is built with Docusaurus. Pages under Portfolio are writing samples that follow the Google developer documentation style guide. Other pages are first-person notes.',
+        // Generated API endpoint pages come from the OpenAPI spec, not my
+        // writing, so they stay out (Vale skips them too).
+        ignoreFiles: ['**/api-docs/generated/**', '**/_docusaurus-examples/**'],
+        // Same order as the sidebar: one pattern per doc, taken from
+        // sidebars.js. Pages that aren't in the sidebar, such as blog posts,
+        // come last.
+        includeOrder: sidebarDocIds(sidebars.tutorialSidebar).map(
+          (id) => `${id}.md*`,
+        ),
+        generateMarkdownFiles: true,
+        // Blog posts are listed too. The Docusaurus sample posts in
+        // blog/_docusaurus-examples aren't published, so they stay out.
+        includeBlog: true,
+      },
+    ],
   ],
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -195,6 +242,9 @@ const config = {
           sidebarPath: './sidebars.js',
           docItemComponent: '@theme/ApiItem',
           remarkPlugins: [smartQuotes],
+          // Shows "Last updated on <date>" at the bottom of each doc, taken
+          // from the doc's last Git commit.
+          showLastUpdateTime: true,
           // No editUrl, so pages don't show an "Edit this page" link.
         },
       

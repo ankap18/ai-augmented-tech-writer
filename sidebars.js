@@ -66,6 +66,10 @@ tutorialSidebar: [
               type: 'doc',
               id: 'portfolio/vector-search/use-cases',
             },
+            {
+              type: 'doc',
+              id: 'portfolio/vector-search/key-challenges',
+            },
           ],
          },
         {

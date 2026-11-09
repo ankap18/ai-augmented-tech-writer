@@ -14,6 +14,12 @@ keywords:
 
 I asked AI to analyze the project and help me understand how it was built.
 
+:::info[Report date]
+
+GitHub Copilot generated this report in October 2026. It describes the project as it was then, and the site has changed since.
+
+:::
+
 It traced the project setup from its package manifest, Docusaurus configuration, documentation structure, and deployment workflow, then summarized the site and required installs.
 
 ## What the project is
