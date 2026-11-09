@@ -1,0 +1,72 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-button-border-radius, 0.4rem);
+  background: var(--ifm-background-surface-color);
+  font-size: 0.875rem;
+}
+
+.main,
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 0;
+  background: transparent;
+  color: var(--ifm-font-color-base);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.main {
+  padding: 0.3rem 0.7rem;
+}
+
+.toggle {
+  padding: 0.3rem 0.45rem;
+  border-left: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.main:hover,
+.toggle:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.main:focus-visible,
+.toggle:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: -2px;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 0.3rem);
+  right: 0;
+  z-index: var(--ifm-z-index-dropdown, 100);
+  min-width: 12rem;
+  margin: 0;
+  padding: 0.3rem;
+  list-style: none;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-background-surface-color);
+  box-shadow: var(--ifm-global-shadow-md);
+}
+
+.item {
+  display: block;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--ifm-global-radius);
+  color: var(--ifm-font-color-base);
+  font-weight: 400;
+}
+
+.item:hover,
+.item:focus-visible {
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-font-color-base);
+  text-decoration: none;
+}

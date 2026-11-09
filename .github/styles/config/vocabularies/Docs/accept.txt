@@ -11,10 +11,12 @@ YAML
 (?i)ankap
 agentic
 chatbot
+Dachary
 Korolivska
 Zendesk
 
 # Companies and products
+Anthropic
 Atlassian
 Dependabot
 Milvus
@@ -45,3 +47,12 @@ repo
 Transifex
 autocorrect
 gettext
+
+# AI and retrieval terms
+afdocs
+[Cc]hunker
+[Cc]hunkers
+evals
+frontmatter
+prepending
+reranking

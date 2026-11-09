@@ -1,13 +1,11 @@
 ---
-title: My tech writing notes
-description: My notes on the tools and workflows behind my technical writing, from style linting to how this docs-as-code site is built.
+title: Docs craft
+description: My notes on the craft of technical writing, from information architecture and docs processes to cross-functional collaboration and the tools that support them.
 ---
 
 import DocCardList from '@theme/DocCardList';
 
-These are my notes on the tools and workflows behind my technical writing. They cover docs-as-code, style checking, and how this site is put together.
-
-Each one started as something I had to figure out for this site. I wrote down what actually worked, and when an AI assistant helped, I noted where it got things wrong.
+These are my notes on the craft of technical writing: the skills that matter with or without AI. So far they cover style checking with Vale. Next, I'm adding notes on information architecture, docs processes, and cross-functional collaboration.
 
 ## Browse my notes
 

@@ -33,6 +33,7 @@ In this article, you learn:
 - How vector databases retrieve similar items  
 - The two phases of vector search: indexing and querying  
 - Common use cases such as RAG and recommendation systems  
+- Key challenges of running vector search in production  
 
 ## In this section
 

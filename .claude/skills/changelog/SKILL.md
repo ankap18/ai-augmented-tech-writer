@@ -16,7 +16,11 @@ Read `src/pages/changelog.md` first. The existing entries are the source of trut
 - **One section per date** — `## October 30, 2026`, newest first, directly under the intro sentence. Use today's date.
 - **As many bullets as the changes need** — usually two to five, but more is fine for a big branch. Each one is a past-tense sentence that ends with a period: "Added…", "Refined…", "Fixed…". Group related edits, but don't merge unrelated ones just to keep the list short.
 - **Written for site visitors** — describe what changed on the site, not which files changed. Group related edits into one bullet ("Refined portfolio, vector search, and AI workflow content").
-- **No bold terms** — plain sentences only. Bold is fine for a section name, such as **TW Stuff**.
+- **Formatted like the Google developer documentation style guide** — don't bold a word for emphasis, but format names by what they are:
+  - **UI labels in bold** — anything a visitor sees on the page and can click or find: sidebar sections, page names as they appear in the sidebar or footer, buttons, menu items, and blog tags. Match the label's capitalization on the site, as in "Added a **Copy for LLM** button" and "Renamed the **AI stuff** section to **AI and docs**."
+  - **File names in code font, followed by the word file** — for example, the `llms.txt` file. Use code font for skill names and commands too, such as `/deps-check`.
+  - **Page titles in quotation marks** — when you cite a page by its full title, without a link, as in: updated the "What is llms.txt?" page. A plain description, such as the AI-journey page, stays plain.
+  - **Product and tool names stay plain** — Claude, Vale, GoatCounter, and Docusaurus aren't bold, unless they're part of a UI label, such as **Open in Claude**.
 
 ## What to include
 

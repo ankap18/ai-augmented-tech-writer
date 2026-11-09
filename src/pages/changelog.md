@@ -7,17 +7,26 @@ description: Significant updates to the AI-Augmented Tech Writer website.
 
 Significant updates to the website, newest first.
 
+## November 9, 2026
+
+- Added a **Docs that AI can read** section with notes, still in progress, on how AI chunks and reads documentation, a practical guide to writing docs that survive chunking, and how I check my docs with afdocs.
+- Added a **Copy for LLM** button to docs pages and blog posts. It copies the page as Markdown, and its menu has **View as Markdown**, **Open in Claude**, and **Open in ChatGPT**.
+- Switched the `llms.txt` file to a plugin that rebuilds it on every build, lists blog posts, and links to a Markdown copy of each page, and updated the "What is llms.txt?" page to explain why.
+- Renamed the **AI stuff** section to **AI and docs** and the **TW stuff** section to **Docs craft**, and moved the GitHub Copilot report about this site to **AI and docs**, with a note on when it was written.
+- Added a **Challenges** page to the vector search sample about running vector search in production.
+- Added a "Last updated" date to each doc page and a custom 404 page with links to the main sections of the site.
+
 ## November 4, 2026
 
-- Published a blog post about my first n8n workflow, a Diátaxis auditor that sorts my portfolio pages by type with two local AI models, and added an n8n blog tag.
+- Published a blog post about my first n8n workflow, a Diátaxis auditor that sorts my portfolio pages by type with two local AI models, and added an **n8n** blog tag.
 - Darkened the teal and pink code highlighting colors in light mode so they meet WCAG AA contrast.
 - Fixed a broken code block in the Synonyms API quickstart and replaced the placeholder alt text on the MadCap Flare to Zendesk screenshot.
 
 ## November 3, 2026
 
-- Published part 1 of a blog post about translating Diátaxis into Ukrainian with AI, and added Localization and Diátaxis blog tags.
-- Added landing pages for the Portfolio, AI stuff, and TW stuff sections, with cards that link to each page, and gave the cards custom icons.
-- Added color-coded method labels, such as GET and POST, to the Synonyms API endpoints in the sidebar and on their cards.
+- Published part 1 of a blog post about translating Diátaxis into Ukrainian with AI, and added **Localization** and **Diátaxis** blog tags.
+- Added landing pages for the **Portfolio**, **AI stuff**, and **TW stuff** sections, with cards that link to each page, and gave the cards custom icons.
+- Added color-coded method labels, such as **GET** and **POST**, to the Synonyms API endpoints in the sidebar and on their cards.
 - Redesigned the blog layout to match the docs, with a sidebar of posts grouped by year and a wider table of contents.
 - Updated the homepage headline and tagline, renamed the Vale blog post, and toned down the search button colors.
 - Upgraded Docusaurus to 3.10.2 and the OpenAPI plugins to 5.2, and added Dependabot and a `/deps-check` skill to keep dependencies up to date.
@@ -25,14 +34,14 @@ Significant updates to the website, newest first.
 ## November 2, 2026
 
 - Added visit counting with GoatCounter, which doesn't use cookies, and Google Analytics, which runs only if you say yes in a new consent banner.
-- Added a Privacy page that explains what each tool collects and lets you turn Google Analytics on or off.
-- Made the Close button in the search dialog visible on phones and tablets.
+- Added a **Privacy** page that explains what each tool collects and lets you turn Google Analytics on or off.
+- Made the **Close** button in the search dialog visible on phones and tablets.
 - Refined the sidebar, code, navigation bar, and homepage styles, and updated the site tagline.
 
 ## October 30, 2026
 
 - Added a homepage with a short introduction and links to the API documentation and vector search samples.
-- Added an llms.txt file for AI tools, and a page about what it is and how it was written.
+- Added an `llms.txt` file for AI tools, and a page about what it is and how it was written.
 - Improved how search engines and AI tools identify the site and its author, and removed the leftover Docusaurus tutorial pages.
 - Expanded the AI-journey page with the MCP servers I use, and refined the footer, navigation bar, sidebar, and theme icons.
 - Added Vale rules for straight quotes and stacked headings, rendered quotes as curly on the site, and cleaned up list punctuation across pages.

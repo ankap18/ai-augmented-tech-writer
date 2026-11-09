@@ -1,0 +1,16 @@
+/* Large, muted "404" above the heading. */
+.code {
+  margin-bottom: 0;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ifm-color-emphasis-400);
+}
+
+.sections {
+  padding-left: 1.25rem;
+}
+
+.sections li {
+  margin-bottom: 0.5rem;
+}
