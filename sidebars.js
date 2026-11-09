@@ -126,25 +126,39 @@ tutorialSidebar: [
 
     {
       type: 'category',
-      label: 'AI stuff',
+      label: 'AI and docs',
       link: {type: 'doc', id: 'ai-stuff/about-ai-stuff'},
       collapsible: true,
       collapsed: true,
       items: [
         'ai-stuff/prompt-workflow-agent',
         'ai-stuff/llms-txt',
+        {
+          type: 'category',
+          label: 'Docs that AI can read',
+          link: {type: 'doc', id: 'ai-stuff/docs-ai-can-read'},
+          customProps: {
+            card_icon: 'img/icons/ai-head.svg',
+            card_icon_invert_dark: true,
+          },
+          items: [
+            'ai-stuff/chunking-for-ai',
+            'ai-stuff/chunking-practical-guide',
+            'ai-stuff/checking-docs-with-afdocs',
+          ],
+        },
+        'ai-stuff/copilot-report-about-site',
       ],
     },
 
     {
       type: 'category',
-      label: 'TW stuff',
+      label: 'Docs craft',
       link: {type: 'doc', id: 'tw-stuff/about-tw-stuff'},
       collapsible: true,
       collapsed: true,
       items: [
         'tw-stuff/add-vale-linter',
-        'tw-stuff/copilot-report-about-site',
       ],
     },
   ],

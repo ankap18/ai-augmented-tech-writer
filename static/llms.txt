@@ -1,6 +1,6 @@
 # AI-Augmented Tech Writer
 
-> Personal site of Anna Korolivska, a senior technical writer exploring how AI changes documentation work. It includes technical writing samples (vector search concepts and a REST API reference), notes on AI tools and agents, notes on docs tooling such as the Vale prose linter, and a blog about learning and AI-assisted writing.
+> Personal site of Anna Korolivska, a senior technical writer exploring how AI changes documentation work. It includes technical writing samples (vector search concepts and a REST API reference), notes on AI tools, agents, and making docs ready for AI, notes on the craft of technical writing such as the Vale prose linter, and a blog about learning and AI-assisted writing.
 
 The site is built with Docusaurus. Pages under Portfolio are writing samples that follow the Google developer documentation style guide. Other pages are first-person notes.
 
@@ -23,16 +23,18 @@ The site is built with Docusaurus. Pages under Portfolio are writing samples tha
 - [Publishing from MadCap Flare to Zendesk](https://ankap18.github.io/ai-augmented-tech-writer/docs/portfolio/how-to-publish-target-zendesk): a how-to sample for an internal publishing workflow
 - [External documentation samples](https://ankap18.github.io/ai-augmented-tech-writer/docs/portfolio/external-links): samples written for a data analytics platform
 
-## AI stuff
+## AI and docs
 
 - [Prompt, Workflow, or Agent?](https://ankap18.github.io/ai-augmented-tech-writer/docs/ai-stuff/prompt-workflow-agent): the difference between prompts, workflows, and AI agents, and when to use each
 - [What is llms.txt?](https://ankap18.github.io/ai-augmented-tech-writer/docs/ai-stuff/llms-txt): what this file is, why docs sites publish one, and how I wrote this one by hand
+- [How AI chunks and reads documentation](https://ankap18.github.io/ai-augmented-tech-writer/docs/ai-stuff/chunking-for-ai): how AI search systems split docs into chunks, the three ways AI reads a page, and what makes a fact self-contained
+- [Writing documentation that AI can chunk, retrieve, and read](https://ankap18.github.io/ai-augmented-tech-writer/docs/ai-stuff/chunking-practical-guide): practices and examples for docs that survive chunking, including what to do when you can't control the chunker
+- [Checking my docs with afdocs](https://ankap18.github.io/ai-augmented-tech-writer/docs/ai-stuff/checking-docs-with-afdocs): how to check how AI would chunk and read your docs, starting with the afdocs agent-docs audit
+- [GitHub Copilot report about this project](https://ankap18.github.io/ai-augmented-tech-writer/docs/ai-stuff/copilot-report-about-site): notes on the Docusaurus site and its customizations
 
-## TW stuff
+## Docs craft
 
 - [Run Vale in VS Code](https://ankap18.github.io/ai-augmented-tech-writer/docs/tw-stuff/add-vale-linter): installing Vale to check content against the Google developer documentation style guide
-- [GitHub Copilot report about this project](https://ankap18.github.io/ai-augmented-tech-writer/docs/tw-stuff/copilot-report-about-site): notes on the Docusaurus site and its customizations
-
 ## Optional
 
 - [Blog](https://ankap18.github.io/ai-augmented-tech-writer/blog): short first-person posts on learning, tooling, and AI-assisted technical writing

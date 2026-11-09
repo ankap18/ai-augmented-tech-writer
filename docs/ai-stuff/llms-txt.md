@@ -35,7 +35,7 @@ Many sites also publish `llms-full.txt`, which puts the full text of every page 
 I know there's a Docusaurus plugin, `docusaurus-plugin-llms`, that generates `llms.txt` and `llms-full.txt` every time the site builds. But I wanted to experiment and understand the format first, so I asked Claude to generate [this site's llms.txt](pathname:///llms.txt):
 
 - **Put it in `static/`** — Docusaurus copies everything in that folder to the site root, so `static/llms.txt` becomes `/llms.txt` with no configuration.
-- **Followed the site's structure** — one H2 section for each sidebar category (Welcome, Portfolio, AI stuff, and TW stuff).
+- **Followed the site's structure** — one H2 section for each of the four sidebar categories.
 - **Wrote one line per page** — I started from each page's front matter `description` and rewrote it to say what a reader, or an AI, gets from the page.
 - **Left things out** — the generated API endpoint pages and draft blog posts. The endpoint pages come straight from the OpenAPI spec, not from my writing, so my Vale setup skips them too.
 - **Moved the blog to `Optional`** — the format treats a section with that name as content an AI can skip when it's short on space.
