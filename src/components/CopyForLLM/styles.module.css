@@ -56,8 +56,16 @@
   box-shadow: var(--ifm-global-shadow-md);
 }
 
+.separated {
+  margin-top: 0.3rem;
+  padding-top: 0.3rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
 .item {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   padding: 0.4rem 0.6rem;
   border-radius: var(--ifm-global-radius);
   color: var(--ifm-font-color-base);

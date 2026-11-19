@@ -108,11 +108,12 @@ const config = {
     },
   ],
 
-  themes: ['docusaurus-theme-openapi-docs'],
+  themes: ['docusaurus-theme-openapi-docs', '@docusaurus/theme-mermaid'],
 
   clientModules: [
     './src/clientModules/oramaFixes.js',
     './src/clientModules/analytics.js',
+    './src/clientModules/d3Transition.js',
   ],
 
   // Google Analytics 4. Not loaded through the gtag plugin: the plugin starts
@@ -203,6 +204,8 @@ const config = {
   // Since 3.10, future.v4 turns off MDX v1 compatibility. Keep it on so
   // posts can still use <!-- truncate --> and other HTML comments.
   markdown: {
+    // Render ```mermaid code blocks as diagrams.
+    mermaid: true,
     mdx1Compat: {
       comments: true,
       admonitions: true,
@@ -294,6 +297,14 @@ const config = {
       ],
       colorMode: {
         respectPrefersColorScheme: true,
+      },
+      // Mermaid diagram themes for light and dark mode.
+      mermaid: {
+        theme: {light: 'neutral', dark: 'dark'},
+        // Match the site font (see --ifm-font-family-base in custom.css).
+        options: {
+          fontFamily: "'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif",
+        },
       },
       docs: {
         sidebar: {

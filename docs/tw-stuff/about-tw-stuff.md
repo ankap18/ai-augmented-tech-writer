@@ -5,7 +5,7 @@ description: My notes on the craft of technical writing, from information archit
 
 import DocCardList from '@theme/DocCardList';
 
-These are my notes on the craft of technical writing: the skills that matter with or without AI. So far they cover style checking with Vale. Next, I'm adding notes on information architecture, docs processes, and cross-functional collaboration.
+These are my notes on the craft of technical writing: the skills that matter with or without AI. So far they cover style checking with Vale and cross-functional collaboration with product marketing, sales, and support. Next, I'm adding notes on information architecture and docs processes.
 
 ## Browse my notes
 

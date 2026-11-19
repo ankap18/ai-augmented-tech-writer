@@ -27,4 +27,6 @@
 .buttons {
   display: flex;
   gap: 0.5rem;
+  /* Keeps the buttons on the right when they wrap below the text. */
+  margin-left: auto;
 }

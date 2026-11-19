@@ -163,6 +163,20 @@ tutorialSidebar: [
       collapsed: true,
       items: [
         'tw-stuff/add-vale-linter',
+        {
+          type: 'category',
+          label: 'Cross-functional collaboration',
+          link: {type: 'doc', id: 'tw-stuff/collaboration/overview'},
+          customProps: {
+            card_icon: 'img/icons/workflow.svg',
+            card_icon_invert_dark: true,
+          },
+          items: [
+            'tw-stuff/collaboration/product-marketing',
+            'tw-stuff/collaboration/sales',
+            'tw-stuff/collaboration/support',
+          ],
+        },
       ],
     },
   ],

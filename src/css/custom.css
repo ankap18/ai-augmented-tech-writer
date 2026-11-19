@@ -371,6 +371,115 @@ orama-search-button[id^='orama-ui'].DocSearch-Button {
   font-weight: 400;
 }
 
+/* ---------- Tables ----------
+   Left-align headers (Infima centers them) and top-align all cells, so rows
+   with long text read from the same starting line. An explicit Markdown
+   column alignment (:---: or ---:) is an inline style and still wins. */
+.markdown th {
+  text-align: start;
+}
+.markdown th,
+.markdown td {
+  vertical-align: top;
+}
+
+/* Opt-in equal column widths: wrap a Markdown table in
+   <div className="table-equal-cols">. Infima renders tables as display:block,
+   so the table goes back to display:table at full width; table-layout:fixed
+   then splits the width evenly because no column sets its own width. */
+.markdown .table-equal-cols table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Team-flow diagram on the collaboration overview. Mermaid always centers a
+   subgraph title, so the middle column's arrow crosses "Technical writer".
+   The CSS translate property adds to Mermaid's own transform attribute and
+   moves the title into the gap between the first two arrows. The value is in
+   diagram units, so it holds at every screen width; re-measure it if the
+   diagram's columns or labels change. */
+.diagram-team-flow .cluster-label {
+  translate: -101px 0;
+}
+
+/* Colors for the team-flow diagram. Mermaid writes classDef colors as inline
+   !important styles that no stylesheet can override, and its parser rejects
+   var() in classDef. So the diagram's classDef lines only attach class names,
+   and the rules below paint them from these variables. Light: brand blue with
+   amber docs. Dark: deep navy, using the site's dark-mode blue. */
+.diagram-team-flow {
+  --dg-team-fill: #08519c;
+  --dg-team-text: #ffffff;
+  --dg-band: #eaf1fa;
+  --dg-band-text: #08519c;
+  --dg-card-fill: #ffffff;
+  --dg-card-border: #b9d0ea;
+  --dg-card-text: #0b3a6e;
+  --dg-doc-fill: #fdf3e1;
+  --dg-doc-border: #e0a84a;
+  --dg-doc-text: #633806;
+}
+
+[data-theme='dark'] .diagram-team-flow {
+  --dg-team-fill: #78a9ff;
+  --dg-team-text: #0b1f3a;
+  --dg-band: #172437;
+  --dg-band-text: #a4c5ff;
+  --dg-card-fill: #1f2f47;
+  --dg-card-border: #3a5578;
+  --dg-card-text: #d1e1ff;
+  --dg-doc-fill: #33260f;
+  --dg-doc-border: #c08a2e;
+  --dg-doc-text: #fac775;
+}
+
+.diagram-team-flow .node.team > rect {
+  fill: var(--dg-team-fill) !important;
+  stroke: var(--dg-team-fill) !important;
+}
+.diagram-team-flow .node.team .nodeLabel {
+  color: var(--dg-team-text) !important;
+  font-weight: bold;
+}
+.diagram-team-flow .node.tw > rect {
+  fill: var(--dg-card-fill) !important;
+  stroke: var(--dg-card-border) !important;
+}
+.diagram-team-flow .node.tw .nodeLabel {
+  color: var(--dg-card-text) !important;
+}
+.diagram-team-flow .node.doc path {
+  fill: var(--dg-doc-fill) !important;
+  stroke: var(--dg-doc-border) !important;
+}
+.diagram-team-flow .node.doc .nodeLabel {
+  color: var(--dg-doc-text) !important;
+}
+.diagram-team-flow .cluster rect {
+  fill: var(--dg-band) !important;
+  stroke: var(--dg-band) !important;
+}
+.diagram-team-flow .cluster-label .nodeLabel {
+  color: var(--dg-band-text) !important;
+}
+
+/* Rounded corners for the writer band. Mermaid has no syntax for subgraph
+   corners, but rx and ry are CSS properties on SVG rects. */
+.diagram-team-flow .cluster rect {
+  rx: 14px;
+  ry: 14px;
+}
+/* Mermaid's dark theme paints arrow labels gray. Use the page background
+   instead, as the light theme does with white: the label blends into the page
+   and still hides the arrow line behind the text. !important is needed because
+   Mermaid scopes its own styles to the diagram's ID. */
+[data-theme='dark'] .docusaurus-mermaid-container .labelBkg,
+[data-theme='dark'] .docusaurus-mermaid-container .edgeLabel,
+[data-theme='dark'] .docusaurus-mermaid-container .edgeLabel p {
+  background-color: var(--ifm-background-color) !important;
+}
+
 /* ---------- Previous / Next links ---------- */
 /* Same corner radius as the homepage cards */
 .pagination-nav {
