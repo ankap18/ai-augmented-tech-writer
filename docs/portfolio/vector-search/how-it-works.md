@@ -13,33 +13,27 @@ A vector search system operates in two phases: indexing and querying.
 
 ## Phase 1: Indexing
 
-During indexing, the system prepares data for fast retrieval.
+During indexing, the system prepares the data for fast search.
 
-1. Input data, such as documents, images, or products, is processed by an embedding model.  
+1. An embedding model processes the input data, such as documents, images, or products.  
 2. The model converts each item into a vector.  
-3. The system stores vectors in an index, along with references to the original data.  
-4. The index is optimized using an approximate nearest neighbor (ANN) algorithm.  
+3. The system stores the vectors and references to the original data in an index.  
+4. The system optimizes the index with an approximate nearest neighbor (ANN) algorithm.  
 
 ## Phase 2: Querying
 
 During querying, the system finds the most similar items.
 
-1. The system processes a user query (text, image, or other input) using the same embedding model.  
+1. The same embedding model processes the user query, such as text, an image, or other input.  
 2. The model converts the query into a vector.  
-3. The system compares the query vector with stored vectors.  
-4. The system returns the top *k* most similar results.  
-5. The system retrieves the original data associated with those results.  
+3. The system compares the query vector with the stored vectors.  
+4. The system finds the top *k* most similar vectors.  
+5. The system returns the original data for those vectors.  
 
-## Vector search pipeline summary
+## Pipeline summary
 
-A typical vector search system follows this pipeline:
+A vector search system usually follows this pipeline:
 
 ```
 Data → Embedding model → Vector index → ANN search → Top-k results
 ```
-
-1. Convert data into vectors.  
-2. Store vectors in an index.  
-3. Convert the user query into a vector.  
-4. Perform similarity search.  
-5. Return the most similar items.  

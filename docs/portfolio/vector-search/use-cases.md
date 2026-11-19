@@ -7,45 +7,41 @@ sidebar_custom_props:
   card_icon_invert_dark: true
 ---
 
-Vector search is commonly used in modern AI systems. It helps applications find relevant content even when keywords do not match.
+Many AI systems use vector search. It helps applications find relevant content, even when the keywords do not match.
 
 ## Retrieval-augmented generation (RAG)
 
-When building an LLM-powered application that answers questions from a private knowledge base, vector search retrieves the most relevant document chunks and adds them to the model context.
+Some LLM-powered applications answer questions from a private knowledge base. In these applications, vector search finds the most relevant document chunks. Then the application adds these chunks to the model context.
 
 **Example:**   
-A company's internal assistant takes a user question, converts it into a vector, retrieves the top five most similar paragraphs from internal wikis and policy documents, and adds them to the prompt before sending it to the LLM.
+A company's internal assistant converts a user question into a vector. It finds the five most similar paragraphs in the company's wikis and policy documents. Then it adds these paragraphs to the prompt. Finally, it sends the prompt to the LLM.
 
 ## Semantic document search
 
-Enterprise search systems use vector search to help employees find documents based on concepts rather than keywords. For example, a query for "employee leave policy" can return documents about vacation, paid time off (PTO), and sabbaticals, even if they do not include the exact phrase "leave policy."
+Enterprise search systems use vector search to help employees find documents by meaning instead of by keyword. For example, a query for "employee leave policy" can find documents about vacation, paid time off (PTO), and sabbaticals. These documents do not have to include the exact phrase "leave policy."
 
 ## Recommendation systems
 
-E-commerce and media platforms represent products, articles, songs, and user interactions as vectors. The system compares these vectors to a user's preference vector to generate personalized recommendations.
+E-commerce and media platforms convert products, articles, songs, and user interactions into vectors. The platform compares these vectors with a vector of the user's preferences. Then it recommends the most similar items.
 
-- **Spotify:** Uses song vectors based on listening patterns to generate weekly recommendations.  
-- **Amazon:** Uses product vectors from purchase and browsing history to suggest related items.  
-- **Netflix:** Uses movie vectors aligned with user preferences to personalize the home feed.
+- **Spotify:** Uses song vectors from listening history to make weekly recommendations.
+- **Amazon:** Uses product vectors from purchase and browsing history to suggest related items.
+- **Netflix:** Uses movie vectors that match user preferences to personalize the home page.
 
-## Image and multimodal search scenarios
+## Image and multimodal search
 
-Visual search applications help users find images similar to an uploaded photo. Multimodal models enable cross-modal queries, such as searching an image database using text or finding text documents related to an image.
+Visual search applications help users find images that are similar to an uploaded photo. Multimodal models make cross-modal queries possible. For example, a user can search an image database with text, or find text documents about an image.
 
 **Examples:**
 
-- **Pinterest visual search:** Upload a photo of furniture and find visually similar items for sale.  
-- **Google Lens:** Identify objects, translate text, and find similar products using image vectors.  
-- **Medical imaging:** Retrieve similar radiology scans from a database to support diagnosis.
+- **Pinterest visual search:** Lets users upload a photo of furniture and find similar items for sale.
+- **Google Lens:** Uses image vectors to identify objects and find similar products.
+- **Medical imaging:** Finds similar radiology scans in a database to help doctors make a diagnosis.
 
 ## Anomaly detection and cybersecurity
 
-Systems can represent network traffic, user behavior, and logs as vectors and compare them with typical patterns. Events that differ significantly from normal patterns are flagged as potential anomalies or threats.
+A system can convert network traffic, user behavior, and logs into vectors. Then it compares these vectors with normal patterns. If an event is very different from the normal patterns, the system marks it as a possible anomaly or threat.
 
 ## Duplicate and near-duplicate detection
 
-News aggregators, content moderation platforms, and data processing pipelines use vector similarity to identify near-duplicate content. Two articles about the same event can have similar vectors even if the wording differs.
-
-## Code search
-
-Developer tools represent code functions and snippets as vectors. A developer can describe a task in plain language, such as "function to parse a JSON file and handle missing keys," and the system returns relevant code examples from a codebase or documentation.
+News aggregators, content moderation platforms, and data pipelines use vector similarity to identify near-duplicate content. Two articles about the same event can have similar vectors, even if they use different words.

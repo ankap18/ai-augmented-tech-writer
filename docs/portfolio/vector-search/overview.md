@@ -16,24 +16,24 @@ import DocCardList from '@theme/DocCardList';
 
 # Vector search overview
 
-Vector search is a method for retrieving data based on similarity in meaning rather than exact keyword matches.
+Vector search finds data by similarity in meaning instead of by exact keyword matches.
 
-In vector search systems, content such as text, images, or audio is converted into numerical representations called vectors. These vectors capture the meaning of the data. Items with similar meaning are located close together in this space, while unrelated items are farther apart.
+An embedding model converts content, such as text, images, or audio, into lists of numbers called vectors. These vectors encode the meaning of the data. In the vector space, items with similar meaning are close together. Unrelated items are farther apart.
 
-When a user submits a query, the system converts it into a vector and retrieves the most similar items from a database.
+When a user sends a query, the system converts the query into a vector. Then the system finds the most similar items in a vector database.
 
-This method supports AI applications such as semantic search, recommendation systems, and retrieval-augmented generation (RAG).
+AI applications such as semantic search, recommendation systems, and retrieval-augmented generation (RAG) use vector search.
 
-## What you'll learn
+## What you will learn
 
-In this article, you learn:
+In this section, you will learn:
 
-- What vector search is and why it is used in AI systems  
-- How vectors represent meaning  
-- How vector databases retrieve similar items  
-- The two phases of vector search: indexing and querying  
-- Common use cases such as RAG and recommendation systems  
-- Key challenges of running vector search in production  
+- What vector search is and why AI systems use it
+- How vectors encode meaning
+- How vector databases find similar items
+- The two phases of vector search: indexing and querying
+- Common uses, such as RAG and recommendation systems
+- The main challenges of vector search in production
 
 ## In this section
 

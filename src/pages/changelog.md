@@ -7,6 +7,14 @@ description: Significant updates to the AI-Augmented Tech Writer website.
 
 Significant updates to the website, newest first.
 
+## November 19, 2026
+
+- Added a **Cross-functional collaboration** section to **Docs craft**, with notes on how technical writers work with product marketing, sales, and support, and a diagram of how the teams connect.
+- Rewrote the vector search sample in Simplified Technical English (ASD-STE100), with shorter sentences, active voice, and one term for each idea.
+- Added support for Mermaid diagrams, with colors and fonts that match the site in light and dark mode.
+- Added icons to the **Copy for LLM** menu and a divider between **View as Markdown** and the options to open the page in an AI chat.
+- Left-aligned table headers and aligned table cells to the top, so rows with long text are easier to read.
+
 ## November 9, 2026
 
 - Added a **Docs that AI can read** section with notes, still in progress, on how AI chunks and reads documentation, a practical guide to writing docs that survive chunking, and how I check my docs with afdocs.

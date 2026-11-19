@@ -36,8 +36,8 @@ export default function ConsentBanner() {
   return (
     <section className={styles.banner} aria-label="Analytics consent">
       <p className={styles.text}>
-        Hi! I'm learning Google Analytics and would love to see which pages you
-        read. I never see who you are, and it sets cookies only if you say yes.{' '}
+        Hi! As a human (not an LLM), I’m learning analytics. May I see which
+        pages you read?{' '}
         <Link to="/privacy">Privacy details</Link>
       </p>
       <div className={styles.buttons}>

@@ -7,47 +7,49 @@ sidebar_custom_props:
   card_icon_invert_dark: true
 ---
 
-Vector search systems can feel "plug and play" during prototyping, but production deployments surface recurring challenges. This page describes the most common ones and the trade-offs involved.
+A vector search system can seem simple in a prototype. In production, it often has more challenges. This page describes the most common challenges and their trade-offs.
 
 ## Embedding quality and drift
 
-The embedding model determines what "similar" means. Model choice, the style of your content, and the model's coverage of your language and domain all affect retrieval quality.
+The embedding model sets what "similar" means. The quality of the search results depends on the model that you choose. It also depends on the style of your content and on how well the model knows your language and domain.
 
-If you change or upgrade the embedding model, re-embed and re-index your data. Vectors from different models aren't comparable, so an index that mixes them returns inconsistent results.
+If you change the embedding model, re-embed and re-index your data. You cannot compare vectors from different models. An index that mixes them gives inconsistent results.
 
 ## Index configuration trade-offs
 
-Approximate nearest neighbor (ANN) indexes trade some accuracy for speed and lower cost. Common tuning decisions include the following:
+Approximate nearest neighbor (ANN) indexes trade some accuracy for speed and lower cost. When you configure an ANN index, think about these trade-offs:
 
-- **Recall versus latency**: recall is the share of relevant results that a search returns. Higher recall usually requires more compute for each query, which increases latency.
-- **Memory footprint**: some index types, such as Hierarchical Navigable Small World (HNSW) graphs, are fast but use a lot of memory.
-- **Build time versus query time**: faster queries can require longer index builds.
+- **Recall versus latency**: recall is the percentage of relevant results that a search returns. Higher recall usually needs more computing power for each query. This increases latency.
+- **Memory footprint**: some index types, such as Hierarchical Navigable Small World (HNSW) graphs, are fast but use more memory.
+- **Build time versus query time**: faster queries can need more time to build the index.
 
-## Filtering, metadata, and hybrid retrieval
+## Filters, metadata, and hybrid search
 
-Real applications often need constraints such as "only within this tenant," "only documents from the last 30 days," or "only items in stock." These filters can interact with ANN search in ways that aren't obvious. For example, a filter applied after the search can remove most of the nearest neighbors and leave too few results.
+Real applications often need filters, such as "only within this tenant," "only documents from the last 30 days," or "only items in stock." These filters can affect ANN search in ways that are not obvious. For example, a filter that the system applies after the search can remove most of the nearest neighbors. Then too few results are left.
 
-Many systems combine the following methods:
+Many systems combine these methods:
 
-- **Vector similarity**: finds semantic matches.
-- **Keyword search**: finds exact terms, often with BM25, a standard keyword-ranking algorithm. A system that combines keyword search with vector search uses *hybrid search*.
+- **Vector similarity**: finds matches by meaning.
+- **Keyword search**: finds exact terms. It often uses BM25, a standard keyword-ranking algorithm.
 - **Metadata filters**: apply business rules.
+
+*Hybrid search* combines keyword search with vector search.
 
 ## Chunking for retrieval-augmented generation
 
-In retrieval-augmented generation (RAG) pipelines, the way you split documents into chunks has a large effect on results. Chunk size, the overlap between chunks, and the metadata that you attach to each chunk, such as titles, section names, and URLs, affect both retrieval relevance and the quality of the generated answers.
+In retrieval-augmented generation (RAG) pipelines, the way that you split documents into chunks has a large effect on the results. Three decisions are important: the chunk size, the overlap between chunks, and the metadata that you attach to each chunk. Examples of metadata are titles, section names, and URLs. These decisions affect the relevance of the search results and the quality of the generated answers.
 
 ## Evaluation and monitoring
 
 Most systems need both offline and online evaluation:
 
-- **Offline evaluation**: uses curated query sets, relevance judgments, latency benchmarks, and metrics such as recall@k, the share of relevant results that appear in the top *k* results.
-- **Online evaluation**: uses user feedback, A/B tests, and monitoring to catch regressions.
+- **Offline evaluation**: uses prepared sets of test queries, relevance judgments, latency benchmarks, and metrics such as recall@k. Recall@k is the percentage of relevant results that appear in the top *k* results.
+- **Online evaluation**: uses user feedback, A/B tests, and monitoring to find regressions.
 
 ## Security, privacy, and multi-tenancy
 
-Embeddings can leak sensitive information about the text that they represent. Production systems commonly require the following:
+An attacker can sometimes recover sensitive information from an embedding, such as parts of the original text. Production systems usually need these controls:
 
 - **Tenant isolation**: keeps each customer's data separate.
 - **Query-time access controls**: check permissions when each query runs, not only when you index the data.
-- **Retention and deletion workflows**: remove data when required, including the vectors in each index.
+- **Retention and deletion workflows**: remove data when necessary, including the vectors in each index.

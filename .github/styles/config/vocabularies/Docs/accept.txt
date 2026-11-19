@@ -10,10 +10,13 @@ GitHub
 YAML
 (?i)ankap
 agentic
-chatbot
+[Cc]hatbots?
 Dachary
 Korolivska
 Zendesk
+Torq
+Veeqo
+Vertiv
 
 # Companies and products
 Anthropic
@@ -56,3 +59,8 @@ evals
 frontmatter
 prepending
 reranking
+
+# Business and collaboration terms
+[Bb]attlecards?
+[Ee]nablement
+[Oo]verpromis(e|es|ing)
