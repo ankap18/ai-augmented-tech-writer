@@ -1,0 +1,99 @@
+---
+id: {{{id}}}
+title: "{{{frontMatter.description}}}"
+description: "{{{frontMatter.description}}}"
+custom_edit_url: null
+---
+
+{{{markdown}}}
+
+## Base URL
+
+All requests use the following base URL:
+
+```text
+https://api.synonyms.io/v1
+```
+
+## Versioning
+
+The API uses URI versioning. The current version is `v1`.
+
+Breaking changes go into a new version, for example, `/v2`. Before the API removes a version, it announces the deprecation at least six months in advance and publishes a migration guide.
+
+## Request conventions
+
+The API follows these conventions:
+
+- **Authentication**: every request must include an API key or access token in the `Authorization` header. For details, see [Authentication](/docs/portfolio/api-docs/authentication).
+- **Format**: the API accepts and returns JSON. Requests that have a body must include the `Content-Type: application/json` header.
+- **Synonym sets**: every entry belongs to a synonym set. If a request doesn't specify a set, the API uses the `default` set.
+- **IDs**: the API generates entry IDs in the format `syn_` followed by a 26-character [ULID](https://github.com/ulid/spec), for example, `syn_01hx4k9mzqe8f3b7n2p6r0wc5t`.
+- **Timestamps**: timestamps use the ISO 8601 format in UTC, for example, `2025-03-15T10:22:00Z`.
+
+## Pagination
+
+Endpoints that return lists, such as [List synonym entries](/docs/portfolio/api-docs/generated/synonyms-api/list-synonyms), return results in pages. To control the pages, use the following query parameters:
+
+- `page`: the page number to return. The default is `1`.
+- `page_size`: the number of entries per page, from `1` to `100`. The default is `20`.
+
+Each response contains a `pagination` object with the current `page`, the `page_size`, and the `total` number of matching entries across all pages. To get every entry, increase `page` until `page` × `page_size` is greater than or equal to `total`.
+
+## Endpoints
+
+The API has the following endpoints:
+
+```mdx-code-block
+import EndpointTable from '@site/src/components/EndpointTable';
+
+<EndpointTable />
+```
+
+## Errors
+
+When a request fails, the API returns an HTTP error status code and a body in the Problem Details format defined by [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457). The response has the `Content-Type: application/problem+json` header, and the body has the following fields:
+
+- `type`: a URI that identifies the problem type. To decide how to handle an error, compare this value, not the `title` or `detail` text.
+- `title`: a short summary of the problem type.
+- `status`: the HTTP status code.
+- `detail`: an explanation of this occurrence of the problem.
+- `instance`: the path of the request that caused the problem.
+- `errors`: the fields that failed validation, each with a `field` and a `detail`. Only validation problems include this field.
+
+```json
+{
+  "type": "https://api.synonyms.io/problems/validation-failed",
+  "title": "Validation failed",
+  "status": 422,
+  "detail": "The synonyms field must contain at least one item.",
+  "instance": "/v1/synonyms",
+  "errors": [
+    {
+      "field": "synonyms",
+      "detail": "Must contain at least one item."
+    }
+  ]
+}
+```
+
+Each status code has one problem type. Each problem type URI starts with `https://api.synonyms.io/problems/`, followed by the name in the following table:
+
+| Status code | Problem type | Meaning |
+|---|---|---|
+| `400 Bad Request` | `invalid-request` | The request is malformed, for example, it has invalid JSON or an unknown query parameter. |
+| `401 Unauthorized` | `unauthorized` | The API key or access token is missing, malformed, or expired. |
+| `403 Forbidden` | `forbidden` | The API key or access token is valid but doesn't have permission for the operation. |
+| `404 Not Found` | `not-found` | The synonym entry doesn't exist. |
+| `409 Conflict` | `conflict` | Another entry in the same synonym set already has this `term`. |
+| `422 Unprocessable Entity` | `validation-failed` | The request is well-formed but fails validation, for example, `synonyms` is empty. |
+| `429 Too Many Requests` | `rate-limited` | The client exceeded the rate limit. |
+| `500 Internal Server Error` | `internal-error` | The server encountered an unexpected error. |
+
+## Rate limits
+
+Each API key or access token can send up to 100 requests per minute. If you exceed this limit, the API returns `429 Too Many Requests`. The `Retry-After` response header gives the number of seconds to wait before you retry the request.
+
+## OpenAPI specification
+
+The full API definition is available as an [OpenAPI specification](pathname:///synonyms-api.yaml).

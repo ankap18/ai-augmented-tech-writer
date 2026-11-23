@@ -1,5 +1,5 @@
 ---
-title: Prompt, Workflow, or Agent?
+title: Prompt, workflow, or agent?
 description: Understand when it's time to consider AI agents
 sidebar_custom_props:
   card_icon: img/icons/ai-head.svg
@@ -82,7 +82,7 @@ The order never changes, and nobody needs the model to decide "let me skip the c
 
 A product team changes how password resets work, and someone asks: "Update the docs." There's no fixed recipe for this. A documentation agent might search the doc set for pages that mention password resets, read them, find that three pages, a FAQ entry, and a tutorial are affected, and check the product change notes for the exact new behavior. It edits the pages, notices another page links to a section that was renamed, fixes the link, runs the style and link checks, spots a screenshot it can't replace, and flags it for a writer.
 
-Each step depends on what the previous one found, and nobody can predict how many pages will turn up. It also comes with built-in checks (the link checker and style rules), and a human reviews the result before anything is published.
+Each step depends on what the previous one found, and nobody can predict how many pages are affected. It also comes with built-in checks (the link checker and style rules), and a human reviews the result before anything is published.
 
 ## The costs and risks of agents
 

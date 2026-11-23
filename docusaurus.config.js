@@ -10,6 +10,7 @@ import {dirname, resolve} from 'node:path';
 import OramaPluginDocusaurus from '@orama/plugin-docusaurus-v3';
 import remarkSmartypants from 'remark-smartypants';
 import sidebars from './sidebars.js';
+import apiEndpoints from './src/plugins/apiEndpoints.js';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -114,6 +115,7 @@ const config = {
     './src/clientModules/oramaFixes.js',
     './src/clientModules/analytics.js',
     './src/clientModules/d3Transition.js',
+    './src/clientModules/imageLightbox.js',
   ],
 
   // Google Analytics 4. Not loaded through the gtag plugin: the plugin starts
@@ -137,6 +139,8 @@ const config = {
 
   plugins: [
     oramaSearch,
+    // Spec operations for <EndpointTable /> on the API reference page
+    [apiEndpoints, {specPath: 'static/synonyms-api.yaml'}],
     function webpackNodeCorePolyfills() {
       return {
         name: 'webpack-node-core-polyfills',
@@ -158,7 +162,12 @@ const config = {
         docsPluginId: 'classic', // Must match your @docusaurus/preset-classic ID
         config: {
           synonymsApi: {
-            specPath: 'docs/portfolio/api-docs/synonyms-api.yaml',
+            specPath: 'static/synonyms-api.yaml',
+            // Tag page shows an endpoint table instead of cards
+            tagTemplate: 'src/openapi/tag.mustache',
+            // Info page redirects to the Authentication guide. It can't be
+            // turned off: endpoint pages link to it from "Authorization".
+            infoTemplate: 'src/openapi/info.mustache',
             outputDir: 'docs/portfolio/api-docs/generated/synonyms-api',
             sidebarOptions: {
               groupPathsBy: 'tag',
@@ -245,6 +254,9 @@ const config = {
           sidebarPath: './sidebars.js',
           docItemComponent: '@theme/ApiItem',
           remarkPlugins: [smartQuotes],
+          // Adds :::example to the built-in admonitions. The component is in
+          // src/theme/Admonition/Types.js.
+          admonitions: {keywords: ['example'], extendDefaults: true},
           // Shows "Last updated on <date>" at the bottom of each doc, taken
           // from the doc's last Git commit.
           showLastUpdateTime: true,
@@ -260,6 +272,7 @@ const config = {
         blog: {
           showReadingTime: true,
           remarkPlugins: [smartQuotes],
+          admonitions: {keywords: ['example'], extendDefaults: true},
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,

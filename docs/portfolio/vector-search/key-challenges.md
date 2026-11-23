@@ -1,55 +1,66 @@
 ---
 title: Key challenges of running vector search in production
 sidebar_label: Challenges
-description: Understand the trade-offs that vector search systems face in production, from embedding drift and index tuning to filtering, evaluation, and security.
+description: Learn about common problems of vector search in production and what you can do about them, from choosing a model to keeping data secure.
 sidebar_custom_props:
   card_icon: img/icons/list-checks.svg
   card_icon_invert_dark: true
 ---
 
-A vector search system can seem simple in a prototype. In production, it often has more challenges. This page describes the most common challenges and their trade-offs.
+A vector search system can work well in a small prototype and still have problems when real users depend on it. This page describes six common challenges and what you can do about each one.
 
-## Embedding quality and drift
+## Embedding model quality
 
-The embedding model sets what "similar" means. The quality of the search results depends on the model that you choose. It also depends on the style of your content and on how well the model knows your language and domain.
+The embedding model decides which items count as similar, so the model has the largest effect on the quality of your results. A model that works well with general web text can work poorly with your content, for example, legal contracts, medical notes, or a language that the model rarely saw during training.
 
-If you change the embedding model, re-embed and re-index your data. You cannot compare vectors from different models. An index that mixes them gives inconsistent results.
+For example, a general model might not know that "MI" and "heart attack" mean the same thing in medical notes. A search for "heart attack" then misses the notes that only say "MI."
 
-## Index configuration trade-offs
+Before you choose a model, test a few models with real questions from your users. If you switch to another model later, convert all your data again with the new model and rebuild the index. Vectors from different models can't be compared, so an index that mixes them returns unreliable results.
 
-Approximate nearest neighbor (ANN) indexes trade some accuracy for speed and lower cost. When you configure an ANN index, think about these trade-offs:
+## Speed, accuracy, and cost
 
-- **Recall versus latency**: recall is the percentage of relevant results that a search returns. Higher recall usually needs more computing power for each query. This increases latency.
-- **Memory footprint**: some index types, such as Hierarchical Navigable Small World (HNSW) graphs, are fast but use more memory.
-- **Build time versus query time**: faster queries can need more time to build the index.
+To answer quickly, vector databases use approximate nearest neighbor (ANN) search, which compares the query with only part of the data. The settings of the ANN index decide the balance between three things:
 
-## Filters, metadata, and hybrid search
+- **Accuracy**: how many of the best matches the search finds. This measure is called *recall*.
+- **Speed**: how long each search takes. This measure is called *latency*.
+- **Cost**: how much memory and computing power the system needs.
 
-Real applications often need filters, such as "only within this tenant," "only documents from the last 30 days," or "only items in stock." These filters can affect ANN search in ways that are not obvious. For example, a filter that the system applies after the search can remove most of the nearest neighbors. Then too few results are left.
+You can usually improve one or two of these, but not all three. For example, settings that find more of the best matches also make each search slower. Some fast index types, such as HNSW, need a lot of memory.
 
-Many systems combine these methods:
+Decide which of the three matters most for your application. For example, a chat assistant needs fast answers, but a legal research tool needs to find every relevant document, even if the search takes longer.
 
-- **Vector similarity**: finds matches by meaning.
-- **Keyword search**: finds exact terms. It often uses BM25, a standard keyword-ranking algorithm.
-- **Metadata filters**: apply business rules.
+## Filters and keyword matches
 
-*Hybrid search* combines keyword search with vector search.
+Vector search finds items by meaning, but real applications also need exact rules. For example, an online store shows only the items that are in stock, and a business application shows each customer only their own data. These rules are called filters.
 
-## Chunking for retrieval-augmented generation
+Filters can give unexpected results. If the system runs the vector search first and applies the filter afterward, the filter can remove most of the results. For example, a search returns the 10 closest products, and then the in-stock filter removes 8 of them. The user sees only 2 results, even though the store has many similar products in stock. Many vector databases can apply the filter during the search instead, which avoids this problem.
 
-In retrieval-augmented generation (RAG) pipelines, the way that you split documents into chunks has a large effect on the results. Three decisions are important: the chunk size, the overlap between chunks, and the metadata that you attach to each chunk. Examples of metadata are titles, section names, and URLs. These decisions affect the relevance of the search results and the quality of the generated answers.
+Vector search can also miss exact terms, such as product codes, error codes, or names. A search for "error 0x80070005" needs that exact code, not text with a similar meaning. Many systems solve this problem with *hybrid search*: they run a keyword search and a vector search, and then combine the results.
 
-## Evaluation and monitoring
+## Document chunks for RAG
 
-Most systems need both offline and online evaluation:
+A retrieval-augmented generation (RAG) application answers questions with a large language model (LLM). It splits long documents into short passages, called chunks, and searches the chunks instead of whole documents. The way that you split the documents affects both the search results and the answers that the LLM writes. Three decisions matter most:
 
-- **Offline evaluation**: uses prepared sets of test queries, relevance judgments, latency benchmarks, and metrics such as recall@k. Recall@k is the percentage of relevant results that appear in the top *k* results.
-- **Online evaluation**: uses user feedback, A/B tests, and monitoring to find regressions.
+- **Chunk size**: small chunks are precise but can lose context. Large chunks keep context but can mix several topics, so they match questions less precisely.
+- **Overlap**: chunks that repeat a few sentences from the chunk before them are less likely to cut an idea in half.
+- **Metadata**: information that you store with each chunk, such as the document title, the section name, and the URL, helps the system find the right chunk. It also lets the application link to the source.
 
-## Security, privacy, and multi-tenancy
+## Search quality checks
 
-An attacker can sometimes recover sensitive information from an embedding, such as parts of the original text. Production systems usually need these controls:
+Search results can get worse without anyone noticing, for example, after you add new content or change a setting. To catch problems, check the quality of your search in two ways:
 
-- **Tenant isolation**: keeps each customer's data separate.
-- **Query-time access controls**: check permissions when each query runs, not only when you index the data.
-- **Retention and deletion workflows**: remove data when necessary, including the vectors in each index.
+- **Before each release**: run a fixed set of test questions that have known correct answers, and count how many correct answers appear in the top results. This measure is called *recall@k*, where *k* is the number of top results that you check. Also measure how long each search takes.
+- **After each release**: watch how real users react, for example, whether they click the results or rephrase their search. To compare two versions of your system, show each version to a different group of users. This method is called an *A/B test*.
+
+## Data security and privacy
+
+Vectors look like lists of random numbers, but they aren't anonymous. In some cases, an attacker who gets the vectors can rebuild parts of the original text. Protect vectors in the same way as the original data:
+
+- **Keep each customer's data separate**: one customer's search must never return another customer's documents.
+- **Check permissions on every search**: when a user loses access to a document, the document must disappear from their results right away, not only after you update the index.
+- **Delete vectors with the data**: when you delete a document, also delete its vectors from every index. Otherwise, the search can still return the deleted content.
+
+## Next steps
+
+- To review the terms on this page, see [Key concepts in vector search](key-concepts.md).
+- To learn how indexing and querying work, see [How vector search works](how-it-works.md).

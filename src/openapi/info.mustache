@@ -1,0 +1,20 @@
+---
+id: {{{id}}}
+title: "{{{title}}}"
+description: "{{{frontMatter.description}}}"
+sidebar_label: Introduction
+unlisted: true
+custom_edit_url: null
+---
+
+{/* The generated info page only repeated the overview. Endpoint pages still
+    link here from their Authorization label, so send readers to the guide. */}
+
+import {Redirect} from '@docusaurus/router';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+export function ToAuthentication() {
+  return <Redirect to={useBaseUrl('/docs/portfolio/api-docs/authentication')} />;
+}
+
+<ToAuthentication />

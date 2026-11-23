@@ -7,6 +7,14 @@ description: Significant updates to the AI-Augmented Tech Writer website.
 
 Significant updates to the website, newest first.
 
+## November 23, 2026
+
+- Rewrote the Synonyms API sample to follow current API design practices, with an **API reference** page that covers request conventions, pagination, errors, and rate limits, and errors in the standard Problem Details format (RFC 9457). Claude recommended adding an **Expand a search query** endpoint, so the sample shows how an app uses synonyms at search time, not only how it stores them.
+- Rewrote the vector search sample in plain language, with a concrete example in each section and advice on the **Challenges** page about what to do about each problem.
+- Added a new diagram of the indexing and querying phases, with light and dark versions, to the [How vector search works](/docs/portfolio/vector-search/how-it-works) page.
+- Renamed the **Docs that AI can read** section to **Chunking for RAG**, refocused it on retrieval-augmented generation and why it matters for docs, and added a **Key points** box to the top of each page.
+- Added click-to-enlarge for images in docs and blog posts, an **Example** box for examples, and icons for the top-level sidebar sections, and restyled Markdown tables with rounded borders and striped rows.
+
 ## November 19, 2026
 
 - Added a **Cross-functional collaboration** section to **Docs craft**, with notes on how technical writers work with product marketing, sales, and support, and a diagram of how the teams connect.

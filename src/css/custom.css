@@ -134,6 +134,119 @@ h2 {
   border-bottom-color: var(--ifm-color-primary);
 }
 
+/* ---------- Lead-in paragraphs ----------
+   A paragraph directly followed by a list ("…include:") sits closer to
+   that list, so the two read as one unit. No Markdown changes needed. */
+.markdown p:has(+ ul),
+.markdown p:has(+ ol) {
+  margin-bottom: 0.4rem;
+}
+
+/* ---------- Nested numbered lists ----------
+   A numbered list inside another numbered list uses a, b, c, and a third
+   level uses i, ii, iii, so each level reads differently. */
+.markdown ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown ol ol ol {
+  list-style-type: lower-roman;
+}
+
+/* ---------- Themed images ----------
+   GitHub-style suffixes: put a light and a dark version of an image next to
+   each other in Markdown, add #gh-light-mode-only or #gh-dark-mode-only to
+   each path, and only the one for the current theme shows. */
+[data-theme='light'] img[src$='#gh-dark-mode-only'],
+[data-theme='dark'] img[src$='#gh-light-mode-only'] {
+  display: none;
+}
+
+/* ---------- Image lightbox ----------
+   Click-to-enlarge for content images, from
+   src/clientModules/imageLightbox.js. The enlarged image sits on a panel in
+   the page's surface color, so transparent images such as the SVG diagrams
+   stay readable on the dark backdrop. */
+.markdown img.zoomable {
+  cursor: zoom-in;
+}
+
+.markdown img.zoomable:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+dialog.lightbox {
+  max-width: 95vw;
+  max-height: 95vh;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+dialog.lightbox::backdrop {
+  background: rgb(0 0 0 / 75%);
+}
+
+dialog.lightbox[open],
+dialog.lightbox[open]::backdrop {
+  animation: lightbox-fade 150ms ease-out;
+}
+
+/* No page scrolling behind the open lightbox */
+html:has(dialog.lightbox[open]) {
+  overflow: hidden;
+}
+
+.lightbox__img {
+  display: block;
+  max-width: 95vw;
+  max-height: 90vh;
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+  object-fit: contain;
+  cursor: zoom-out;
+}
+
+/* Vector images stay sharp at any size, so let them grow past their
+   natural size. Raster images stop at theirs to avoid blur. */
+.lightbox__img--vector {
+  width: min(95vw, 1400px);
+  height: auto;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  display: flex;
+  padding: 0.25rem;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.lightbox__close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@keyframes lightbox-fade {
+  from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.lightbox[open],
+  dialog.lightbox[open]::backdrop {
+    animation: none;
+  }
+}
+
 /* ---------- Navbar ---------- */
 .navbar {
   box-shadow: none;
@@ -229,6 +342,47 @@ orama-search-button[id^='orama-ui'].DocSearch-Button {
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.06em;
+}
+
+/* Top-level section icons. Each top-level category gets
+   `className: 'sidebar-icon sidebar-icon--<name>'` in sidebars.js. The icon is
+   a mask filled with currentColor, so it follows the label color in both
+   themes and on hover. The SVGs are inline because a CSS url('/img/...') would
+   skip the site's base path. Icons are based on Lucide (https://lucide.dev),
+   ISC License, Copyright (c) Lucide Contributors. */
+.sidebar-icon > .menu__list-item-collapsible > .menu__link {
+  justify-content: flex-start;
+}
+
+.sidebar-icon > .menu__list-item-collapsible > .menu__link::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-right: 0.5rem;
+  background: currentColor;
+  -webkit-mask: var(--sidebar-icon) center / contain no-repeat;
+  mask: var(--sidebar-icon) center / contain no-repeat;
+}
+
+/* Lucide "door-open" */
+.sidebar-icon--welcome {
+  --sidebar-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20H2"/><path d="M11 4.562v16.157a1 1 0 0 0 1.242.97L19 20V5.562a2 2 0 0 0-1.515-1.94l-4-1A2 2 0 0 0 11 4.561z"/><path d="M11 4H8a2 2 0 0 0-2 2v14"/><path d="M14 12h.01"/><path d="M22 20h-3"/></svg>');
+}
+
+/* Lucide "briefcase" */
+.sidebar-icon--portfolio {
+  --sidebar-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>');
+}
+
+/* Lucide "bot" */
+.sidebar-icon--ai {
+  --sidebar-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>');
+}
+
+/* Lucide "pen-tool" */
+.sidebar-icon--craft {
+  --sidebar-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z"/><path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18"/><path d="m2.3 2.3 7.286 7.286"/><circle cx="11" cy="11" r="2"/></svg>');
 }
 
 /* Nested lists: a thin primary-blue guide line down the left edge, so each
@@ -383,11 +537,104 @@ orama-search-button[id^='orama-ui'].DocSearch-Button {
   vertical-align: top;
 }
 
+/* Markdown tables: a card based on the API endpoint table
+   (src/components/EndpointTable). A rounded border, a tinted header row with
+   a line under it, and striped rows with row dividers instead of cell borders.
+   :not([class]) matches plain Markdown tables only, so component tables such
+   as EndpointTable keep their own styles.
+   Infima makes tables display:block so wide ones scroll sideways on phones.
+   fit-content then shrinks the card to the columns, and rounded corners need
+   border-collapse: separate. */
+.markdown table:not([class]) {
+  /* One color for the outer border, the header line and the row dividers.
+     Light mode needs a darker gray than the API table's to stay visible. */
+  --table-border-color: var(--ifm-color-emphasis-300);
+  /* One gray for the header row and the striped rows */
+  --table-tint: var(--ifm-color-emphasis-100);
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid var(--table-border-color);
+  border-radius: var(--ifm-card-border-radius, 0.5rem);
+  border-collapse: separate;
+  border-spacing: 0;
+  /* Page color, so tables inside tinted <details> boxes still read as cards */
+  background: var(--ifm-background-color);
+}
+
+/* Dark mode: the API table's border gray already reads well. Infima's
+   dark emphasis-100 (#1c1e21) is almost the page color (#1b1b1d), so the
+   tint is a lighter gray, a step below the code block background (#2f3033). */
+[data-theme='dark'] .markdown table:not([class]) {
+  --table-border-color: var(--ifm-color-emphasis-200);
+  --table-tint: #27292d;
+}
+
+.markdown table:not([class]) thead {
+  background: var(--table-tint);
+}
+
+/* Turn off Infima's cell borders and its own stripes, which also color the
+   header row */
+.markdown table:not([class]) tr {
+  border: 0;
+  background: transparent;
+}
+
+/* Round the corner cells too, so the header and stripe colors stay inside
+   the rounded border. Block tables clip their content, but the
+   table-equal-cols ones use display: table, which doesn't, and the square
+   cell corners stuck out. The radius is 1px smaller to sit inside the border. */
+.markdown table:not([class]) {
+  --table-inner-radius: calc(var(--ifm-card-border-radius, 0.5rem) - 1px);
+}
+
+.markdown table:not([class]) thead tr:first-child > :first-child {
+  border-top-left-radius: var(--table-inner-radius);
+}
+
+.markdown table:not([class]) thead tr:first-child > :last-child {
+  border-top-right-radius: var(--table-inner-radius);
+}
+
+.markdown table:not([class]) tbody tr:last-child > :first-child {
+  border-bottom-left-radius: var(--table-inner-radius);
+}
+
+.markdown table:not([class]) tbody tr:last-child > :last-child {
+  border-bottom-right-radius: var(--table-inner-radius);
+}
+
+/* Striped rows: every second body row gets the header's gray, so the first
+   row under the header stays plain and the two never merge. */
+.markdown table:not([class]) tbody tr:nth-child(2n) {
+  background: var(--table-tint);
+}
+
+.markdown table:not([class]) th,
+.markdown table:not([class]) td {
+  padding: 0.7rem 1rem;
+  border: 0;
+}
+
+/* Headers: bold, at the same size and color as the cell text, in the
+   Markdown's own sentence case */
+.markdown table:not([class]) th {
+  font-size: inherit;
+  font-weight: var(--ifm-font-weight-bold);
+  border-bottom: 1px solid var(--table-border-color);
+}
+
+.markdown table:not([class]) tbody tr + tr td {
+  border-top: 1px solid var(--table-border-color);
+}
+
 /* Opt-in equal column widths: wrap a Markdown table in
    <div className="table-equal-cols">. Infima renders tables as display:block,
    so the table goes back to display:table at full width; table-layout:fixed
-   then splits the width evenly because no column sets its own width. */
-.markdown .table-equal-cols table {
+   then splits the width evenly because no column sets its own width.
+   :not([class]) matches the card rule above, and the extra class outranks it,
+   so width: 100% beats its fit-content. */
+.markdown .table-equal-cols table:not([class]) {
   display: table;
   width: 100%;
   table-layout: fixed;
@@ -570,6 +817,66 @@ pre code {
 [class*='admonitionHeading'] {
   font-weight: 500;
   letter-spacing: 0.06em;
+}
+
+/* ---------- Example admonitions ----------
+   :::example boxes (src/theme/Admonition/Types.js). Warm amber, the same
+   family as the "docs" color in the team-flow diagram, so examples stand out
+   from the blue UI without clashing with it. The body text keeps the normal
+   text color; only the box, heading and labels are tinted. */
+.alert--example {
+  --ifm-alert-background-color: #fdf6e8;
+  --ifm-alert-background-color-highlight: rgb(224 168 74 / 15%);
+  --ifm-alert-border-color: #e0a84a;
+  --ifm-alert-foreground-color: var(--ifm-font-color-base);
+  --example-accent: #8a5a12;
+  --example-before: #b42318;
+  --example-after: #1a7f37;
+}
+
+[data-theme='dark'] .alert--example {
+  --ifm-alert-background-color: #2a2416;
+  --ifm-alert-background-color-highlight: rgb(250 199 117 / 12%);
+  --ifm-alert-border-color: #c08a2e;
+  --example-accent: #fac775;
+  --example-before: #f47067;
+  --example-after: #57ab5a;
+}
+
+.alert--example [class*='admonitionHeading'] {
+  color: var(--example-accent);
+}
+
+.alert--example [class*='admonitionIcon'] svg {
+  fill: none;
+  stroke: var(--example-accent);
+}
+
+/* Before/after pairs: an example usually opens with two paragraphs that each
+   start with a bold label ("**Before:**", "**After:**"). The labels become
+   small colored tags: red-ish for the weak version, green for the better one.
+   Each version also gets a faint left rule in its color, so the pair reads as
+   a comparison at a glance. */
+.alert--example p:has(> strong:first-child) {
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--example-label-color, transparent);
+}
+
+.alert--example p:nth-of-type(1):has(> strong:first-child) {
+  --example-label-color: var(--example-before);
+}
+
+.alert--example p:nth-of-type(2):has(> strong:first-child) {
+  --example-label-color: var(--example-after);
+}
+
+.alert--example p > strong:first-child {
+  margin-right: 0.25rem;
+  color: var(--example-label-color, var(--example-accent));
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 

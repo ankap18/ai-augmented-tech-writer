@@ -1,5 +1,5 @@
 ---
-title: Beyond engineering and product
+title: Collaboration beyond engineering and product
 sidebar_label: Cross-functional collaboration
 description: My notes on why the job of a technical writer becomes wider, and how writers work with product marketing, sales, and support.
 sidebar_custom_props:
@@ -36,7 +36,7 @@ Most of this data comes from job postings, conference talks, and vendor blogs. I
 
 :::
 
-## Collaboration outside engineering and product
+## Product marketing, sales, and support
 
 Engineering and product are still the most important teams. They tell you how the product operates and what the next release contains. These notes are about three more teams:
 
@@ -91,8 +91,12 @@ flowchart TD
 
 Use these tips with product marketing, sales, and support:
 
-1. **Make a shared glossary and style guide.** Then the website, the docs, and the UI use the same name for each feature. For when to make the glossary, see [Work in each launch phase](./product-marketing.md#work-in-each-launch-phase).
-2. **Learn about releases early.** Attend product planning meetings or release meetings. Then all teams know about changes in time.
-3. **Make one procedure for doc requests.** Use a form or a ticket template. Do not accept requests in many different direct messages.
-4. **Have short meetings at regular intervals.** Do not speak with the teams only when a request comes in.
-5. **Use these teams as reviewers and as sources of information.** Each team knows things about users that engineers frequently do not know.
+1. **Make a shared glossary and style guide** — this way, the website, the docs, and the UI use the same name for each feature. For when to make the glossary, see [Work in each launch phase](./product-marketing.md#work-in-each-launch-phase).
+
+2. **Learn about releases early** — attend product planning meetings or release meetings. Then all teams know about changes in time.
+
+3. **Make one procedure for doc requests** — use a form or a ticket template. Do not accept requests in many different direct messages.
+
+4. **Have short meetings at regular intervals** — do not speak with the teams only when a request comes in.
+
+5. **Use these teams as reviewers and as sources of information** — each team knows things about users that engineers frequently do not know.

@@ -7,5 +7,9 @@ disable-model-invocation: true
 
 # Preview the site
 
-1. Start the Docusaurus development server on port 3000, or another port if 3000 is busy.
-2. Provide the preview link using the selected port and base path `/ai-augmented-tech-writer/`.
+Serve the preview and give the link. Do nothing else: no build, no install, no checks.
+
+1. If a preview server is already running, reuse it.
+2. Otherwise, start the `docusaurus-start` configuration from `.claude/launch.json`. If your tool can't read that file, run `npm run start -- --port 3002 --no-open` in the background.
+3. If port 3002 is busy with something else, use the next free port.
+4. Reply with only the link: `http://localhost:<port>/ai-augmented-tech-writer/`.

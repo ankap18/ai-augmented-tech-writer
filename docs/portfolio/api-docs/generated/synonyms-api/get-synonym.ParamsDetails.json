@@ -1,1 +1,1 @@
-{"parameters":[{"name":"id","in":"path","required":true,"description":"Specifies the synonym entry ID.","schema":{"type":"string"}}]}
+{"parameters":[{"name":"id","in":"path","required":true,"description":"The ID of the synonym entry.","schema":{"type":"string","pattern":"^syn_[0-9a-hjkmnp-tv-z]{26}$","examples":["syn_01hx4k9mzqe8f3b7n2p6r0wc5t"]}}]}

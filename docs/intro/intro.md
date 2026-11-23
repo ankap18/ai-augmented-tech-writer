@@ -1,5 +1,6 @@
 ---
 title: Why I created this website
+sidebar_label: Why this site
 description: Why I built this site, a place to explore how AI is changing technical writing, research AI-driven documentation, and share my portfolio.
 sidebar_custom_props:
   card_icon: img/icons/github-outline-light.svg
@@ -15,3 +16,4 @@ It serves several purposes:
 - Learn how to publish documentation using Docusaurus (I did it using GitHub Copilot and Claude)
 - Showcase my [portfolio](portfolio/about-portfolio.md) and support my preparation for future roles
 - Share my journey and insights with the technical writing community (work in progress)
+- Document the site's progress, which you can follow in the [Changelog](/changelog)

@@ -1,0 +1,75 @@
+/* A borderless table in a rounded card: row dividers only, a tinted header,
+   and a row highlight on hover. */
+.wrapper {
+  margin-bottom: var(--ifm-leading);
+  overflow-x: auto;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-card-border-radius, 0.5rem);
+}
+
+.table {
+  display: table;
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background: var(--ifm-color-emphasis-100);
+}
+
+/* Turn off Infima's zebra stripes and cell borders */
+.table tr {
+  border: 0;
+}
+
+.table tr:nth-child(2n) {
+  background: transparent;
+}
+
+.table th,
+.table td {
+  padding: 0.7rem 1rem;
+  border: 0;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.table tbody tr + tr {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.table tbody tr:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+/* The method column is only as wide as its label */
+.table td:first-child,
+.table th:first-child {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* The card layout raises badges; in table cells they sit on the baseline */
+.table :global(.api-method-badge) {
+  margin: 0;
+  vertical-align: baseline;
+}
+
+/* Paths read as plain monospace text, without the inline-code box. Two
+   classes, to outrank the dark theme's `:not(pre) > code` outline. */
+.table .path {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
