@@ -7,9 +7,12 @@ sidebar_custom_props:
   card_icon_invert_dark: true
 ---
 
-:::info[In the works]
+:::tip[Key points]
 
-These notes are still in progress. I'm checking the facts and sources, so details may change.
+- Specific headings, short sections, and paragraphs that name their subject help each chunk make sense alone.
+- AI tools need content they can reach: no content hidden behind clicks or scripts, pages short enough to read in full, and clean Markdown with an `llms.txt` file.
+- You usually can't control the chunker, so put the answer first in each paragraph. A bad cut then loses detail, not meaning.
+- If you run your own pipeline, tune the chunker and the content together, and retest with the same questions after each change.
 
 :::
 
@@ -27,7 +30,7 @@ These are widely recommended practice:
 - **Replace vague references** — use the actual noun instead of "this," "it," or "the previous step."
 - **Keep code and images readable** — keep code with its intro sentence, include imports, and describe images and diagrams in text. ([Kapa.ai](https://www.kapa.ai/blog/optimizing-technical-documentation-for-llms))
 
-:::note[Example]
+:::example
 
 **Before:** "Set it to 30 seconds. This is the default for the previous option."
 
@@ -65,7 +68,7 @@ These habits are my own conclusions from the sources in these notes, not tested 
 - **Keep paragraphs short and independent** — a cut between two of them then loses nothing.
 - **Keep dependent pieces together** — a step with its result, and a code block with the sentence that introduces it.
 
-:::note[Example]
+:::example
 
 **Breaks when cut:** "You can try the product before you buy. The free trial lasts 14 days."
 

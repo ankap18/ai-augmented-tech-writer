@@ -7,9 +7,12 @@ sidebar_custom_props:
   card_icon_invert_dark: true
 ---
 
-:::info[In the works]
+:::tip[Key points]
 
-These notes are still in progress. I'm checking the facts and sources, so details may change.
+- No single check covers every chunker, so it takes several.
+- `npx afdocs check <site-url>` audits delivery, such as `llms.txt`, Markdown, page size, and structure, but not content quality.
+- Content checks include viewing the page without JavaScript or as `.md`, splitting it with a heading-based splitter, and testing it with questions.
+- Most evidence for these practices comes from practitioner field notes, not published tests.
 
 :::
 

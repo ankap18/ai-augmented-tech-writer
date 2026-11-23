@@ -1,5 +1,6 @@
 ---
 title: About my AI journey
+sidebar_label: My AI journey
 description: How I use AI in my technical writing, the tools I rely on, and what I'm exploring next.
 sidebar_custom_props:
   card_icon: img/icons/ai-square-light.svg

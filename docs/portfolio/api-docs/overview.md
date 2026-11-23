@@ -1,55 +1,45 @@
 ---
-title: Synonyms API - Overview
+title: Synonyms API overview
 sidebar_label: Overview
 description: Learn how the Synonyms API manages synonym relationships for search and query expansion.
 ---
 
-import DocCardList from '@theme/DocCardList';
+The Synonyms API lets you manage synonym relationships for search and query expansion. Define how terms relate to each other once, then use those relationships across search engines, autocomplete, and query processing pipelines. For example, you can expand a search for "laptop" to also match "notebook."
 
-The Synonyms API lets you manage synonym relationships for search and query expansion.
+With the API, you can do the following:
 
-Use this API to define how terms relate to each other. You can apply these relationships across search engines, autocomplete systems, and query processing pipelines to improve relevance and consistency.
+- Define two-way, one-way, or group synonym relationships.
+- Organize entries into synonym sets, for example, one set for each domain.
+- Create, update, and delete entries as your vocabulary changes.
+- Expand a search query into all the terms it should match, at query time.
 
-For example:
-- Expand queries (for example, "laptop" → "notebook")
-- Normalize vocabulary across domains
-- Manage controlled vocabularies
+## Synonym entries and sets
 
-Instead of maintaining synonym logic in multiple systems, define it once and reuse it.
+A *synonym entry* is the resource that the API manages. Each entry contains a primary term, a list of synonyms, optional tags, and a relationship type. The relationship type controls which terms match each other in a search:
 
-## Key capabilities
+| Relationship type | How terms match | Example |
+|---|---|---|
+| `EQUIVALENT` | The term and all its synonyms match each other. | "sofa," "couch," and "settee" are interchangeable. |
+| `ONE_WAY` | The term matches its synonyms, but the synonyms don't match the term. | A search for "laptop" finds "notebook," but a search for "notebook" doesn't find "laptop." |
+| `GROUP` | The synonyms match each other. The term is only a name for the group. | The group "red shades" makes "red," "crimson," and "scarlet" interchangeable. A search for "red shades" doesn't match them. |
 
-- Define synonym relationships as `EQUIVALENT`, `ONE_WAY`, or `GROUP`  
-- Tag synonym entries by domain (for example, `ecommerce`, `legal`, `medical`)  
-- Filter and paginate synonym entries  
-- Update or delete entries as your vocabulary evolves  
+Each entry belongs to a *synonym set*. A term must be unique within its set, so different sets can define the same term differently. For example, "discharge" can have different synonyms in a `medical` set and a `legal` set.
 
-## Base URL
+## Use synonyms in search
 
-All API requests use the following base URL:
+The API stores your synonyms, but it doesn't run searches. To use the synonyms, your app expands each search query before it sends the query to your search engine:
 
-```
-https://api.synonyms.io/v1
-```
-
-
-## Versioning
-
-The API uses URI versioning.
-
-The current version is `v1`. Breaking changes are released in a new version (for example, `/v2`). The API provides a deprecation notice and migration guidance before removing a version.
-
-## Request and response format
-
-The API accepts and returns JSON.
-
-Include these headers in all requests:
-
-```
-Content-Type: application/json
-Accept: application/json
-```
+1. A user searches for "couch."
+2. Your app calls [Expand a search query](generated/synonyms-api/expand-query.api.mdx) with `q=couch` and the synonym set to use.
+3. The API returns the terms to search for: "couch," "sofa," "settee," and "divan."
+4. Your app searches for all four terms.
 
 ## In this section
 
-<DocCardList />
+This section contains the following pages:
+
+- [Quickstart](quickstart.md): create a synonym entry, expand a query with it, then update and delete the entry.
+- [Authentication](authentication.md): get an API key or access token, send it with each request, and keep it secure.
+- [API reference](generated/synonyms-api/synonyms.tag.mdx): the base URL, request conventions, pagination, errors, rate limits, and every endpoint with its parameters and responses.
+
+The full API definition is also available as an [OpenAPI specification](pathname:///synonyms-api.yaml).

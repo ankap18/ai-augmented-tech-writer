@@ -25,6 +25,7 @@ tutorialSidebar: [
      {
       type: 'category',
       label: 'Welcome',
+      className: 'sidebar-icon sidebar-icon--welcome',
       link: {
         type: 'generated-index',
         title: 'Welcome',
@@ -41,6 +42,7 @@ tutorialSidebar: [
     {
       type: 'category',
       label: 'Portfolio',
+      className: 'sidebar-icon sidebar-icon--portfolio',
       link: {type: 'doc', id: 'portfolio/about-portfolio'},
       collapsible: true,
       collapsed: true, // Keeps the portfolio folder open by default
@@ -81,12 +83,12 @@ tutorialSidebar: [
             card_icon_invert_dark: true,
           },
           items: [
-            'portfolio/api-docs/authentication',
             'portfolio/api-docs/quickstart',
+            'portfolio/api-docs/authentication',
 
             {
               type: 'category',
-              label: 'Endpoints',
+              label: 'API reference',
               link: {
                 type: 'doc',
                 id: 'portfolio/api-docs/generated/synonyms-api/synonyms',  // no .mdx extension
@@ -113,8 +115,18 @@ tutorialSidebar: [
                 },
                 {
                   type: 'doc',
+                  id: 'portfolio/api-docs/generated/synonyms-api/update-synonym',
+                  className: 'api-method put',
+                },
+                {
+                  type: 'doc',
                   id: 'portfolio/api-docs/generated/synonyms-api/delete-synonym',
                   className: 'api-method delete',
+                },
+                {
+                  type: 'doc',
+                  id: 'portfolio/api-docs/generated/synonyms-api/expand-query',
+                  className: 'api-method get',
                 },
               ],
             },
@@ -131,6 +143,7 @@ tutorialSidebar: [
     {
       type: 'category',
       label: 'AI and docs',
+      className: 'sidebar-icon sidebar-icon--ai',
       link: {type: 'doc', id: 'ai-stuff/about-ai-stuff'},
       collapsible: true,
       collapsed: true,
@@ -139,7 +152,7 @@ tutorialSidebar: [
         'ai-stuff/llms-txt',
         {
           type: 'category',
-          label: 'Docs that AI can read',
+          label: 'Chunking for RAG',
           link: {type: 'doc', id: 'ai-stuff/docs-ai-can-read'},
           customProps: {
             card_icon: 'img/icons/ai-head.svg',
@@ -158,6 +171,7 @@ tutorialSidebar: [
     {
       type: 'category',
       label: 'Docs craft',
+      className: 'sidebar-icon sidebar-icon--craft',
       link: {type: 'doc', id: 'tw-stuff/about-tw-stuff'},
       collapsible: true,
       collapsed: true,

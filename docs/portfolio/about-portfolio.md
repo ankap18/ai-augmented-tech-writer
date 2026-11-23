@@ -24,10 +24,10 @@ Use the sidebar to browse the Portfolio section, or jump straight to the samples
 <summary>API documentation</summary>
 
 This is a fake API for synonyms management (AI-assisted writing):
-- [Synonyms API - Overview](./api-docs/overview.md)
-- [Synonyms API - Quickstart](./api-docs/quickstart.md)
-- [Synonyms API - Authentication](./api-docs/authentication.md)
-- [Synonyms API - Reference - 'List synonym entries' endpoint](./api-docs/generated/synonyms-api/list-synonyms.api.mdx)
+- [Synonyms API overview](./api-docs/overview.md)
+- [Synonyms API quickstart](./api-docs/quickstart.md)
+- [Authenticate Synonyms API requests](./api-docs/authentication.md)
+- [Synonyms API reference: List synonym entries](./api-docs/generated/synonyms-api/list-synonyms.api.mdx)
 
 </details>
 
